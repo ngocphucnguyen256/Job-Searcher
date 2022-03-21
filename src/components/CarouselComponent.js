@@ -1,6 +1,8 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
+import HeaderForm  from './HeaderForm';
+
 
 function CarouselComponent(props)
 {
@@ -34,16 +36,19 @@ function Item(props)
 {
     return (
   
-        <Paper>
-            <h2>{props.item.name}</h2>
-            <p>{props.item.description}</p>
+        <div className="carousel-component">
+            <div className="form-wrapper">
+               <HeaderForm/>
+            </div>
+            {/* <h2>{props.item.name}</h2>
+            <p>{props.item.description}</p> */}
             <div>
               <img src={`${props.item.src}`} alt={props.item.src} />
             </div>
-            <Button className="CheckButton">
+            {/* <Button className="CheckButton">
                 Check it out!
-            </Button>
-        </Paper>
+            </Button> */}
+        </div>
     )
 }
 

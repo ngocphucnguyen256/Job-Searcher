@@ -1,0 +1,73 @@
+
+
+// carousel component
+
+.carousel-component{
+    position: relative;
+
+    img{
+        width:100%;
+        height:500px;
+    }
+    .form-wrapper{
+        // background:linear-gradient(45deg, #00aeb0 20%, transparent 100%) no-repeat;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        bottom: 50px;
+        // animation: colorChange 20s alternate infinite;
+    }
+}
+
+
+@keyframes colorChange{
+    from{
+        filter:hue-rotate(0deg);
+    }
+    to{
+        filter:hue-rotate(360deg);
+    }
+}
+    // Function
+@function remy($value, $base: 16px) {
+    @return ($value / $base) * 1rem;
+}
+
+
+.header-form{
+        // Variables
+    $color-grey: #eee;
+    $color-grey-light: #f5f5f5;
+    $color-primary: #ffab00;
+    $radius: 3px;
+    padding: remy(32px);
+ 
+    margin-right: auto;
+    margin-left: auto;
+    width: remy(500px);
+    background-color: #fff;
+    border-radius: $radius;
+    box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);
+
+
+
+    // Mixins
+    @mixin transition($prop: all, $duration: .25s, $timing: cubic-bezier(.4,0,1,1)) {
+    transition: $prop $duration $timing;
+    }
+
+
+
+}
+
+.job-tab-wrapper{
+    h2{
+        text-transform: uppercase;
+        font-size: 1.5rem;
+    }
+    padding: 50px;
+    img{
+        height: 50px;
+        width: 50px;
+    }
+}

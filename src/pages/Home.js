@@ -1,5 +1,6 @@
 import ButtonAppBar from '../components/ButtonAppBar';
 import CarouselComponent  from '../components/CarouselComponent';
+import TabComponent from '../components/TabComponent';
 
 export default function Home() {
   return (
@@ -7,11 +8,19 @@ export default function Home() {
         <header>
             <ButtonAppBar />
         </header>
-        <body> 
-            <main>
-                <CarouselComponent />
-            </main>
-        </body>
+     
+          <main>
+              <section>
+                  <CarouselComponent />
+                  
+              </section>
+              <section className="job-tab-wrapper">
+                 <h2>Nhà tuyển dụng hàng đầu</h2>
+
+                <TabComponent />
+              </section>
+          </main>
+     
     </>
   );
 }
