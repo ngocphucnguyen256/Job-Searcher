@@ -1,8 +1,8 @@
 {
   "name": "job",
   "version": "0.1.0",
-  "private": true,
-  "homepage": "https://github.com/ngocphucnguyen256/Job-Searcher",
+  "private": false,
+  "homepage": "https://github.com/ngocphucnguyen256/Job-Searcher/",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
