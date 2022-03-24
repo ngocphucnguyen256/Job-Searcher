@@ -1,10 +1,10 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
-import HeaderForm  from './HeaderForm';
+import HeaderForm  from '../components/HeaderForm';
 
 
-function CarouselComponent(props)
+function SectionCarousel(props)
 {
     var items = [
         {
@@ -35,22 +35,23 @@ function CarouselComponent(props)
 function Item(props)
 {
     return (
-  
-        <div className="carousel-component">
-            <div className="form-wrapper">
-               <HeaderForm/>
+        <section>
+            <div className="carousel-component">
+                <div className="form-wrapper">
+                <HeaderForm/>
+                </div>
+                {/* <h2>{props.item.name}</h2>
+                <p>{props.item.description}</p> */}
+                <div>
+                <img src={`${props.item.src}`} alt={props.item.src} />
+                </div>
+                {/* <Button className="CheckButton">
+                    Check it out!
+                </Button> */}
             </div>
-            {/* <h2>{props.item.name}</h2>
-            <p>{props.item.description}</p> */}
-            <div>
-              <img src={`${props.item.src}`} alt={props.item.src} />
-            </div>
-            {/* <Button className="CheckButton">
-                Check it out!
-            </Button> */}
-        </div>
+        </section>
     )
 }
 
 
-export default CarouselComponent
+export default SectionCarousel

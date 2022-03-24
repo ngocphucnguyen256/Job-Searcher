@@ -6,7 +6,9 @@ import './App.css';
 import {Routes, Route, useLocation} from 'react-router-dom';
 import AOS from 'aos';
 import { focusHandling } from 'cruip-js-toolkit';
-
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
+import SideMenu from './partials/SideMenu';
 
 function App() {
 
@@ -33,6 +35,9 @@ function App() {
       <Routes>
         <Route  path="/" element={<Home/>}/>
         <Route  path="/profile" element={<Profile/>}/>
+        <Route  path="/sign-in" element={<SignIn/>}/>
+        <Route  path="/sign-up" element={<SignUp/>}/>
+        <Route  path="/side-menu" element={<SideMenu/>}/>
         <Route  path="*" element={<PageNotFound/>}/>
       </Routes>
     </div>
