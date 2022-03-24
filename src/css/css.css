@@ -1,3 +1,7 @@
+html {
+  font-size: 2rem;
+}
+
 .carousel-component {
   position: relative;
 }
@@ -124,5 +128,18 @@
 .section-companies .desc {
   color: #266377;
   text-align: right;
+}
+
+footer {
+  background-image: url(../../public/img/bg-4_3.jpg);
+  color: #fff;
+}
+
+footer .footer__container {
+  padding: 5rem;
+}
+
+footer h2 {
+  margin-bottom: 3rem;
 }
 /*# sourceMappingURL=css.css.map */

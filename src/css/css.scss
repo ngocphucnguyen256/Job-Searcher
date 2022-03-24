@@ -1,4 +1,7 @@
 
+html{
+    font-size:2rem;
+}
 
 // carousel component
 
@@ -140,4 +143,20 @@
     }
 
 
+}
+
+
+//footer
+
+footer{
+    background-image: url(../../public/img/bg-4_3.jpg);
+    color: #fff;
+
+    .footer__container{
+         padding: 5rem;
+
+    }
+    h2{
+        margin-bottom: 3rem;
+    }
 }

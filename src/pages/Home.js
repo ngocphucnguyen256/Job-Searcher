@@ -3,6 +3,7 @@ import CarouselComponent  from '../components/CarouselComponent';
 import TabComponent from '../components/TabComponent';
 import SectionRegEmail from '../components/SectionRegEmail';
 import SectionCompanies from '../components/SectionCompanies';
+import Footer from '../partials/Footer'
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
               </section>
               <SectionCompanies/>
           </main>
+          <Footer/>
      
     </>
   );
