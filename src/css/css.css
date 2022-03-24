@@ -60,4 +60,69 @@
   height: 50px;
   width: 50px;
 }
+
+.flex-grow {
+  padding: 1rem;
+}
+
+.flex-grow .title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  text-align: start;
+}
+
+.flex-grow p {
+  text-align: start;
+}
+
+.center-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.reg-email {
+  padding: 5rem;
+  background-image: url(../../public/img/bg-4_3.jpg);
+  color: #fff;
+}
+
+.reg-email h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 5rem;
+}
+
+.reg-email p {
+  text-align: center;
+}
+
+.section-companies {
+  padding: 5rem;
+}
+
+.section-companies .left {
+  width: 50%;
+  padding: 5rem;
+  background-image: url(../../public/img/bg-2.png);
+  font-size: 2rem;
+}
+
+.section-companies .title {
+  font-size: 2.5rem;
+  text-align: left;
+  color: #ffab00;
+  margin-bottom: 2rem;
+}
+
+.section-companies .desc {
+  color: #266377;
+  text-align: right;
+}
 /*# sourceMappingURL=css.css.map */

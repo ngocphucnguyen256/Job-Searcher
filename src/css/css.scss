@@ -71,3 +71,73 @@
         width: 50px;
     }
 }
+
+
+.flex-grow{
+    padding: 1rem;
+    .title{
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        text-align: start;
+    }
+    p{
+        text-align: start;
+    }
+}
+
+
+//center div
+
+.center-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+//req-email
+
+.reg-email{
+    padding: 5rem;
+    background-image: url(../../public/img/bg-4_3.jpg);
+    color: #fff;
+    h2{
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 5rem;
+    
+
+    }
+    p{
+        text-align: center;
+    }
+}
+
+//section companies
+
+.section-companies{
+    padding: 5rem;
+    .left{
+        width: 50%;
+        padding: 5rem;
+        background-image: url(../../public/img/bg-2.png);
+        font-size:2rem;
+
+    }
+    .title{
+        font-size:2.5rem;
+        text-align:left;
+
+        color:#ffab00;
+        margin-bottom: 2rem;
+       
+  
+     
+    }
+    .desc{
+        color: rgb(38, 99, 119);
+        text-align:right;
+    }
+
+
+}

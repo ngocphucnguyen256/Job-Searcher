@@ -1,6 +1,8 @@
 import ButtonAppBar from '../components/ButtonAppBar';
 import CarouselComponent  from '../components/CarouselComponent';
 import TabComponent from '../components/TabComponent';
+import SectionRegEmail from '../components/SectionRegEmail';
+import SectionCompanies from '../components/SectionCompanies';
 
 export default function Home() {
   return (
@@ -19,6 +21,10 @@ export default function Home() {
 
                 <TabComponent />
               </section>
+              <section className="reg-email">
+                <SectionRegEmail />
+              </section>
+              <SectionCompanies/>
           </main>
      
     </>

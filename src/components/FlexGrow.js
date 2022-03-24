@@ -1,6 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import EditLocationIcon from '@mui/icons-material/EditLocation';
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -36,16 +38,23 @@ Item.propTypes = {
 
 export default function FlexGrow() {
   return (
-    <div style={{ width: '100%' }}>
-      <Box
-        sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
-      >
-        <Item>
-            <img src="https://www.gstatic.com/webp/gallery/1.sm.jpg" alt="1" />
-        </Item>
-        <Item sx={{ flexGrow: 1 }}>Item 1</Item>
-       
-      </Box>
+    <div className="flex-grow" style={{ width: '100%' }}>
+      <a href="https://www.gstatic.com/webp/gallery/1.sm.jpg">
+        <Box
+          sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
+        >
+          <Item>
+              <img src="https://www.gstatic.com/webp/gallery/1.sm.jpg" alt="1" />
+          </Item>
+          <Item sx={{ flexGrow: 1 }}>
+            <p className="title">IT intern</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adip</p>
+            <p className="price"><AttachMoneyIcon/> Lương: </p>
+            <p className="location"><EditLocationIcon/></p>
+          </Item>
+        
+        </Box>
+      </a>
     </div>
   );
 }
