@@ -153,4 +153,44 @@ footer .footer__container {
 footer h2 {
   margin-bottom: 3rem;
 }
+
+.job-detail {
+  font-size: 1rem;
+}
+
+.job-detail h2 {
+  text-align: left;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.job-detail .header {
+  padding: 5rem;
+}
+
+.job-detail .header h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.job-detail .header h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.job-detail .body {
+  padding: 5rem;
+}
+
+.job-detail .body .heading {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.job-detail .body .ckeditor-html {
+  margin: 3rem 0rem;
+}
 /*# sourceMappingURL=css.css.map */
