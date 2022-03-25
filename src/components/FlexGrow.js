@@ -47,10 +47,10 @@ export default function FlexGrow() {
               <img src="https://www.gstatic.com/webp/gallery/1.sm.jpg" alt="1" />
           </Item>
           <Item sx={{ flexGrow: 1 }}>
-            <p className="title">IT intern</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adip</p>
+            <p className="title">Lorem ipsum dolor sit amet, consectetur</p>
+            <p className="company">Lorem ipsum dolor sit amet, consectetur adip</p>
             <p className="price"><AttachMoneyIcon/> Lương: </p>
-            <p className="location"><EditLocationIcon/></p>
+            <p className="location"><EditLocationIcon/>Ho Chi Minh</p>
           </Item>
         
         </Box>

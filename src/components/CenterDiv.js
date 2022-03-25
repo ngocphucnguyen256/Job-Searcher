@@ -9,7 +9,7 @@ export default function CenterDiv(props) {
     )
 
 }
-  
+
 
 CenterDiv.propTypes = {
     children: PropTypes.node,

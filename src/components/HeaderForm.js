@@ -78,6 +78,7 @@ export default function HeaderForm() {
       <div className='form-group'>
        {/* <input id='formButton' className='btn' type='submit' placeholder='Tìm việc ngay' /> */}
        <Button variant="contained">Tìm việc ngay</Button>
+ 
        <Button variant="contained">Đăng ngay</Button>
       </div>
      </form>

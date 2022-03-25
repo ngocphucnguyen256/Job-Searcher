@@ -8,7 +8,8 @@ import AOS from 'aos';
 import { focusHandling } from 'cruip-js-toolkit';
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
-import SideMenu from './partials/SideMenu';
+import Dashboard from './pages/Dashboard'
+import JobDetails from './pages/JobDetail';
 
 function App() {
 
@@ -37,7 +38,8 @@ function App() {
         <Route  path="/profile" element={<Profile/>}/>
         <Route  path="/sign-in" element={<SignIn/>}/>
         <Route  path="/sign-up" element={<SignUp/>}/>
-        <Route  path="/side-menu" element={<SideMenu/>}/>
+        <Route  path="/dashboard" element={<Dashboard/>}/>
+        <Route  path="/job-detail" element={<JobDetails/>}/>
         <Route  path="*" element={<PageNotFound/>}/>
       </Routes>
     </div>
