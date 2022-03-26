@@ -9,8 +9,9 @@ import { focusHandling } from 'cruip-js-toolkit';
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Dashboard from './pages/Dashboard'
+import DashboardCompany from './pages/DashboardCompany'
 import JobDetails from './pages/JobDetail';
-
+import DashboardPost from './components/DashboardPost'
 function App() {
 
   const location = useLocation();
@@ -39,6 +40,8 @@ function App() {
         <Route  path="/sign-in" element={<SignIn/>}/>
         <Route  path="/sign-up" element={<SignUp/>}/>
         <Route  path="/dashboard" element={<Dashboard/>}/>
+        <Route  path="/dashboard-company" element={<DashboardCompany/>}/>
+        <Route  path="/post" element={<DashboardPost/>}/>
         <Route  path="/job-detail" element={<JobDetails/>}/>
         <Route  path="*" element={<PageNotFound/>}/>
       </Routes>

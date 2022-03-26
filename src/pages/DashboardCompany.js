@@ -25,6 +25,7 @@ import img from '../images/404.jpg';
 import CenterDiv from '../components/CenterDiv'
 import {Link} from 'react-router-dom'
 
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -154,6 +155,8 @@ function DashboardContent() {
                 Nguyen Ngoc Phuc
             </Typography>
             {mainListItems}
+            <Link  to="/post">Đăng bài tuyển dụng</Link>
+
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
@@ -216,6 +219,6 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
+export default function DashboardCompany() {
   return <DashboardContent />;
 }

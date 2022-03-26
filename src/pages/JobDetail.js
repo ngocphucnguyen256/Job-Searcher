@@ -32,8 +32,7 @@ export default function JobDetails(props) {
                     </Box>
                     <CkeditorHtml>
                     <h2>MÔ TẢ CÔNG VIỆC</h2>
-                        <p>
-           
+                        <p>           
                         Responsible for updating information about products and images on the company's internal e-commerce website (Magento, Wordpress…) quickly and completely
                         Responsible for coordinating with the team, partners to provide the platform to set up promotions, landing pages...
                         Regularly control the information set up on the website, ensuring that the promotions take place stably

@@ -42,35 +42,21 @@ export default function HeaderForm() {
       <h2>Đón lấy thành công với
             29,913 cơ hội nghề nghiệp</h2>
   
-      <TextField fullWidth id="outlined-search" label="Search field" type="search" />
+      <TextField className="search" fullWidth id="outlined-search" label="Search field" type="search" />
     
       <Box sx={{ width:'100%' }}>
       <Grid container spacing={1} >
         <Grid item xs={6}>
-        {/* <TextField
-            id="outlined-select-currency"
-            select
-            label="Select"
-            value={currency}
-            onChange={handleChangeLocation}
-       
-         >
-            {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-                {option.label}
-            </MenuItem>
-            ))}
-        </TextField> */}
             <SelectComponent fullWidth/>
         </Grid>
         <Grid item xs={6}>
-       <SelectComponent/>
+       <SelectComponent fullWidth/>
         </Grid>
         <Grid item xs={6}>
-       <SelectComponent/>
+       <SelectComponent fullWidth/>
         </Grid>
         <Grid item xs={6}>
-            <SelectComponent/>
+            <SelectComponent fullWidth/>
         </Grid>
     </Grid>
         </Box>

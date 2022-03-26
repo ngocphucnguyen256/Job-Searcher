@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import EditLocationIcon from '@mui/icons-material/EditLocation';
+import Typography from '@mui/material/Typography';
+import {Link} from 'react-router-dom'
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -19,6 +21,7 @@ function Item(props) {
         borderRadius: 2,
         fontSize: '0.875rem',
         fontWeight: '700',
+        textDecoration: 'none !important',
         ...sx,
       }}
       {...other}
@@ -39,7 +42,7 @@ Item.propTypes = {
 export default function FlexGrow() {
   return (
     <div className="flex-grow" style={{ width: '100%' }}>
-      <a href="https://www.gstatic.com/webp/gallery/1.sm.jpg">
+      <Link to='/job-detail' className="link">
         <Box
           sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
         >
@@ -47,14 +50,28 @@ export default function FlexGrow() {
               <img src="https://www.gstatic.com/webp/gallery/1.sm.jpg" alt="1" />
           </Item>
           <Item sx={{ flexGrow: 1 }}>
-            <p className="title">Lorem ipsum dolor sit amet, consectetur</p>
-            <p className="company">Lorem ipsum dolor sit amet, consectetur adip</p>
-            <p className="price"><AttachMoneyIcon/> Lương: </p>
-            <p className="location"><EditLocationIcon/>Ho Chi Minh</p>
+          <Typography variant="h5" className="title" gutterBottom component="div">
+          Lorem ipsum dolor sit amet, consectetur adip
+          </Typography>
+          <Typography variant="body1" className="company" gutterBottom component="div">
+          Lorem ipsum dolor sit amet, consectetur adip
+          </Typography>
+          <div className="flex">
+            <AttachMoneyIcon/> 
+            <Typography variant="body1" className="price" gutterBottom component="div">
+            Lương:
+            </Typography>
+          </div>
+          <div className="flex"> 
+          <EditLocationIcon/>
+          <Typography variant="body1" className="location" gutterBottom component="div">
+          Ho Chi Minh
+          </Typography>
+          </div>
           </Item>
         
         </Box>
-      </a>
+      </Link>
     </div>
   );
 }

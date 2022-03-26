@@ -1,3 +1,14 @@
+.deco-none{
+    text-decoration: none;
+ 
+}
+.white{
+    color: #fff;
+}
+.black{
+    color: black;
+}
+
 
 // carousel component
 
@@ -64,6 +75,7 @@
    }
 
 
+
 }
 
 .job-tab-wrapper{
@@ -88,12 +100,22 @@
     }
     .title{
         font-size: 1.4rem;
-        margin-bottom: 1rem;
         text-align: start;
+        font-weight: bold;
     }
-    p{        
-        text-decoration: none !important;
-        text-align: start;
+    div{
+        text-align: start !important;
+    }
+    .flex{
+        display:flex;
+        align-items:center;
+    }
+    .price .location{
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+    .link{
+        text-decoration: none;
     }
 }
 
@@ -204,5 +226,27 @@ footer{
         .ckeditor-html{
             margin: 3rem 0rem;
         }
+    }
+}
+
+.dashboard{
+   .name{
+       margin-top: 1rem;
+   }
+}
+
+
+.ck-editor__editable_inline {
+    min-height: 400px !important;
+}
+.ck-editor__editable {
+    min-height: 400px !important;
+}
+
+
+.post-component{
+    
+    .post{
+        margin-top: 1rem;
     }
 }

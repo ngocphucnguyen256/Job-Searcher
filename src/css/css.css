@@ -1,3 +1,15 @@
+.deco-none {
+  text-decoration: none;
+}
+
+.white {
+  color: #fff;
+}
+
+.black {
+  color: black;
+}
+
 .carousel-component {
   position: relative;
 }
@@ -81,13 +93,30 @@
 
 .flex-grow .title {
   font-size: 1.4rem;
-  margin-bottom: 1rem;
   text-align: start;
+  font-weight: bold;
 }
 
-.flex-grow p {
-  text-decoration: none !important;
-  text-align: start;
+.flex-grow div {
+  text-align: start !important;
+}
+
+.flex-grow .flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flex-grow .price .location {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.flex-grow .link {
+  text-decoration: none;
 }
 
 .center-div {
@@ -192,5 +221,21 @@ footer h2 {
 
 .job-detail .body .ckeditor-html {
   margin: 3rem 0rem;
+}
+
+.dashboard .name {
+  margin-top: 1rem;
+}
+
+.ck-editor__editable_inline {
+  min-height: 400px !important;
+}
+
+.ck-editor__editable {
+  min-height: 400px !important;
+}
+
+.post-component .post {
+  margin-top: 1rem;
 }
 /*# sourceMappingURL=css.css.map */

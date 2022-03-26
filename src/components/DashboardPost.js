@@ -17,13 +17,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../partials/SideMenu';
-// import SideMenu from '../partials/SideMenu'
-import DataTable from '../components/DataTable';
 import ActionAreaCard from '../components/ActionAreaCard'
 import Avatar from '@mui/material/Avatar';
 import img from '../images/404.jpg';
 import CenterDiv from '../components/CenterDiv'
 import {Link} from 'react-router-dom'
+import PostComponent from '../components/PostComponent';
 
 function Copyright(props) {
   return (
@@ -114,7 +113,6 @@ function DashboardContent() {
             >
               <MenuIcon />
             </IconButton>
-            <Link className="deco-none white" to={'/'}>Trang chủ</Link>
             <Typography
               component="h1"
               variant="h6"
@@ -154,6 +152,8 @@ function DashboardContent() {
                 Nguyen Ngoc Phuc
             </Typography>
             {mainListItems}
+            <Link component="DashboardPost" to="/post">Đăng bài tuyển dụng</Link>
+
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
@@ -174,36 +174,11 @@ function DashboardContent() {
         
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <ActionAreaCard/>
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <ActionAreaCard/>
-                </Paper>
-              </Grid>
-              {/* Recent DataTable */}
+   
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <DataTable />
+                  <PostComponent/>
+
                 </Paper>
               </Grid>
             </Grid>
@@ -216,6 +191,6 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
+export default function DashboardPost() {
   return <DashboardContent />;
 }

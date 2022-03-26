@@ -12,10 +12,32 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
+import {Link} from 'react-router-dom'
+import img from '../images/404.jpg';
 
 const pages = ['Tìm việc làm', 'CV Hay', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [{
+  'name': 'Profile',
+  'url': '/profile'
+},{
+  'name': 'Account',
+  'url': '/account'
+
+},{
+  'name': 'Dashboard',
+  'url': '/dashboard'
+
+}
+,{
+  'name': 'Dashboard Company',
+  'url': '/dashboard-company'
+
+},{
+  'name': 'Sign out',
+  'url': '/sign-in'
+}
+
+];
 
 const darkTheme = createTheme({
   palette: {
@@ -123,7 +145,7 @@ const ResponsiveAppBar = () => {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    <Avatar alt="Remy Sharp" src={img} />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -142,9 +164,11 @@ const ResponsiveAppBar = () => {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
+                  {settings.map((setting, key) => (
+                    <MenuItem key={key} onClick={handleCloseUserMenu}>
+                      <Link to={setting.url} className="deco-none white">
+                        <Typography textAlign="center">{setting.name}</Typography>
+                      </Link>
                     </MenuItem>
                   ))}
                 </Menu>
