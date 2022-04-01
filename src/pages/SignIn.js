@@ -85,7 +85,6 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            </Button>
             <RouterLink to="/" className="deco-none " >
               <Button
                 type="submit"
