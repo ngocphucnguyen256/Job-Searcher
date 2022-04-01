@@ -17,18 +17,7 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
+
 
 function getStyles(name, personName, theme) {
   return {
@@ -39,9 +28,13 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function SelectComponent() {
+export default function SelectComponent(props) {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
+
+
+  var names
+
 
   const handleChange = (event) => {
     const {
@@ -53,6 +46,29 @@ export default function SelectComponent() {
     );
   };
 
+  if(props.data){
+    names = props.data
+  }
+  else{
+    names=[
+      {
+        "state_code": "Bắc Giang",
+        "state_name": "Bắc Giang"
+      },
+      {
+        "state_code": "Bắc Kạn",
+        "state_name": "Bắc Kạn"
+      },
+      {
+        "state_code": "Cao Bằng",
+        "state_name": "Cao Bằng"
+      },
+      {
+        "state_code": "Hà Giang",
+        "state_name": "Hà Giang"
+      },
+    ]
+  }
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
@@ -68,11 +84,11 @@ export default function SelectComponent() {
         >
           {names.map((name) => (
             <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
+              key={name.state_name}
+              value={name.state_name}
+              style={getStyles(name.state_name, personName, theme)}
             >
-              {name}
+              {name.state_name}
             </MenuItem>
           ))}
         </Select>

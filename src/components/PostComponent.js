@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Input from '@mui/material/Input';
+import SelectComponent from './SelectComponent';
+import {cities} from '../data/data'
 
 
 const ariaLabel = { 'aria-label': 'description' };
@@ -39,8 +41,7 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn nơi làm việc
                     </Typography>
-                   <SeclectGroup/>
-
+                   <SelectComponent data={cities}/>
                     </div>
                 </Grid>
             </Grid>

@@ -24,6 +24,8 @@ import Avatar from '@mui/material/Avatar';
 import img from '../images/404.jpg';
 import CenterDiv from '../components/CenterDiv'
 import {Link} from 'react-router-dom'
+import SideMenuItem from '../components/SideMenuItem'
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 
 function Copyright(props) {
@@ -155,7 +157,8 @@ function DashboardContent() {
                 Nguyen Ngoc Phuc
             </Typography>
             {mainListItems}
-            <Link  to="/post">Đăng bài tuyển dụng</Link>
+            <SideMenuItem name="Đăng bài tuyển dụng" icon={<DashboardIcon />} link="/post" />
+    
 
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}

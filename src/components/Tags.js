@@ -5,7 +5,7 @@ import Item from './Item'
 import Typography from '@mui/material/Typography';
 
 export default function Tags(props) {
-    const children = props.children;
+    // const children = props.children;
     return(
         <div className="tags">
             <Box sx={{ flexGrow: 1 }}>

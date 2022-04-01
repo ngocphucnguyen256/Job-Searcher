@@ -1,47 +1,15 @@
 import * as React from 'react';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PeopleIcon from '@mui/icons-material/People';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import SideMenuItem from '../components/SideMenuItem';
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Quản lí" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Việc làm của tôi" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Thông báo việc làm" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Nhà tuyển dụng của tôi" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Đăng xuất" />
-    </ListItemButton>
+    <SideMenuItem name="Dashboard" icon={<DashboardIcon />} link="/dashboard" />
+    <SideMenuItem name="Việc làm của tôi" icon={<DashboardIcon />} link="/dashboard" />
+    <SideMenuItem name="Thông báo việc làm" icon={<DashboardIcon />} link="/dashboard" />
+    <SideMenuItem name="Nhà tuyển dụng của tôi" icon={<DashboardIcon />} link="/dashboard" />
+    <SideMenuItem name="Đăng xuất" icon={<DashboardIcon />} link="/sign-in" />
+
   </React.Fragment>
 );
 

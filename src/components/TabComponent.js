@@ -5,7 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import FlexGrow from './FlexGrow'
+import JobItem from './JobItem'
 import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';
 import CenterDiv from './CenterDiv';
@@ -36,7 +36,7 @@ function TabItem(props) {
   
     return (
       <div className="tab-item">
-          <FlexGrow/>
+          <JobItem/>
       </div>
     );
   }
@@ -74,28 +74,42 @@ export default function TabComponent() {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-        <Box sx={{ width:'100%' }}>
-        <Grid container spacing={1} >
-              {[...Array(numrows)].map((x, i) =>
-              <Grid item xs={6} key={i}>
-                  <TabItem/>
-              </Grid>
-          )}
-    
-      
-      </Grid>
-     
+          <Box sx={{ width:'100%' }}>
+            <Grid container spacing={1} >
+                  {[...Array(numrows)].map((x, i) =>
+                  <Grid item xs={6} key={i}>
+                      <TabItem/>
+                  </Grid>
+              )}
+            </Grid>
           </Box>
-        
         </TabPanel>
-        <CenterDiv ><Pagination count={10} /></CenterDiv>
+
         <TabPanel value={value} index={1}>
-         Viec lam vip
+        <Box sx={{ width:'100%' }}>
+            <Grid container spacing={1} >
+                  {[...Array(numrows)].map((x, i) =>
+                  <Grid item xs={6} key={i}>
+                      <TabItem/>
+                  </Grid>
+              )}
+            </Grid>
+          </Box>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+        <Box sx={{ width:'100%' }}>
+            <Grid container spacing={1} >
+                  {[...Array(numrows)].map((x, i) =>
+                  <Grid item xs={6} key={i}>
+                      <TabItem/>
+                  </Grid>
+              )}
+            </Grid>
+          </Box>
         </TabPanel>
+        
       </Box>
+      <CenterDiv ><Pagination count={10} /></CenterDiv>
     </Container>
   );
 }

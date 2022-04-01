@@ -39,7 +39,7 @@ Item.propTypes = {
   ]),
 };
 
-export default function FlexGrow() {
+export default function JobItem() {
   return (
     <div className="flex-grow" style={{ width: '100%' }}>
       <Link to='/job-detail' className="link">
