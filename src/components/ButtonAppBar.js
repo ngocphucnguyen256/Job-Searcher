@@ -77,7 +77,8 @@ const ResponsiveAppBar = () => {
         <AppBar position="static" color="primary" enableColorOnDark>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <Typography
+            <Link to='/' className="deco-none ">
+            <Typography
                 variant="h6"
                 noWrap
                 component="div"
@@ -85,6 +86,8 @@ const ResponsiveAppBar = () => {
               >
                 JOB SEARCHER
               </Typography>
+             </Link>
+              
 
               <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton

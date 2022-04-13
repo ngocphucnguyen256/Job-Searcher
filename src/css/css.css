@@ -1,3 +1,7 @@
+html {
+  font-family: "Poppins", sans-serif;
+}
+
 .deco-none {
   text-decoration: none;
 }
@@ -237,5 +241,21 @@ footer h2 {
 
 .post-component .post {
   margin-top: 1rem;
+}
+
+.comment-list {
+  margin-top: 5rem;
+}
+
+.comment-list .fl {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 /*# sourceMappingURL=css.css.map */

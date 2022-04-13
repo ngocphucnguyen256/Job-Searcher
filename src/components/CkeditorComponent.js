@@ -1,7 +1,6 @@
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import Typography from '@mui/material/Typography';
 
 
 const CkeditorComponent=() =>{

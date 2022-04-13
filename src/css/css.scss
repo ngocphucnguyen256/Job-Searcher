@@ -1,3 +1,7 @@
+html{
+    font-family: "Poppins", sans-serif;
+}
+
 .deco-none{
     text-decoration: none;
  
@@ -227,6 +231,7 @@ footer{
             margin: 3rem 0rem;
         }
     }
+    
 }
 
 .dashboard{
@@ -249,4 +254,18 @@ footer{
     .post{
         margin-top: 1rem;
     }
+}
+
+
+.comment-list{
+
+        margin-top: 5rem;
+        .fl{
+            display: flex;
+            align-items: center;
+            justify-content:space-between;
+
+        }
+   
+
 }

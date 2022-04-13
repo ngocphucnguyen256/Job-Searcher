@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import CkeditorHtml from '../components/CkeditorHtml';
 import Item from '../components/Item';
 import Tags from '../components/Tags'
-
+import CommentList from '../components/CommentList';
 
 
 export default function JobDetails(props) {
@@ -52,6 +52,7 @@ export default function JobDetails(props) {
                     </CkeditorHtml>
                     <h2>JOB TAGS / SKILLS</h2>
                     <Tags/>
+                    <CommentList/>
                 </section>
             </main>
           <Footer/>
