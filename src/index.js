@@ -5,10 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './css/css.css'
 import './css/reset.css'
+import theme from './theme/theme';
+import { ThemeProvider } from '@mui/material/styles';
 
 
 ReactDOM.render(
-    <App />,document.getElementById('root')
+    <ThemeProvider theme={theme}>
+        <App />
+    </ThemeProvider>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

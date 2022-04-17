@@ -1,6 +1,3 @@
-html{
-    font-family: "Poppins", sans-serif;
-}
 
 .deco-none{
     text-decoration: none;
@@ -206,6 +203,7 @@ footer{
     }
     font-size: 1rem;
     .header{
+        text-align: center;
         padding: 5rem;
         h1{
             font-size:2rem;
@@ -258,14 +256,16 @@ footer{
 
 
 .comment-list{
+    margin-top: 5rem;
+    .fl{
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
 
-        margin-top: 5rem;
-        .fl{
-            display: flex;
-            align-items: center;
-            justify-content:space-between;
+    }
+}
 
-        }
-   
 
+h1{
+    text-align: center;
 }

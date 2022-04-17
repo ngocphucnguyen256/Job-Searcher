@@ -19,14 +19,8 @@ import { UserContext } from '../App'
 
 
 const pages = ['Tìm việc làm', 'CV Hay', 'Blog'];
-const settings = [{
-  'name': 'Profile',
-  'url': '/profile'
-},{
-  'name': 'Account',
-  'url': '/account'
-
-},{
+const settings = [
+{
   'name': 'Dashboard',
   'url': '/dashboard'
 
@@ -39,14 +33,14 @@ const settings = [{
 
 ];
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#ffffff',
-    },
-  },
-});
+// const darkTheme = createTheme({
+//   palette: {
+//     mode: 'dark',
+//     primary: {
+//       main: '#ffffff',
+//     },
+//   },
+// });
 
 
 
@@ -82,7 +76,6 @@ const ResponsiveAppBar = () => {
   
 
   return (
-    <ThemeProvider theme={darkTheme}>
         <AppBar position="static" color="primary" enableColorOnDark>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
@@ -154,48 +147,61 @@ const ResponsiveAppBar = () => {
                 ))}
               </Box>
 
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src={img} />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: '45px' }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                      <Typography textAlign="center">{user.username}</Typography>
-                  {settings.map((setting, key) => (
-             
-                    <MenuItem key={key} onClick={handleCloseUserMenu}>
-                    <Link to={setting.url} className="deco-none white">
-                      <Typography textAlign="center">{setting.name}</Typography>
-                    </Link>
-                  </MenuItem>
-                  ))}
-                      <MenuItem  onClick={handleLogout}>
-                      <Link to='/sign-in' className="deco-none white">
-                        <Typography textAlign="center">Sign out</Typography>
+
+              {
+                user?(
+                  <Box sx={{ flexGrow: 0 }}>
+                  <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar alt="Remy Sharp" src={img} />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: '45px' }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    
+                    <Typography textAlign="center">{user.username}</Typography>
+                    {settings.map((setting, key) => (
+               
+                      <MenuItem key={key} onClick={handleCloseUserMenu}>
+                      <Link to={setting.url} className="deco-none white">
+                        <Typography textAlign="center">{setting.name}</Typography>
                       </Link>
                     </MenuItem>
-                </Menu>
-              </Box>
+                    ))}
+                        <MenuItem  onClick={handleLogout}>
+                        <Link to='/sign-in' className="deco-none white">
+                          <Typography textAlign="center">Sign out</Typography>
+                        </Link>
+                      </MenuItem>
+                  </Menu>
+                </Box>
+                ) :(<>
+                     <MenuItem  onClick={handleCloseNavMenu}>
+                      <Link to='/sign-in' className="deco-none black">
+                          <Typography textAlign="center">Login</Typography>
+                        </Link>
+                    </MenuItem>
+                </>)
+              }
+             
             </Toolbar>
           </Container>
         </AppBar>
-      </ThemeProvider>
+
   );
 };
 export default ResponsiveAppBar;
