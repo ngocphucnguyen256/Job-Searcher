@@ -1,4 +1,5 @@
 import * as React from 'react';
+import  { useState, useContext } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,6 +15,8 @@ import MenuItem from '@mui/material/MenuItem';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {Link} from 'react-router-dom'
 import img from '../images/404.jpg';
+import { UserContext } from '../App'
+
 
 const pages = ['Tìm việc làm', 'CV Hay', 'Blog'];
 const settings = [{
@@ -32,9 +35,6 @@ const settings = [{
   'name': 'Dashboard Company',
   'url': '/dashboard-company'
 
-},{
-  'name': 'Sign out',
-  'url': '/sign-in'
 }
 
 ];
@@ -54,6 +54,7 @@ const darkTheme = createTheme({
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [user, dispatch] = useContext(UserContext)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -69,6 +70,14 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleLogout = () => {
+    dispatch({
+      "type": "logout",
+      "payload": {
+          "username": ""
+      }
+  })
+  }
 
   
 
@@ -167,13 +176,20 @@ const ResponsiveAppBar = () => {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
+                      <Typography textAlign="center">{user.username}</Typography>
                   {settings.map((setting, key) => (
+             
                     <MenuItem key={key} onClick={handleCloseUserMenu}>
-                      <Link to={setting.url} className="deco-none white">
-                        <Typography textAlign="center">{setting.name}</Typography>
+                    <Link to={setting.url} className="deco-none white">
+                      <Typography textAlign="center">{setting.name}</Typography>
+                    </Link>
+                  </MenuItem>
+                  ))}
+                      <MenuItem  onClick={handleLogout}>
+                      <Link to='/sign-in' className="deco-none white">
+                        <Typography textAlign="center">Sign out</Typography>
                       </Link>
                     </MenuItem>
-                  ))}
                 </Menu>
               </Box>
             </Toolbar>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useContext } from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,15 +13,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {Link as RouterLink} from 'react-router-dom';
-
+import {Link as RouterLink, useNavigate} from 'react-router-dom';
+import { UserContext } from '../App'
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Job Searcher
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -31,14 +32,38 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+
+  const [username, setUsername] = useState()
+  const [password, setPassword] = useState()
+  const [user, dispatch] = useContext(UserContext)
+  let navigate = useNavigate();
+
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
+      username: data.get('username'),
       password: data.get('password'),
     });
+    if (username === 'admin' && password === '123'){
+      dispatch({
+        "type": "login",
+        "payload": {
+            "username": "admin"
+        }
+    })
+    }
+
   };
+
+  if (user != null){
+    navigate("/", { replace: true });
+  }
+
+
+
 
   return (
  
@@ -65,11 +90,13 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="User Name"
+              name="username"
+              autoComplete="user name"
               autoFocus
+              value={username} 
+              onChange={(evt) => setUsername(evt.target.value)}
             />
             <TextField
               margin="normal"
@@ -80,12 +107,14 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password} 
+               onChange={(evt) => setPassword(evt.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <RouterLink to="/" className="deco-none " >
+            {/* <RouterLink to="/" className="deco-none " > */}
               <Button
                 type="submit"
                 fullWidth
@@ -94,7 +123,7 @@ export default function SignIn() {
               >
                 Sign In
               </Button>
-            </RouterLink>
+            {/* </RouterLink> */}
     
             <Grid container>
               <Grid item xs>

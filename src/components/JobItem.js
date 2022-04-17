@@ -40,9 +40,12 @@ Item.propTypes = {
 };
 
 export default function JobItem() {
+  const slug = "viec lam it"
+  const id = "12342342342"
+
   return (
     <div className="flex-grow" style={{ width: '100%' }}>
-      <Link to='/job-detail' className="link">
+      <Link to={`/job-detail/${slug}/${id}`} className="link">
         <Box
           sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
         >
