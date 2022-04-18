@@ -18,7 +18,13 @@ import img from '../images/404.jpg';
 import { UserContext } from '../App'
 
 
-const pages = ['Tìm việc làm', 'CV Hay', 'Blog'];
+const pages = [
+  {
+    'name': 'Tìm việc làm',
+    'url': '/job-list'
+  
+  }
+];
 const settings = [
 {
   'name': 'Dashboard',
@@ -30,7 +36,6 @@ const settings = [
   'url': '/dashboard-company'
 
 }
-
 ];
 
 // const darkTheme = createTheme({
@@ -120,9 +125,12 @@ const ResponsiveAppBar = () => {
                     display: { xs: 'block', md: 'none' },
                   }}
                 >
-                  {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page}</Typography>
+                  {pages.map((page,index) => (
+                     
+                    <MenuItem key={index} onClick={handleCloseNavMenu}>
+                      <Link to={page.url} className="deco-none white">
+                        <Typography textAlign="center">{page.name}</Typography>
+                      </Link>
                     </MenuItem>
                   ))}
                 </Menu>
@@ -136,14 +144,12 @@ const ResponsiveAppBar = () => {
                 LOGO
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                {pages.map((page) => (
-                  <Button
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'black', display: 'block' }}
-                  >
-                    {page}
-                  </Button>
+                {pages.map((page,index) => (
+                  <MenuItem key={index} onClick={handleCloseNavMenu}>
+                  <Link to={page.url} className="deco-none black">
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </Link>
+                </MenuItem>
                 ))}
               </Box>
 

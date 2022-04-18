@@ -12,7 +12,7 @@ import JobDetails from './pages/JobDetail';
 import DashboardPost from './components/DashboardPost'
 import myReducer from './reducers/UserReducer';
 import { BrowserRouter } from 'react-router-dom';
-
+import SearchJob from './pages/SearchJob';
 
 export const UserContext = createContext()
 
@@ -32,6 +32,7 @@ function App() {
           <Route  path="/sign-up" element={<SignUp/>}/>
           <Route  path="/dashboard" element={<Dashboard/>}/>
           <Route  path="/dashboard-company" element={<DashboardCompany/>}/>
+          <Route  path="/job-list" element={<SearchJob/>}/>
           <Route  path="/post" element={<DashboardPost/>}/>
           <Route  path="/job-detail/:slug/:id" element={<JobDetails/>}/>
           <Route  path="*" element={<PageNotFound/>}/>

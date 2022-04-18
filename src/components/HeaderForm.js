@@ -1,9 +1,10 @@
-import {useState} from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import SelectComponent from './SelectComponent'
 import Button from '@mui/material/Button';
+import React, { useEffect, useState, useContext } from 'react';
+import Api, { endpoints } from '../config/Api';
 
 const currencies = [
     {
@@ -24,10 +25,71 @@ const currencies = [
     },
   ];
 
+
+  const salary=[
+    {
+      "name": "Từ  3.000.000 đ",
+  
+    },
+    {
+      "name": "Từ  5.000.000 đ",
+  
+    },
+    {
+      "name": "Từ  7.000.000 đ",
+  
+    },
+    {
+      "name": "Từ  10.000.000 đ",
+  
+    },
+    {
+      "name": "Từ  15.000.000 đ",
+  
+    },
+    {
+      "name": "Từ  20.000.000 đ",
+  
+    },
+  ]
+  const location=[
+    {
+      "name": "Bắc Giang",
+  
+    },
+    {
+      "name": "Bắc Kạn",
+  
+    },
+    {
+      "name": "Cao Bằng",
+  
+    },
+    {
+      "name": "Hà Giang",
+  
+    },
+  ]
+
 export default function HeaderForm() {
 
     const [name, email, subject] = useState('');
     const [currency, setCurrency] = useState('EUR');
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+        let loadCategories = async () => {
+            let res = await Api.get(endpoints['categories'])
+            // let res = await fetch("/categories.json")
+            // let data = await res.json()
+            setCategories(res.data)
+        }
+        
+        loadCategories()
+    
+    }, [])
+
+
 
     const handleChangeLocation = (event) => {
         setCurrency(event.target.value);
@@ -50,13 +112,13 @@ export default function HeaderForm() {
             <SelectComponent fullWidth/>
         </Grid>
         <Grid item xs={6}>
-       <SelectComponent fullWidth/>
+         <SelectComponent data={categories} fullWidth/>
         </Grid>
         <Grid item xs={6}>
-       <SelectComponent fullWidth/>
+       <SelectComponent data={salary} fullWidth/>
         </Grid>
-        <Grid item xs={6}>
-            <SelectComponent fullWidth/>
+        <Grid item xs={6}> 
+            <SelectComponent data={location} fullWidth/>
         </Grid>
     </Grid>
         </Box>

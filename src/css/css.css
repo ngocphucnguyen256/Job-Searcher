@@ -259,4 +259,14 @@ footer h2 {
 h1 {
   text-align: center;
 }
+
+.search-job {
+  padding: 4rem;
+}
+
+.search-job h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
 /*# sourceMappingURL=css.css.map */

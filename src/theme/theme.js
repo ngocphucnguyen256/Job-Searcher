@@ -8,12 +8,12 @@ const theme = createTheme({
         },
  
     },
-    palette: {
-        mode: 'dark',
-        primary: {
-          main: '#ffffff',
-        },
-      },
+    // palette: {
+    //     mode: 'light',
+    //     primary: {
+    //       main: '#ffffff',
+    //     },
+    //   },
 })
 
 export default theme;

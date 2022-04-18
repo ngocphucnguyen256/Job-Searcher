@@ -5,5 +5,5 @@ export const endpoints = {
 }
 
 export default axios.create({
-    baseURL: "http://thanhduong.pythonanywhere.com"
+    baseURL: "https://ttken01.pythonanywhere.com"
 })

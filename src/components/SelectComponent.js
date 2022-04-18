@@ -19,6 +19,7 @@ const MenuProps = {
 
 
 
+
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -31,10 +32,7 @@ function getStyles(name, personName, theme) {
 export default function SelectComponent(props) {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
-
-
-  var names
-
+  let list=[];
 
   const handleChange = (event) => {
     const {
@@ -47,28 +45,11 @@ export default function SelectComponent(props) {
   };
 
   if(props.data){
-    names = props.data
+    list=props.data
   }
-  else{
-    names=[
-      {
-        "state_code": "Bắc Giang",
-        "state_name": "Bắc Giang"
-      },
-      {
-        "state_code": "Bắc Kạn",
-        "state_name": "Bắc Kạn"
-      },
-      {
-        "state_code": "Cao Bằng",
-        "state_name": "Cao Bằng"
-      },
-      {
-        "state_code": "Hà Giang",
-        "state_name": "Hà Giang"
-      },
-    ]
-  }
+
+
+  
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
@@ -82,13 +63,13 @@ export default function SelectComponent(props) {
           input={<OutlinedInput label="Name" />}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
+          {list.map((item) => (
             <MenuItem
-              key={name.state_name}
-              value={name.state_name}
-              style={getStyles(name.state_name, personName, theme)}
+              key={item.name}
+              value={item.name}
+              style={getStyles(item.name, personName, theme)}
             >
-              {name.state_name}
+              {item.name}
             </MenuItem>
           ))}
         </Select>
