@@ -9,6 +9,7 @@ import JobItem from './JobItem'
 import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';
 import CenterDiv from './CenterDiv';
+import Api, { endpoints } from '../config/Api';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -33,10 +34,9 @@ function TabPanel(props) {
 
 function TabItem(props) {
     const { children, value, index, ...other } = props;
-  
     return (
       <div className="tab-item">
-          <JobItem/>
+          <JobItem data={props.data}/>
       </div>
     );
   }
@@ -57,6 +57,19 @@ function a11yProps(index) {
 
 export default function TabComponent() {
   const [value, setValue] = React.useState(0);
+  const [posts, setPosts] = React.useState([])
+
+  React.useEffect(() => {
+      let loadPosts = async () => {
+          let res = await Api.get(endpoints['posts'])
+          setPosts(res.data.results)
+      }
+      
+      loadPosts()
+  
+  }, [])
+
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -76,9 +89,9 @@ export default function TabComponent() {
         <TabPanel value={value} index={0}>
           <Box sx={{ width:'100%' }}>
             <Grid container spacing={1} >
-                  {[...Array(numrows)].map((x, i) =>
-                  <Grid item xs={6} key={i}>
-                      <TabItem/>
+                  {posts.map((item, index) =>
+                  <Grid item xs={6} key={index} >
+                      <TabItem data={item}/>
                   </Grid>
               )}
             </Grid>

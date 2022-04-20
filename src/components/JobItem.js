@@ -39,7 +39,9 @@ Item.propTypes = {
   ]),
 };
 
-export default function JobItem() {
+export default function JobItem(props) {
+  const data = props.data
+  console.log(data)
   const slug = "viec lam it"
   const id = "12342342342"
 
@@ -54,21 +56,21 @@ export default function JobItem() {
           </Item>
           <Item sx={{ flexGrow: 1 }}>
           <Typography variant="h5" className="title" gutterBottom component="div">
-          Lorem ipsum dolor sit amet, consectetur adip
+          {data?.title}
           </Typography>
           <Typography variant="body1" className="company" gutterBottom component="div">
-          Lorem ipsum dolor sit amet, consectetur adip
+          {data?.company}
           </Typography>
           <div className="flex">
             <AttachMoneyIcon/> 
             <Typography variant="body1" className="price" gutterBottom component="div">
-            Lương:
+            Lương: {data?.from_salary} - {data?.to_salary}
             </Typography>
           </div>
           <div className="flex"> 
           <EditLocationIcon/>
           <Typography variant="body1" className="location" gutterBottom component="div">
-          Ho Chi Minh
+          {data?.location}
           </Typography>
           </div>
           </Item>

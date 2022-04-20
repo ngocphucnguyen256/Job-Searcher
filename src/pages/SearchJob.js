@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import Api, { endpoints } from '../config/Api';
 import Footer from '../partials/Footer'
 import Header from '../partials/Header'
@@ -14,8 +14,6 @@ export default function SearchJobs(props) {
     useEffect(() => {
         let loadCategories = async () => {
             let res = await Api.get(endpoints['categories'])
-            // let res = await fetch("/categories.json")
-            // let data = await res.json()
             setCategories(res.data)
         }
         
@@ -24,7 +22,6 @@ export default function SearchJobs(props) {
     }, [])
 
 
-    console.log(categories)
 
   return (
     <>
