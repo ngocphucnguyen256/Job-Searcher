@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Api, { endpoints } from '../config/Api';
+import { useNavigate} from 'react-router-dom';
+import ModalComponent  from '../components/ModalComponent';
 
 function Copyright(props) {
   return (
@@ -29,14 +32,47 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+
+  let navigate = useNavigate();
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleSignIn = () => {
+    navigate('/sign-in')
+  }
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      username : data.get('username'),
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    let createUser = async () => {
+      let res = await Api.post(endpoints['users'],{
+        first_name: data.get('firstName'),
+        last_name: data.get('lastName'),
+        username : data.get('username'),
+        email: data.get('email'),
+        password: data.get('password'),
+      })
+      console.log(res.data)
+      if (res.data){
+        // navigate('/sign-in')
+        handleOpen()
+      }
+    }
+    createUser()
+
   };
+
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -50,6 +86,23 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
+           <ModalComponent handleOpen={handleOpen} open={open} handleClose={handleClose}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+             Tài khoản của bạn đã đăng kí thành công
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Bạn có thể đăng nhập ngay bây giờ
+            </Typography>
+            <Button
+              type=""
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={handleSignIn}
+            >
+              Sign In
+            </Button>
+          </ModalComponent>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -93,6 +146,16 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   name="password"
                   label="Password"
                   type="password"
@@ -124,6 +187,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
+        
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>

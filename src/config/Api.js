@@ -3,7 +3,8 @@ import axios from 'axios'
 export const endpoints = {
     "categories": "/categories/",
     "posts": "/posts/",
-    "majors": "/majors/"
+    "majors": "/majors/",
+    "users": "/users/",
 }
 
 
