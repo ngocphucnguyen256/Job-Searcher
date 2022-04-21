@@ -24,6 +24,10 @@ import Avatar from '@mui/material/Avatar';
 import img from '../images/404.jpg';
 import CenterDiv from '../components/CenterDiv'
 import {Link} from 'react-router-dom'
+import { UserContext } from '../App'
+import  { useState, useContext } from 'react'
+import SideMenuItem from '../components/SideMenuItem'
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 function Copyright(props) {
   return (
@@ -86,11 +90,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+export default function Dashboard(props) {
+  const children = props.children;
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  const [user, dispatch] = useContext(UserContext)
+  const isCompany =true;
 
   return (
     <ThemeProvider theme={mdTheme} >
@@ -150,9 +157,10 @@ function DashboardContent() {
             <CenterDiv>
               <Avatar alt="Remy Sharp" src={img} sx={{width: 170, height:170}} />
             </CenterDiv>
-            <Typography variant="h5" gutterBottom component="div" className="name">
-                Nguyen Ngoc Phuc
+            <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+             {user.username}
             </Typography>
+            <SideMenuItem name="Đăng bài tuyển dụng" icon={<DashboardIcon />} link="/post" />
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
@@ -171,10 +179,10 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-        
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          {children}
+          {/* <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Chart */}
+
               <Grid item xs={12} md={8} lg={9}>
                 <Paper
                   sx={{
@@ -187,7 +195,7 @@ function DashboardContent() {
                   <ActionAreaCard/>
                 </Paper>
               </Grid>
-              {/* Recent Deposits */}
+    
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
@@ -200,22 +208,27 @@ function DashboardContent() {
                   <ActionAreaCard/>
                 </Paper>
               </Grid>
-              {/* Recent DataTable */}
+      
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <DataTable />
                 </Paper>
               </Grid>
             </Grid>
-            {/* <TabComponent/> */}
+     
             <Copyright sx={{ pt: 4 }} />
-          </Container>
+          </Container> */}
         </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
+
+Dashboard.propTypes = {
+  children: Dashboard.node,
+}
+
+Dashboard.defaultProps = {
+  children: null,
 }

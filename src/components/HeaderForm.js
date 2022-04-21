@@ -3,73 +3,12 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import SelectComponent from './SelectComponent'
 import Button from '@mui/material/Button';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import Api, { endpoints } from '../config/Api';
-
-const currencies = [
-    {
-      value: 'USD',
-      label: '$',
-    },
-    {
-      value: 'EUR',
-      label: '€',
-    },
-    {
-      value: 'BTC',
-      label: '฿',
-    },
-    {
-      value: 'JPY',
-      label: '¥',
-    },
-  ];
+import { location, salary, level  } from '../data/data';
 
 
-  const salary=[
-    {
-      "name": "Từ  3.000.000 đ",
-  
-    },
-    {
-      "name": "Từ  5.000.000 đ",
-  
-    },
-    {
-      "name": "Từ  7.000.000 đ",
-  
-    },
-    {
-      "name": "Từ  10.000.000 đ",
-  
-    },
-    {
-      "name": "Từ  15.000.000 đ",
-  
-    },
-    {
-      "name": "Từ  20.000.000 đ",
-  
-    },
-  ]
-  const location=[
-    {
-      "name": "Bắc Giang",
-  
-    },
-    {
-      "name": "Bắc Kạn",
-  
-    },
-    {
-      "name": "Cao Bằng",
-  
-    },
-    {
-      "name": "Hà Giang",
-  
-    },
-  ]
+
 
 export default function HeaderForm() {
 
@@ -104,29 +43,28 @@ export default function HeaderForm() {
       <h2>Đón lấy thành công với
             29,913 cơ hội nghề nghiệp</h2>
   
-      <TextField className="search" fullWidth id="outlined-search" label="Search field" type="search" />
+      <TextField className="search" fullWidth id="outlined-search" label="Chức danh, tên công ty" type="search" />
     
       <Box sx={{ width:'100%' }}>
       <Grid container spacing={1} >
         <Grid item xs={6}>
-            <SelectComponent fullWidth/>
+           <SelectComponent name="Địa điểm" data={location} fullWidth/>
         </Grid>
         <Grid item xs={6}>
-         <SelectComponent data={categories} fullWidth/>
+         <SelectComponent name="Tất cả ngành nghề" data={categories} fullWidth/>
         </Grid>
         <Grid item xs={6}>
-       <SelectComponent data={salary} fullWidth/>
+       <SelectComponent name="Chọn mức lương" data={salary} fullWidth/>
         </Grid>
-        <Grid item xs={6}> 
-            <SelectComponent data={location} fullWidth/>
+        <Grid item xs={6}>   
+            <SelectComponent name="Cấp bậc" data={level} fullWidth/>
         </Grid>
     </Grid>
         </Box>
       <div className='form-group'>
-       {/* <input id='formButton' className='btn' type='submit' placeholder='Tìm việc ngay' /> */}
-       <Button variant="contained">Tìm việc ngay</Button>
- 
-       <Button variant="contained">Đăng ngay</Button>
+        <div className='center-div'>
+          <Button variant="contained">Tìm việc ngay</Button>
+        </div>
       </div>
      </form>
     )

@@ -9,10 +9,8 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {Link} from 'react-router-dom'
 import img from '../images/404.jpg';
 import { UserContext } from '../App'
@@ -31,21 +29,8 @@ const settings = [
   'url': '/dashboard'
 
 }
-,{
-  'name': 'Dashboard Company',
-  'url': '/dashboard-company'
 
-}
 ];
-
-// const darkTheme = createTheme({
-//   palette: {
-//     mode: 'dark',
-//     primary: {
-//       main: '#ffffff',
-//     },
-//   },
-// });
 
 
 
@@ -128,7 +113,7 @@ const ResponsiveAppBar = () => {
                   {pages.map((page,index) => (
                      
                     <MenuItem key={index} onClick={handleCloseNavMenu}>
-                      <Link to={page.url} className="deco-none white">
+                      <Link to={page.url} className="deco-none black">
                         <Typography textAlign="center">{page.name}</Typography>
                       </Link>
                     </MenuItem>
@@ -183,13 +168,13 @@ const ResponsiveAppBar = () => {
                     {settings.map((setting, key) => (
                
                       <MenuItem key={key} onClick={handleCloseUserMenu}>
-                      <Link to={setting.url} className="deco-none white">
+                      <Link to={setting.url} className="deco-none black">
                         <Typography textAlign="center">{setting.name}</Typography>
                       </Link>
                     </MenuItem>
                     ))}
                         <MenuItem  onClick={handleLogout}>
-                        <Link to='/sign-in' className="deco-none white">
+                        <Link to='/sign-in' className="deco-none black">
                           <Typography textAlign="center">Sign out</Typography>
                         </Link>
                       </MenuItem>

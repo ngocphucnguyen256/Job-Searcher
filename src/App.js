@@ -7,7 +7,6 @@ import {Routes, Route} from 'react-router-dom';
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Dashboard from './pages/Dashboard'
-import DashboardCompany from './pages/DashboardCompany'
 import JobDetails from './pages/JobDetail';
 import DashboardPost from './components/DashboardPost'
 import myReducer from './reducers/UserReducer';
@@ -31,7 +30,6 @@ function App() {
           <Route  path="/sign-in" element={<SignIn/>}/>
           <Route  path="/sign-up" element={<SignUp/>}/>
           <Route  path="/dashboard" element={<Dashboard/>}/>
-          <Route  path="/dashboard-company" element={<DashboardCompany/>}/>
           <Route  path="/job-list" element={<SearchJob/>}/>
           <Route  path="/post" element={<DashboardPost/>}/>
           <Route  path="/job-detail/:slug/:id" element={<JobDetails/>}/>

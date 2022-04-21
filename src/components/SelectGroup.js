@@ -79,6 +79,7 @@ const StyledListbox = styled('ul')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
   outline: 0px;
+  max-height: 300px;
   `,
 );
 
@@ -117,10 +118,12 @@ const StyledOption = styled(OptionUnstyled)(
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
   `,
+  
 );
 
 const StyledGroupRoot = styled('li')`
   list-style: none;
+
 `;
 
 const StyledGroupHeader = styled('span')`
@@ -131,6 +134,7 @@ const StyledGroupHeader = styled('span')`
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   color: ${grey[600]};
+ 
 `;
 
 const StyledGroupOptions = styled('ul')`
@@ -138,13 +142,15 @@ const StyledGroupOptions = styled('ul')`
   margin-left: 0;
   padding: 0;
 
+
   > li {
     padding-left: 20px;
   }
 `;
 
 const StyledPopper = styled(PopperUnstyled)`
-  z-index: 1;
+  z-index: 100;
+
 `;
 
 function CustomSelect(props) {
@@ -195,19 +201,20 @@ CustomOptionGroup.propTypes = {
   }),
 };
 
-export default function SeclectGroup() {
+export default function SeclectGroup(props) {
+  const data = props.data
   return (
     <CustomSelect>
-      <CustomOptionGroup label="Hobbits">
-        <StyledOption value="Frodo">Frodo</StyledOption>
-        <StyledOption value="Sam">Sam</StyledOption>
-        <StyledOption value="Merry">Merry</StyledOption>
-        <StyledOption value="Pippin">Pippin</StyledOption>
-      </CustomOptionGroup>
-      <CustomOptionGroup label="Elves">
-        <StyledOption value="Galadriel">Galadriel</StyledOption>
-        <StyledOption value="Legolas">Legolas</StyledOption>
-      </CustomOptionGroup>
+      {
+        data.map((item,index)=> {
+           return <CustomOptionGroup key={index} label={item?.name}>
+            {item.majors.map((major,subIndex)=>{
+                return <StyledOption key={subIndex} value={major.name}>{major.name}</StyledOption>
+            })}
+          </CustomOptionGroup>
+        }
+      )}
+    
     </CustomSelect>
   );
 }
