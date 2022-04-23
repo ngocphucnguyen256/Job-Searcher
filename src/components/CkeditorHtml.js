@@ -1,20 +1,22 @@
-import PropTypes from 'prop-types';
+
+import parser from 'html-react-parser';
 
 export default function CkeditorHtml(props) {
-    const children = props.children;
+
+
+    let str= props.data
+
+
+    let parsed = parser(str)
+
+
+
     return(
         <div className="ckeditor-html">
-            {children}
+            {parsed}
         </div>
     )
 
 }
 
 
-CkeditorHtml.propTypes = {
-    children: PropTypes.node,
-  }
-  
-  CkeditorHtml.defaultProps = {
-    children: null,
-  }

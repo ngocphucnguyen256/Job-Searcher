@@ -41,13 +41,17 @@ Item.propTypes = {
 
 export default function JobItem(props) {
   const data = props.data
-  console.log(data)
-  const slug = "viec lam it"
-  const id = "12342342342"
+
+
+  let url=`/job-detail/${data.id}`
+
+  if(props.authenticated){
+    url=`/dashboard/job-detail/${data.id}`
+  }
 
   return (
     <div className="flex-grow" style={{ width: '100%' }}>
-      <Link to={`/job-detail/${slug}/${id}`} className="link">
+      <Link to={url} className="link">
         <Box
           sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
         >

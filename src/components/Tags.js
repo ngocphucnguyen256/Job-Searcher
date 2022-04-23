@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 export default function Tags(props) {
     const  data  = props.data;
-    console.log(data)
+
 
 
 

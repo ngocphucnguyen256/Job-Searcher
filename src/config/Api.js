@@ -2,9 +2,11 @@ import axios from 'axios'
 
 export const endpoints = {
     "categories": "/categories/",
-    "posts": "/posts/",
     "majors": "/majors/",
     "users": "/users/",
+    "posts": "/posts/",
+    "post-detail": (postId) => `/posts/${postId}/`,
+    "post-detail-applies": (postId) => `/posts/${postId}/applies/`
 }
 
 

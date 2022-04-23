@@ -10,9 +10,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -28,6 +25,8 @@ import { UserContext } from '../App'
 import  { useState, useContext } from 'react'
 import SideMenuItem from '../components/SideMenuItem'
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import PropTypes from 'prop-types';
+
 
 function Copyright(props) {
   return (
@@ -160,7 +159,9 @@ export default function Dashboard(props) {
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
              {user.username}
             </Typography>
-            <SideMenuItem name="Đăng bài tuyển dụng" icon={<DashboardIcon />} link="/post" />
+
+            <SideMenuItem name="Đăng bài tuyển dụng" icon={<DashboardIcon />} link="/dashboard/post" />
+            <SideMenuItem name="Các bài viết đã đăng" icon={<DashboardIcon />} link="/dashboard/all-posted" />
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
@@ -226,7 +227,8 @@ export default function Dashboard(props) {
 
 
 Dashboard.propTypes = {
-  children: Dashboard.node,
+  children: PropTypes.node,
+  
 }
 
 Dashboard.defaultProps = {

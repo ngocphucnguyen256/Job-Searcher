@@ -9,6 +9,7 @@ import SignUp from './pages/SignUp'
 import Dashboard from './pages/Dashboard'
 import JobDetails from './pages/JobDetail';
 import DashboardPost from './components/DashboardPost'
+import DashboardPosted from './components/DashboardPosted'
 import myReducer from './reducers/UserReducer';
 import { BrowserRouter } from 'react-router-dom';
 import SearchJob from './pages/SearchJob';
@@ -30,9 +31,11 @@ function App() {
           <Route  path="/sign-in" element={<SignIn/>}/>
           <Route  path="/sign-up" element={<SignUp/>}/>
           <Route  path="/dashboard" element={<Dashboard/>}/>
+          <Route  path="/dashboard/all-posted" element={<DashboardPosted/>}/>
+          <Route  path="/dashboard/job-detail/:id" element={<JobDetails authenticated/>}/>
           <Route  path="/job-list" element={<SearchJob/>}/>
-          <Route  path="/post" element={<DashboardPost/>}/>
-          <Route  path="/job-detail/:slug/:id" element={<JobDetails/>}/>
+          <Route  path="/dashboard/post" element={<DashboardPost/>}/>
+          <Route  path="/job-detail/:id" element={<JobDetails/>}/>
           <Route  path="*" element={<PageNotFound/>}/>
         </Routes>
       </UserContext.Provider>

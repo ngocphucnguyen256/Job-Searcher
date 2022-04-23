@@ -1,4 +1,3 @@
-
 import Footer from '../partials/Footer'
 import Header from '../partials/Header'
 import Button from '@mui/material/Button';
@@ -8,17 +7,61 @@ import CkeditorHtml from '../components/CkeditorHtml';
 import Item from '../components/Item';
 import Tags from '../components/Tags'
 import CommentList from '../components/CommentList';
-
+import { useParams  } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import Api, { endpoints } from '../config/Api';
 
 export default function JobDetails(props) {
+
+    const { id } = useParams();
+
+    const [post, setPost] = useState(null)
+    const [applies, setApplies] = useState(null)
+
+    const loadPostAppliessById = async () => {
+        const res = await Api.get(endpoints['post-detail-applies'](id))
+        console.log(res.data)
+        setApplies(res.data)
+
+    }
+
+
+    useEffect(() => {
+        const loadPostDetailsById = async () => {
+            const res = await Api.get(endpoints['post-detail'](id))
+            setPost(res.data)
+
+        }
+        
+        loadPostDetailsById()
+        
+        if(props.authenticated){
+
+            
+            loadPostAppliessById()
+        
+       }
+
+    }, [])
+
+
+
+
+
+    if(!post) {
+        return <div>Loading...</div>
+    }
+
   return (
     <>
         <Header/>
             <main className="job-detail">
                 <section className="header">
-                    <h1>Nhân viên quản trị website</h1>
-                    <h2>Cong ty ROUTINE VN - FASHION DESIGN & RETAILER</h2>
-                    <Button variant="contained">Nộp đơn ứng tuyển ngay</Button>
+                    <h1>{post.title}</h1>
+                    <h2>{post.company}</h2>
+                    {props.authenticated?(<></>):(
+                        <Button variant="contained">Nộp đơn ứng tuyển ngay</Button>
+                    )}
                 </section>
                 <section className="body">
                     <Box sx={{ flexGrow: 1 }}>
@@ -30,28 +73,26 @@ export default function JobDetails(props) {
                             ))}
                         </Grid>
                     </Box>
-                    <CkeditorHtml>
                     <h2>MÔ TẢ CÔNG VIỆC</h2>
-                        <p>           
-                        Responsible for updating information about products and images on the company's internal e-commerce website (Magento, Wordpress…) quickly and completely
-                        Responsible for coordinating with the team, partners to provide the platform to set up promotions, landing pages...
-                        Regularly control the information set up on the website, ensuring that the promotions take place stably
-                        Collaborate with the Operation team to support the handling of customer and order issues
-                        Collaborate with Content and SEO teams to optimize website systems and other platforms (Social, Growth Marketing Platform...)
-                        Periodically report work performance to direct manager
-                        YÊU CẦU CÔNG VIỆC
-                        Bachelor or Degree in eCommerce/Business/Digital Marketing/IT
-                        Minimum 2 years experience in similar position
-                        Good English
-                        Knowledge of e-Commerce, digital and SEO
-                        Proficient in relevant software (MS Office Suite, Adobe…)
-                        THÔNG TIN KHÁC
-                        Bằng cấp: Cao đẳng
-                        Độ tuổi: Không giới hạn tuổi
-                        </p>
-                    </CkeditorHtml>
+                    <CkeditorHtml data={post.description} />
                     <h2>JOB TAGS / SKILLS</h2>
                     <Tags/>
+                    {applies?(
+                        <section>
+                            <h2>Danh sách ứng viên</h2>
+                            <Box sx={{ flexGrow: 1 }}>
+                                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                                    {applies.map((item, index) => (
+                                    <Grid item xs={2} sm={4} md={4} key={index}>
+                                        <Item><p className="heading">{item.user}</p><p>{item.description}</p></Item>
+                                    </Grid>
+                                    ))}
+                                </Grid>
+                            </Box>
+                        </section>
+                    ):(
+                      <></>
+                    )}
                     <CommentList/>
                 </section>
             </main>
