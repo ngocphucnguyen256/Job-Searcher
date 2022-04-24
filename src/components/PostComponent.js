@@ -15,6 +15,7 @@ import { location, salary, level  } from '../data/data';
 const PostComponent = ()=>{
 
     const [categories, setCategories] = useState([])
+    const [posts, setPosts] = useState(null)
 
     useEffect(() => {
         let loadCategories = async () => {
@@ -27,17 +28,48 @@ const PostComponent = ()=>{
     }, [])
 
 
+
+
+    const postPost = async () => {
+        let res = await Api.post(endpoints['posts'],{
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        setPosts(res.data)
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        console.log({
+        title: data.get('title'),
+        major: data.get('major'),
+        location : data.get('location'),
+        salary: data.get('salary'),
+        level: data.get('level'),
+        detail: data.get('detail'),
+        });
+
+   
+    
+      };
+    
+
+
+
     return(
         <div className="post-component">
-        <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+             <Box sx={{ flexGrow: 1 }}>
+               <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
 
                 <Grid item xs={2} sm={4} md={4} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Vị trí cần tuyển
                     </Typography>
-                    <TextField className="search" fullWidth id="outlined-search" label="Chức danh" type="search" />
+                    <TextField name="title" className="search" fullWidth id="outlined-search" label="Chức danh" type="search" />
 
                     </div>
                 </Grid>
@@ -46,7 +78,7 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn ngành nghề cần tuyển
                     </Typography>
-                   <SeclectGroup data={categories}/>
+                   <SeclectGroup name="major" data={categories}/>
 
                     </div>
                 </Grid>
@@ -55,7 +87,7 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn nơi làm việc
                     </Typography>
-                   <SelectComponent data={location}/>
+                   <SelectComponent name="location" data={location}/>
                     </div>
                 </Grid>
                 <Grid item xs={2} sm={4} md={4} >
@@ -63,7 +95,7 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                     Chọn mức lương
                     </Typography>
-                    <SelectComponent name="Chọn mức lương" data={salary} fullWidth/>
+                    <SelectComponent label="Chọn mức lương" name="salary" data={salary} fullWidth/>
                     </div>
                 </Grid>
                 <Grid item xs={2} sm={4} md={4} >
@@ -71,7 +103,7 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                     Chọn cấp bậc
                     </Typography>
-                    <SelectComponent name="Cấp bậc" data={level} fullWidth/>
+                    <SelectComponent label="Cấp bậc" name="level" data={level} fullWidth/>
                     </div>
                 </Grid>
             </Grid>
@@ -79,13 +111,13 @@ const PostComponent = ()=>{
      
         <Typography variant="h5" gutterBottom component="div" className="name">
             Mô tả chi tiết
-            </Typography>
+        </Typography>
         
-         <CkeditorComponent/>
+         <CkeditorComponent name="detail"/>
          <div className='center-div'>
-          <Button className="post" variant="contained">Đăng ngay</Button>
+          <Button className="post" variant="contained"   type="submit" >Đăng ngay</Button>
         </div>
-        
+        </Box>
         </div>
     )
 }

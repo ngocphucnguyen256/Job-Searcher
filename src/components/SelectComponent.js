@@ -53,14 +53,14 @@ export default function SelectComponent(props) {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-name-label">{props?.name}</InputLabel>
+        <InputLabel id="demo-multiple-name-label">{props?.label}</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           multiple
           value={personName}
           onChange={handleChange}
-          input={<OutlinedInput label={props?.name} />}
+          input={<OutlinedInput label={props?.label} />}
           MenuProps={MenuProps}
         >
           {list.map((item) => (

@@ -48,16 +48,16 @@ export default function HeaderForm() {
       <Box sx={{ width:'100%' }}>
       <Grid container spacing={1} >
         <Grid item xs={6}>
-           <SelectComponent name="Địa điểm" data={location} fullWidth/>
+           <SelectComponent label="Địa điểm" data={location} fullWidth/>
         </Grid>
         <Grid item xs={6}>
-         <SelectComponent name="Tất cả ngành nghề" data={categories} fullWidth/>
+         <SelectComponent label="Tất cả ngành nghề" data={categories} fullWidth/>
         </Grid>
         <Grid item xs={6}>
-       <SelectComponent name="Chọn mức lương" data={salary} fullWidth/>
+       <SelectComponent label="Chọn mức lương" data={salary} fullWidth/>
         </Grid>
         <Grid item xs={6}>   
-            <SelectComponent name="Cấp bậc" data={level} fullWidth/>
+            <SelectComponent label="Cấp bậc" data={level} fullWidth/>
         </Grid>
     </Grid>
         </Box>

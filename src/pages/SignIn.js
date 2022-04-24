@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {Link as RouterLink, useNavigate} from 'react-router-dom';
 import { UserContext } from '../App'
+import Api, { endpoints, client } from '../config/Api';
+import * as qs from 'qs'
 
 function Copyright(props) {
   return (
@@ -38,21 +40,34 @@ export default function SignIn() {
   let navigate = useNavigate();
 
 
+  const authUser = async () => {
+    const res = await Api.post(endpoints['token'],
+    qs.stringify({
+      "grant_type":"password",
+      "username":username,
+      "password":password,
+      "client_id":client.clientId,
+      "client_secret":client.clientSecret
+    }))
+    console.log(res.data)
+    localStorage.setItem("token", res.data.access_token)
+    dispatch({
+      "type": "login",
+      "payload": {
+          "username": username,
+          // "access_token": res.data.access_token,
+      }
+  })
+
+ }
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get('username'),
-      password: data.get('password'),
-    });
-    if (username === 'admin' && password === '123'){
-      dispatch({
-        "type": "login",
-        "payload": {
-            "username": "admin"
-        }
-    })
+    if (username && password){
+      authUser()
+
     }
 
   };
