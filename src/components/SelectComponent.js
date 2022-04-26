@@ -62,6 +62,7 @@ export default function SelectComponent(props) {
           onChange={handleChange}
           input={<OutlinedInput label={props?.label} />}
           MenuProps={MenuProps}
+          name={props?.name}
         >
           {list.map((item) => (
             <MenuItem

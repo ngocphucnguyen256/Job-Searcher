@@ -6,9 +6,10 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import SelectComponent from './SelectComponent';
 import Api, { endpoints } from '../config/Api';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useContext} from 'react';
 import TextField from '@mui/material/TextField';
 import { location, salary, level  } from '../data/data';
+import { UserContext } from '../App'
 
 
 
@@ -16,6 +17,9 @@ const PostComponent = ()=>{
 
     const [categories, setCategories] = useState([])
     const [posts, setPosts] = useState(null)
+    const [dataCkeditor, setDataCkeditor] = useState('')
+    const [dataMajorId, setDataMajorId] = useState(null)
+    const [user, dispatch] = useContext(UserContext)
 
     useEffect(() => {
         let loadCategories = async () => {
@@ -24,38 +28,56 @@ const PostComponent = ()=>{
         }
         
         loadCategories()
-    
+        
     }, [])
 
 
-
-
-    const postPost = async () => {
-        let res = await Api.post(endpoints['posts'],{
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
-        })
-        setPosts(res.data)
+    const convertSalary =(string) => {
+        let salaryIndex= salary.findIndex(item => item.name === string)
+        return salary[salaryIndex].data
+        
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-        title: data.get('title'),
-        major: data.get('major'),
-        location : data.get('location'),
-        salary: data.get('salary'),
-        level: data.get('level'),
-        detail: data.get('detail'),
-        });
-
-   
+        console.log(            {
+            title: data.get('title'),
+            major: dataMajorId,
+            location : data.get('location'),
+            to_salary: convertSalary(data.get('salary')),
+            type: data.get('level'),
+            time_work:data.get('level'),
+            description: dataCkeditor,
+            company: user.username
+    })
+        
+        const postPost = async () => {
+            let res = await Api.post(endpoints['posts'],
+                {
+                    title: data.get('title'),
+                    major: dataMajorId,
+                    location : data.get('location'),
+                    to_salary: convertSalary(data.get('salary')),
+                    type: data.get('level'),
+                    time_work:data.get('level'),
+                    description: dataCkeditor,
+                    company: user.username
+            }
+            ,{
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+            
+            })
     
-      };
-    
+            console.log(res.data)
+        }
 
+        postPost()
+
+    };
+    
 
 
     return(
@@ -78,7 +100,7 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn ngành nghề cần tuyển
                     </Typography>
-                   <SeclectGroup name="major" data={categories}/>
+                   <SeclectGroup name="major" data={categories} setDataMajorId={setDataMajorId} />
 
                     </div>
                 </Grid>
@@ -113,7 +135,7 @@ const PostComponent = ()=>{
             Mô tả chi tiết
         </Typography>
         
-         <CkeditorComponent name="detail"/>
+         <CkeditorComponent name="detail" setDataCkeditor={setDataCkeditor}/>
          <div className='center-div'>
           <Button className="post" variant="contained"   type="submit" >Đăng ngay</Button>
         </div>
