@@ -13,6 +13,7 @@ import DashboardPosted from './components/DashboardPosted'
 import myReducer from './reducers/UserReducer';
 import { BrowserRouter } from 'react-router-dom';
 import SearchJob from './pages/SearchJob';
+import ListPosts from './pages/ListPosts';
 
 export const UserContext = createContext()
 
@@ -34,6 +35,7 @@ function App() {
           <Route  path="/dashboard/all-posted" element={<DashboardPosted/>}/>
           <Route  path="/dashboard/job-detail/:id" element={<JobDetails authenticated/>}/>
           <Route  path="/job-list" element={<SearchJob/>}/>
+          <Route  path="/job-list/:id" element={<ListPosts/>}/>
           <Route  path="/dashboard/post" element={<DashboardPost/>}/>
           <Route  path="/job-detail/:id" element={<JobDetails/>}/>
           <Route  path="*" element={<PageNotFound/>}/>

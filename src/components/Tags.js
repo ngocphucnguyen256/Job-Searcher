@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Item from './Item'
 import Typography from '@mui/material/Typography';
-
+import {Link} from 'react-router-dom'
 export default function Tags(props) {
     const  data  = props.data;
 
@@ -20,8 +20,11 @@ export default function Tags(props) {
                             return (
                             <Grid item xs="auto">
                                 <Item>
+                                <Link to={`/job-list/${item.id}`} className="deco-none black">
                                 <Typography variant="body1" className="heading"
-                                gutterBottom component="div">{item.name}</Typography></Item>
+                                gutterBottom component="div">{item.name}</Typography>
+                                </Link>
+                                </Item>
                             </Grid>
                             )
                         }) 

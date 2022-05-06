@@ -10,6 +10,8 @@ import React, { useEffect, useState ,useContext} from 'react';
 import TextField from '@mui/material/TextField';
 import { location, salary, level  } from '../data/data';
 import { UserContext } from '../App'
+import DatePicker  from './DatePicker';
+
 
 
 
@@ -20,6 +22,7 @@ const PostComponent = ()=>{
     const [dataCkeditor, setDataCkeditor] = useState('')
     const [dataMajorId, setDataMajorId] = useState(null)
     const [user, dispatch] = useContext(UserContext)
+    const [dateValue, setDateValue] = useState(new Date())
 
     useEffect(() => {
         let loadCategories = async () => {
@@ -31,26 +34,46 @@ const PostComponent = ()=>{
         
     }, [])
 
+    console.log(dateValue)
+
+    let from_salary, to_salary
 
     const convertSalary =(string) => {
-        let salaryIndex= salary.findIndex(item => item.name === string)
-        return salary[salaryIndex].data
-        
+        let arr = string.split(',')
+        if(arr.length === 1){
+            let salaryIndex= salary.findIndex(item => item.name===string)
+              from_salary= salary[salaryIndex].data
+
+
+        }
+        else{
+            let salaryIndex= salary.findIndex(item => item.name===arr[0])
+            let salaryIndex2= salary.findIndex(item => item.name===arr[1])
+            from_salary=salary[salaryIndex].data
+            to_salary=salary[salaryIndex2].data
+    }
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log(            {
-            title: data.get('title'),
-            major: dataMajorId,
-            location : data.get('location'),
-            to_salary: convertSalary(data.get('salary')),
-            type: data.get('level'),
-            time_work:data.get('level'),
-            description: dataCkeditor,
-            company: user.username
-    })
+        convertSalary(data.get('salary'))
+    //     console.log(            {
+    //         title: data.get('title'),
+    //         major: dataMajorId,
+    //         location : data.get('location'),
+    //         from_salary: from_salary,
+    //         to_salary: to_salary,
+    //         type: data.get('type'),
+    //         time_work:data.get('timeWork'),
+    //         description: dataCkeditor,
+    //         company: user.username,
+    //         user: user.id,
+    //         quantity: data.get('quantity'),
+    //         due: dateValue
+
+
+    // })
         
         const postPost = async () => {
             let res = await Api.post(endpoints['posts'],
@@ -58,11 +81,16 @@ const PostComponent = ()=>{
                     title: data.get('title'),
                     major: dataMajorId,
                     location : data.get('location'),
-                    to_salary: convertSalary(data.get('salary')),
-                    type: data.get('level'),
-                    time_work:data.get('level'),
+                    from_salary: from_salary,
+                    to_salary: to_salary,
+                    type: data.get('type'),
+                    time_work:data.get('timeWork'),
                     description: dataCkeditor,
-                    company: user.username
+                    company: user.username,
+                    user: user.id,
+                    quantity: data.get('quantity'),
+                    due: dateValue
+        
             }
             ,{
                 headers: {
@@ -91,7 +119,7 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Vị trí cần tuyển
                     </Typography>
-                    <TextField name="title" className="search" fullWidth id="outlined-search" label="Chức danh" type="search" />
+                    <TextField required name="title" className="search" fullWidth id="outlined-search" label="Chức danh" type="search" />
 
                     </div>
                 </Grid>
@@ -100,7 +128,7 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn ngành nghề cần tuyển
                     </Typography>
-                   <SeclectGroup name="major" data={categories} setDataMajorId={setDataMajorId} />
+                   <SeclectGroup required name="major" data={categories} setDataMajorId={setDataMajorId} />
 
                     </div>
                 </Grid>
@@ -109,7 +137,7 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn nơi làm việc
                     </Typography>
-                   <SelectComponent name="location" data={location}/>
+                   <SelectComponent required name="location" data={location}/>
                     </div>
                 </Grid>
                 <Grid item xs={2} sm={4} md={4} >
@@ -125,7 +153,41 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                     Chọn cấp bậc
                     </Typography>
-                    <SelectComponent label="Cấp bậc" name="level" data={level} fullWidth/>
+                    <SelectComponent required label="Cấp bậc" name="type" data={level} fullWidth/>
+                    </div>
+                </Grid>
+                <Grid item xs={2} sm={4} md={4} >
+                    <div>
+                    <Typography variant="h6" gutterBottom component="div" className="name">
+                        Thời gian làm việc
+                    </Typography>
+                    <TextField required name="timeWork" className="search" fullWidth id="outlined-search" label="Thời gian làm việc"/>
+                    </div>
+                </Grid>
+
+                <Grid item xs={2} sm={4} md={4} >
+                    <div>
+                    <Typography variant="h6" gutterBottom component="div" className="name">
+                        Giới tính
+                    </Typography>
+                    <TextField name="gender" className="search" fullWidth id="outlined-search" label="Giới tính" />
+                    </div>
+                </Grid>
+                       
+                <Grid item xs={2} sm={4} md={4} >
+                    <div>
+                    <Typography variant="h6" gutterBottom component="div" className="name">
+                        Số lượng
+                    </Typography>
+                    <TextField type="number" name="quantity" className="search" fullWidth id="outlined-search" label="Số lượng" />
+                    </div>
+                </Grid>
+                <Grid item xs={2} sm={4} md={4} >
+                    <div>
+                    <Typography variant="h6" gutterBottom component="div" className="name">
+                       Ngày hết hạn
+                    </Typography>
+                    <DatePicker value={dateValue} setDateValue={setDateValue}/>
                     </div>
                 </Grid>
             </Grid>

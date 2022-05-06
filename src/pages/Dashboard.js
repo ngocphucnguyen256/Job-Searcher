@@ -98,6 +98,8 @@ export default function Dashboard(props) {
   const [user, dispatch] = useContext(UserContext)
   const isCompany =true;
 
+  console.log(user.role)
+
   return (
     <ThemeProvider theme={mdTheme} >
       <Box sx={{ display: 'flex' }} className="dashboard">
@@ -154,14 +156,33 @@ export default function Dashboard(props) {
           <Divider />
           <List component="nav" className="nav">
             <CenterDiv>
-              <Avatar alt="Remy Sharp" src={img} sx={{width: 170, height:170}} />
+            {
+              user.avatar?(
+                <Avatar alt="Remy Sharp" src={ user.avatar} sx={{width: 170, height:170}} />
+
+              ):(
+                <Avatar alt="Remy Sharp" src={img} sx={{width: 170, height:170}} />
+
+              )
+            }
+          
             </CenterDiv>
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
              {user.username}
             </Typography>
 
-            <SideMenuItem name="Đăng bài tuyển dụng" icon={<DashboardIcon />} link="/dashboard/post" />
-            <SideMenuItem name="Các bài viết đã đăng" icon={<DashboardIcon />} link="/dashboard/all-posted" />
+           {
+             user.role==="User"?(
+              <>
+              
+              </>
+             ):(
+              <>
+               <SideMenuItem name="Đăng bài tuyển dụng" icon={<DashboardIcon />} link="/dashboard/post" />
+               <SideMenuItem name="Các bài viết đã đăng" icon={<DashboardIcon />} link="/dashboard/all-posted" />
+              </>
+             )
+           }
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}

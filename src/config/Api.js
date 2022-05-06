@@ -10,7 +10,8 @@ export const endpoints = {
     "posts": "/posts/",
     "post-detail": (postId) => `/posts/${postId}/`,
     "post-detail-applies": (postId) => `/posts/${postId}/applies/`,
-    "token":"/o/token/"
+    "token":"/o/token/",
+    "getUser":"/get-user/"
  
 }
 

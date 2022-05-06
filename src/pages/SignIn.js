@@ -51,15 +51,42 @@ export default function SignIn() {
     }))
     console.log(res.data)
     localStorage.setItem("token", res.data.access_token)
-    dispatch({
-      "type": "login",
-      "payload": {
-          "username": username,
-          // "access_token": res.data.access_token,
-      }
-  })
+    getUserDetails()
 
  }
+
+ const getUserDetails = async () => {
+  const res = await Api.get(endpoints['getUser'],
+  { headers:{
+    "Authorization": `Bearer ${localStorage.getItem("token")}`
+  }})
+
+  let userDetail =res.data[0]
+  console.log(res.data[0])
+  dispatch({
+    "type": "login",
+    "payload": {
+        "username": userDetail.username,
+        "avatar": userDetail.avatar,
+        "email": userDetail.email,
+        "id": userDetail.id,
+        "role": convertUserRole(userDetail.user_role)
+     
+    }
+})
+ }
+
+ const convertUserRole = (numb) => {
+   if(numb === 1){
+     return "Admin"
+   }else if(numb === 2){
+      return "User"
+    }
+    else if(numb === 3){
+      return "Hirer"
+    }
+ }
+
 
 
   const handleSubmit = (event) => {

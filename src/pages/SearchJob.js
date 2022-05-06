@@ -21,6 +21,7 @@ export default function SearchJobs(props) {
     
     }, [])
 
+    console.log(categories)
 
 
   return (
@@ -32,7 +33,13 @@ export default function SearchJobs(props) {
                 <Typography variant="h1" component="h1" className="heading">All Job Categories</Typography>
                 </section>
                 <section className="body">
-                    <Tags data={categories}/>
+                {
+                    categories.map((item,index)=> 
+                        <div  key={index}>
+                            <Typography variant="h2" component="h2" >{item.name}</Typography>
+                            <Tags data={item.majors}/>   
+                        </div> 
+                    )}
                 </section>
             </Container>
             </main>
