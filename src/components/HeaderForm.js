@@ -6,6 +6,9 @@ import Button from '@mui/material/Button';
 import React, { useEffect, useState } from 'react';
 import Api, { endpoints } from '../config/Api';
 import { location, salary, level  } from '../data/data';
+import { useNavigate} from 'react-router-dom';
+import SeclectGroup  from './SelectGroup';
+
 
 
 
@@ -15,6 +18,12 @@ export default function HeaderForm() {
     const [name, email, subject] = useState('');
     const [currency, setCurrency] = useState('EUR');
     const [categories, setCategories] = useState([])
+    const [dataMajorId, setDataMajorId] = useState(null)
+
+    const [kw, setKw] = useState("")
+
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         let loadCategories = async () => {
@@ -28,45 +37,79 @@ export default function HeaderForm() {
     
     }, [])
 
+    let from_salary, to_salary
+
+    const convertSalary =(string) => {
+        let arr = string.split(',')
+        if(arr.length === 1){
+            let salaryIndex= salary.findIndex(item => item.name===string)
+              from_salary= salary[salaryIndex].data
 
 
-    const handleChangeLocation = (event) => {
-        setCurrency(event.target.value);
-    };
+        }
+        else{
+            let salaryIndex= salary.findIndex(item => item.name===arr[0])
+            let salaryIndex2= salary.findIndex(item => item.name===arr[1])
+            from_salary=salary[salaryIndex].data
+            to_salary=salary[salaryIndex2].data
+    }
+    }
 
-    const handleSubmit =()=>{
 
+    const handleSubmit =(event)=>{
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        convertSalary(data.get('salary'))
+        console.log({
+            title: data.get('title'),
+            major: dataMajorId,
+            location : data.get('location'),
+            from_salary: from_salary,
+            to_salary: to_salary,
+            type: data.get('type'),
+     })
+        
+        navigate(`/job-list/?kw=${kw}`, {
+            state: {
+                title: data.get('title'),
+                major: dataMajorId,
+                location : data.get('location'),
+                from_salary: from_salary,
+                to_salary: to_salary,
+                type: data.get('type'),
+            }
+        });
     }
 
     return(
-     <form className='react-form header-form' onSubmit={handleSubmit}>
+     <Box component="form" noValidate onSubmit={handleSubmit} className='react-form header-form'>
       <h2>Đón lấy thành công với
             29,913 cơ hội nghề nghiệp</h2>
   
-      <TextField className="search" fullWidth id="outlined-search" label="Chức danh, tên công ty" type="search" />
+      <TextField name="title" className="search" fullWidth id="outlined-search" label="Chức danh, tên công ty" type="search" />
     
       <Box sx={{ width:'100%' }}>
       <Grid container spacing={1} >
         <Grid item xs={6}>
-           <SelectComponent label="Địa điểm" data={location} fullWidth/>
+           <SelectComponent name="location" label="Địa điểm" data={location} fullWidth/>
         </Grid>
         <Grid item xs={6}>
-         <SelectComponent label="Tất cả ngành nghề" data={categories} fullWidth/>
+        <SeclectGroup required name="major" data={categories} setDataMajorId={setDataMajorId} />
         </Grid>
         <Grid item xs={6}>
-       <SelectComponent label="Chọn mức lương" data={salary} fullWidth/>
+       <SelectComponent name="salary" label="Chọn mức lương" data={salary} fullWidth/>
         </Grid>
         <Grid item xs={6}>   
-            <SelectComponent label="Cấp bậc" data={level} fullWidth/>
+            <SelectComponent name="type" label="Cấp bậc" data={level} fullWidth/>
         </Grid>
     </Grid>
         </Box>
       <div className='form-group'>
         <div className='center-div'>
-          <Button variant="contained">Tìm việc ngay</Button>
+          <Button variant="contained"  type="submit">Tìm việc ngay</Button>
         </div>
       </div>
-     </form>
+      </Box>
     )
    
 }

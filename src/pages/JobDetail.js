@@ -10,6 +10,8 @@ import CommentList from '../components/CommentList';
 import { useParams  } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Api, { endpoints } from '../config/Api';
+import {Link} from 'react-router-dom'
+
 
 export default function JobDetails(props) {
 
@@ -24,6 +26,7 @@ export default function JobDetails(props) {
         setApplies(res.data)
 
     }
+
 
 
     useEffect(() => {
@@ -45,12 +48,15 @@ export default function JobDetails(props) {
     }, [])
 
 
-
+    console.log(post)
 
 
     if(!post) {
         return <div>Loading...</div>
     }
+
+
+    let url=`/job-list`
 
   return (
     <>
@@ -58,7 +64,10 @@ export default function JobDetails(props) {
             <main className="job-detail">
                 <section className="header">
                     <h1>{post.title}</h1>
-                    <h2>{post.company}</h2>
+                    <Link to={url} className="link">
+                    <h2>Công ty: {post.company}</h2>
+                    </Link>
+
                     {props.authenticated?(<></>):(
                         <Button variant="contained">Nộp đơn ứng tuyển ngay</Button>
                     )}

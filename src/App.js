@@ -27,7 +27,7 @@ function App() {
     <BrowserRouter>
       <UserContext.Provider value={[user, dispatch]}>
         <Routes>
-          <Route  path="/" element={<Home/>}/>
+          <Route exact  path="/" element={<Home/>}/>
           <Route  path="/profile" element={<Profile/>}/>
           <Route  path="/sign-in" element={<SignIn/>}/>
           <Route  path="/sign-up" element={<SignUp/>}/>

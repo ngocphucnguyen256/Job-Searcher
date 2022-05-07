@@ -61,8 +61,8 @@ export default function SignIn() {
     "Authorization": `Bearer ${localStorage.getItem("token")}`
   }})
 
-  let userDetail =res.data[0]
-  console.log(res.data[0])
+  let userDetail =res.data
+  console.log(userDetail)
   dispatch({
     "type": "login",
     "payload": {
