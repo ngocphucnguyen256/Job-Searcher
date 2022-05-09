@@ -59,26 +59,29 @@ export default function HeaderForm() {
     const handleSubmit =(event)=>{
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        convertSalary(data.get('salary'))
-        console.log({
-            title: data.get('title'),
-            major: dataMajorId,
-            location : data.get('location'),
-            from_salary: from_salary,
-            to_salary: to_salary,
-            type: data.get('type'),
-     })
-        
-        navigate(`/job-list/?kw=${kw}`, {
-            state: {
-                title: data.get('title'),
-                major: dataMajorId,
-                location : data.get('location'),
-                from_salary: from_salary,
-                to_salary: to_salary,
-                type: data.get('type'),
-            }
-        });
+        if (data.get('salary')) {
+            convertSalary(data.get('salary'))
+        }
+    //     console.log({
+    //         title: data.get('title'),
+    //         major: dataMajorId,
+    //         location : data.get('location'),
+    //         from_salary: from_salary,
+    //         to_salary: to_salary,
+    //         // type: data.get('type'),
+    //  })
+       let param = {
+           keyword: data.get('title'),
+           major_id: dataMajorId    || null,
+           location : data.get('location')?data.get('location'):null,
+            from_salary: from_salary    ?from_salary:null,
+            to_salary: to_salary    ?to_salary:null,
+            // type: data.get('type'),
+     }
+        let o = Object.fromEntries(Object.entries(param).filter(([_, v]) => v != null));
+         let queryString = new URLSearchParams(o).toString();
+        //  console.log(`/job-list/?${queryString}`)
+        navigate(`/job-list/posts?${queryString}`);
     }
 
     return(

@@ -20,7 +20,7 @@ export default function Tags(props) {
                             return (
                             <Grid item xs="auto">
                                 <Item>
-                                <Link to={`/job-list/${item.id}`} className="deco-none black">
+                                <Link to={`/job-list/${item.id}/posts`} className="deco-none black">
                                 <Typography variant="body1" className="heading"
                                 gutterBottom component="div">{item.name}</Typography>
                                 </Link>

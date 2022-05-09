@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import Api, { endpoints } from '../config/Api';
 import Footer from '../partials/Footer'
 import Header from '../partials/Header'
@@ -10,6 +10,8 @@ import Container from '@mui/material/Container';
 export default function SearchJobs(props) {
 
     const [categories, setCategories] = useState([])
+   
+
 
     useEffect(() => {
         let loadCategories = async () => {
@@ -22,6 +24,8 @@ export default function SearchJobs(props) {
     }, [])
 
     console.log(categories)
+
+
 
 
   return (
