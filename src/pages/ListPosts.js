@@ -7,39 +7,37 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import JobItem from '../components/JobItem'
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useParams } from 'react-router-dom';
 
 
 
 export default function ListPosts() {
-
     const [posts, setPosts] = useState([])
     const [q] = useSearchParams()
+    const { id } = useParams();
     
     useEffect(() => {
 
         let loadPosts = async () => {
-            let res = await Api.get(endpoints['posts'])
-            setPosts(res.data)
+            // let res = await Api.get(endpoints['posts'])
+            let res = await Api.get(`${endpoints['posts']}?keyword=&major_id=${id}`)
+            setPosts(res.data.results)
         }
         let loadPostsParam = async () => {
             let res = await Api.get(`${endpoints['posts']}?${q.toString()}`)
-
-            console.log(res)
             setPosts(res.data.results)
-            console.log(posts)
 
         }
         
        if(q.toString()){
         loadPostsParam()
-        console.log("param")
+     
        }
        else{
         loadPosts()
        }
     
-    }, [q])
+    }, []);
  
 
   return (
@@ -52,7 +50,7 @@ export default function ListPosts() {
                 </Typography>
                 <Box sx={{ width:'100%' }}>
                 <Grid container spacing={1} >
-                    {posts.length?(
+                    {posts.length>0?(
                         posts.map((item, index) =>
                             <Grid item xs={6} key={index} >
                                 <JobItem data={item} authenticated/>
@@ -60,7 +58,7 @@ export default function ListPosts() {
                         )
                     ):(
                         <Typography variant="h3" textAlign="center" gutterBottom component="h1" className="name">
-                       Loading
+                       Khong co ket qua
                         </Typography>
                     )}
                 </Grid>

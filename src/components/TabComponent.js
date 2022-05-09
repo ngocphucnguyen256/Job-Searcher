@@ -70,6 +70,16 @@ export default function TabComponent() {
   }, [])
 
 
+  console.log(posts)
+
+  const formatDateList =  posts.map(post=>{
+    let localdate = new Date(post.created_date);
+    const copy ={date: localdate, ...post}
+    return copy
+  })
+
+  let sortedDateList= formatDateList.sort((a,b) =>b.date.getTime() -  a.date.getTime())
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -100,10 +110,10 @@ export default function TabComponent() {
 
         <TabPanel value={value} index={1}>
         <Box sx={{ width:'100%' }}>
-            <Grid container spacing={1} >
-                  {[...Array(numrows)].map((x, i) =>
-                  <Grid item xs={6} key={i}>
-                      <TabItem/>
+        <Grid container spacing={1} >
+                  {sortedDateList.map((item, index) =>
+                  <Grid item xs={6} key={index} >
+                      <TabItem data={item}/>
                   </Grid>
               )}
             </Grid>
@@ -111,12 +121,12 @@ export default function TabComponent() {
         </TabPanel>
         <TabPanel value={value} index={2}>
         <Box sx={{ width:'100%' }}>
-            <Grid container spacing={1} >
-                  {[...Array(numrows)].map((x, i) =>
-                  <Grid item xs={6} key={i}>
-                      <TabItem/>
-                  </Grid>
-              )}
+          <Grid container spacing={1} >
+                    {posts.map((item, index) =>
+                    <Grid item xs={6} key={index} >
+                        <TabItem data={item}/>
+                    </Grid>
+                )}
             </Grid>
           </Box>
         </TabPanel>
