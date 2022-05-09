@@ -63,6 +63,13 @@ export default function SignIn() {
 
   let userDetail =res.data
   console.log(userDetail)
+  localStorage.setItem("name", userDetail.username)
+  localStorage.setItem("avatar", userDetail.avatar)
+  localStorage.setItem("email", userDetail.email)
+  localStorage.setItem("id", userDetail.id)
+  localStorage.setItem("role",convertUserRole(userDetail.user_role))
+
+
   dispatch({
     "type": "login",
     "payload": {

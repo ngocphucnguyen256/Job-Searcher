@@ -3,6 +3,7 @@ const myReducer = (user, action) => {
         case "login": 
             return action.payload
         case "logout":
+            localStorage.clear()
             return null
 
     }

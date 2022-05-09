@@ -1,5 +1,5 @@
 import Home from './pages/Home';
-import React, {  useReducer, createContext } from 'react';
+import React, {  useReducer, createContext, useEffect } from 'react';
 import PageNotFound from './pages/PageNotFound';
 import Profile from './pages/Profile';
 import './App.css';
@@ -21,6 +21,32 @@ function App() {
 
   const [user, dispatch] = useReducer(myReducer)
 
+  useEffect(() => {
+    
+  if(localStorage.getItem('name')){
+   
+
+    dispatch({
+      "type": "login",
+      "payload": {
+          "username":  localStorage.getItem('name'),
+          "avatar":localStorage.getItem('avatar'),
+          "email":localStorage.getItem('email'),
+          "id":localStorage.getItem('id'),
+          "role": localStorage.getItem('role')
+      
+      }
+  })
+  console.log(localStorage.getItem('name') )
+  console.log(localStorage.getItem('avatar') )
+  console.log(localStorage.getItem('email') )
+  console.log(localStorage.getItem('id') )
+  console.log(localStorage.getItem('role') )
+}
+
+  },[])
+
+  
 
   return (
     <div className="App">
