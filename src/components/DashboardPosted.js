@@ -11,15 +11,29 @@ const DashboardPost = () => {
     const [posts, setPosts] = useState([])
 
     //can them filter user
-    useEffect(() => {
+
     let loadPosts = async () => {
-        let res = await Api.get(endpoints['posts'])
-        setPosts(res.data.results)
+        const res = await Api.get(endpoints['myPost'],
+        { headers:{
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }})
+        console.log(res)
+        console.log(localStorage.getItem("token"))
+
+        setPosts(res.data)
     }
+
+    useEffect(() => {
+
+
     
     loadPosts()
 
 }, [])
+
+const handleDelete =()=>{
+    loadPosts()
+}
 
 
     return(
@@ -29,11 +43,15 @@ const DashboardPost = () => {
             </Typography>
             <Box sx={{ width:'100%' }}>
             <Grid container spacing={1} >
-                  {posts.map((item, index) =>
-                  <Grid item xs={6} key={index} >
-                      <JobItem data={item} authenticated/>
-                  </Grid>
-              )}
+                {posts.length>0?(
+                    posts.map((item, index) =>
+                        <Grid item xs={6} key={index} >
+                            <JobItem handleDelete={handleDelete} data={item} authenticated/>
+                        </Grid>
+                    )
+                ):(
+                    <p>Khong co ket qua</p>
+                )}
             </Grid>
           </Box>
         </Dashboard>

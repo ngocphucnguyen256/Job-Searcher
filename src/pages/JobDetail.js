@@ -22,7 +22,7 @@ export default function JobDetails(props) {
 
     const loadPostAppliessById = async () => {
         const res = await Api.get(endpoints['post-detail-applies'](id))
-        console.log(res.data)
+        console.log("applies", res.data)
         setApplies(res.data)
 
     }
@@ -93,7 +93,17 @@ export default function JobDetails(props) {
                                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                                     {applies.map((item, index) => (
                                     <Grid item xs={2} sm={4} md={4} key={index}>
-                                        <Item><p className="heading">{item.user}</p><p>{item.description}</p></Item>
+                                       
+                                         <Item><p className="heading">{item.user}</p><p>{item.description}</p></Item>
+                                        {
+                                            item.CV?(
+                                                <Link to={item.CV} download className="link">
+                                                 <h3>CV: {item.CV}</h3>
+                                                </Link>
+                                            ):(
+                                            <></>
+                                            )
+                                        }
                                     </Grid>
                                     ))}
                                 </Grid>

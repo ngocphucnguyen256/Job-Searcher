@@ -6,6 +6,11 @@ import PageIllustration from '../partials/PageIllustration';
 import Footer from '../partials/Footer';
 
 function Profile() {
+
+  
+
+
+
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
 

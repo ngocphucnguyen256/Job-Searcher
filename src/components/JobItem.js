@@ -5,6 +5,9 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import EditLocationIcon from '@mui/icons-material/EditLocation';
 import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom'
+import Button from '@mui/material/Button';
+import Api, { endpoints } from '../config/Api';
+
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -49,6 +52,22 @@ export default function JobItem(props) {
     url=`/dashboard/job-detail/${data.id}`
   }
 
+  const handleDelete = async () => {
+    const res = await Api.delete(endpoints['myPostDelete'](data.id),
+    { headers:{
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    }}
+    )
+    console.log(res)
+    if(res.status === 204){
+      alert("Post deleted successfully")
+    }
+    else{
+      alert("Something went wrong")
+    }
+    props.handleDelete()
+  }
+
   return (
     <div className="flex-grow" style={{ width: '100%' }}>
       <Link to={url} className="link">
@@ -78,9 +97,11 @@ export default function JobItem(props) {
           </Typography>
           </div>
           </Item>
-        
+   
         </Box>
       </Link>
+      <Button variant="" >Sửa</Button>
+      <Button variant="contained" onClick={handleDelete} >Xóa</Button>
     </div>
   );
 }

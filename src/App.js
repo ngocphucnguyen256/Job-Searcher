@@ -28,7 +28,7 @@ function App() {
       <UserContext.Provider value={[user, dispatch]}>
         <Routes>
           <Route exact  path="/" element={<Home/>}/>
-          <Route  path="/profile" element={<Profile/>}/>
+          <Route  path="/profile/:id" element={<Profile/>}/>
           <Route  path="/sign-in" element={<SignIn/>}/>
           <Route  path="/sign-up" element={<SignUp/>}/>
           <Route  path="/dashboard" element={<Dashboard/>}/>

@@ -11,7 +11,9 @@ export const endpoints = {
     "post-detail": (postId) => `/posts/${postId}/`,
     "post-detail-applies": (postId) => `/posts/${postId}/applies/`,
     "token":"/o/token/",
-    "getUser":"/users/current-user/"
+    "getUser":"/users/current-user/",
+    "myPost":"/my-posts/",
+    "myPostDelete": (postId) => `/my-posts/${postId}/`,
  
 }
 
