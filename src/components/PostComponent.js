@@ -11,11 +11,12 @@ import TextField from '@mui/material/TextField';
 import { location, salary, level  } from '../data/data';
 import { UserContext } from '../App'
 import DatePicker  from './DatePicker';
+import {useParams} from 'react-router-dom';
 
 
 
 
-const PostComponent = ()=>{
+const PostComponent = (props)=>{
 
     const [categories, setCategories] = useState([])
     const [posts, setPosts] = useState(null)
@@ -23,6 +24,7 @@ const PostComponent = ()=>{
     const [dataMajorId, setDataMajorId] = useState(null)
     const [user, dispatch] = useContext(UserContext)
     const [dateValue, setDateValue] = useState(new Date())
+    const {id} =useParams();
 
     useEffect(() => {
         let loadCategories = async () => {
@@ -32,9 +34,24 @@ const PostComponent = ()=>{
         
         loadCategories()
         
+    if(props.modify){
+        const loadPostDetailsById = async () => {
+            const res = await Api.get(endpoints['post-detail'](id))
+            setPosts(res.data)
+            console.log(res.data)
+        }
+        loadPostDetailsById()
+        if(posts && posts.description){
+            setDataCkeditor(posts.description)
+
+        }
+
+    }
+
+
+        
     }, [])
 
-    console.log(dateValue)
 
     let from_salary, to_salary
 

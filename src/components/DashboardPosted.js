@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import JobItem from './JobItem'
 
-const DashboardPost = () => {
+const DashboardPosted = () => {
 
     const [posts, setPosts] = useState([])
 
@@ -61,4 +61,4 @@ const handleDelete =()=>{
 }
 
 
-export default DashboardPost
+export default DashboardPosted

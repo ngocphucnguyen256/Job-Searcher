@@ -202,6 +202,27 @@ export default function Dashboard(props) {
         >
           <Toolbar />
           {children}
+          {children==null?(
+            <>
+            <CenterDiv>
+            {
+              user.avatar?(
+                <Avatar alt="Remy Sharp" src={ user.avatar} sx={{width: 170, height:170}} />
+
+              ):(
+                <Avatar alt="Remy Sharp" src={img} sx={{width: 170, height:170}} />
+
+              )
+            }
+          
+            </CenterDiv>
+            <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+             {user.username}
+            </Typography>
+            </>
+          ):(
+            <></>
+          )}
           {/* <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
 

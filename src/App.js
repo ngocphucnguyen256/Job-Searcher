@@ -60,6 +60,7 @@ function App() {
           <Route  path="/dashboard" element={<Dashboard/>}/>
           <Route  path="/dashboard/all-posted" element={<DashboardPosted/>}/>
           <Route  path="/dashboard/job-detail/:id" element={<JobDetails authenticated/>}/>
+          <Route  path="/dashboard/job-detail/:id/modify" element={<DashboardPost modify/>}/>
           <Route  path="/job-list" element={<SearchJob/>}/>
           <Route  path="/job-list/:id/posts" element={<ListPosts/>}/>
           <Route  path="/job-list/posts" element={<ListPosts/>}/>

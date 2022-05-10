@@ -11,6 +11,8 @@ import { useParams  } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Api, { endpoints } from '../config/Api';
 import {Link} from 'react-router-dom'
+import Typography from '@mui/material/Typography';
+
 
 
 export default function JobDetails(props) {
@@ -28,22 +30,22 @@ export default function JobDetails(props) {
     }
 
 
-
     useEffect(() => {
+
         const loadPostDetailsById = async () => {
             const res = await Api.get(endpoints['post-detail'](id))
             setPost(res.data)
-
+            if(props.authenticated){
+                loadPostAppliessById()
+            
+           }
+    
+    
         }
         
+       
         loadPostDetailsById()
-        
-        if(props.authenticated){
-
-            
-            loadPostAppliessById()
-        
-       }
+  
 
     }, [])
 
@@ -61,7 +63,46 @@ export default function JobDetails(props) {
   return (
     <>
         <Header/>
+  
             <main className="job-detail">
+            {
+                props.authenticated?(
+                        <section>
+                            <Typography variant="h2"  gutterBottom component="h2">Danh sách ứng viên</Typography>
+                            <Box sx={{ flexGrow: 1 }}>
+                                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                                    {applies!=null && applies.length > 0?(
+                                        applies.map((item, index) => (
+                                        <Grid item xs={2} sm={4} md={4} key={index}>
+                                            
+                                                <Item>
+                                                    <p className="heading">{item.user}</p>
+                                                    <p>{item.description}</p>
+                                                </Item>
+                                            {
+                                                item.CV?(
+                                                    <Link to={item.CV} download className="link">
+                                                        <h3>CV: {item.CV}</h3>
+                                                    </Link>
+                                                ):(
+                                                <></>
+                                                )
+                                            }
+                                        </Grid>
+                                        ))
+                                    ):(
+                                    <Typography variant="h3"  gutterBottom component="h3">Chưa có ứng viên nào apply</Typography>
+
+ 
+                                    )}
+                                </Grid>
+                            </Box>
+                        </section>
+              
+                ):(
+                    <></>
+                )
+            }
                 <section className="header">
                     <h1>{post.title}</h1>
                     <Link to={url} className="link">
@@ -86,32 +127,6 @@ export default function JobDetails(props) {
                     <CkeditorHtml data={post.description} />
                     <h2>JOB TAGS / SKILLS</h2>
                     <Tags/>
-                    {applies?(
-                        <section>
-                            <h2>Danh sách ứng viên</h2>
-                            <Box sx={{ flexGrow: 1 }}>
-                                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                                    {applies.map((item, index) => (
-                                    <Grid item xs={2} sm={4} md={4} key={index}>
-                                       
-                                         <Item><p className="heading">{item.user}</p><p>{item.description}</p></Item>
-                                        {
-                                            item.CV?(
-                                                <Link to={item.CV} download className="link">
-                                                 <h3>CV: {item.CV}</h3>
-                                                </Link>
-                                            ):(
-                                            <></>
-                                            )
-                                        }
-                                    </Grid>
-                                    ))}
-                                </Grid>
-                            </Box>
-                        </section>
-                    ):(
-                      <></>
-                    )}
                     <CommentList/>
                 </section>
             </main>

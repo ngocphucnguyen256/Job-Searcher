@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import Api, { endpoints } from '../config/Api';
-
+import {useNavigate } from 'react-router-dom';
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -43,6 +43,8 @@ Item.propTypes = {
 };
 
 export default function JobItem(props) {
+  let navigate = useNavigate();
+
   const data = props.data
 
 
@@ -66,6 +68,12 @@ export default function JobItem(props) {
       alert("Something went wrong")
     }
     props.handleDelete()
+  }
+
+  
+  const handleModify = async () => {
+    ///dashboard/job-detail/:id/modify
+    navigate(`/dashboard/job-detail/${data.id}/modify`)
   }
 
   return (
@@ -100,8 +108,14 @@ export default function JobItem(props) {
    
         </Box>
       </Link>
-      <Button variant="" >Sửa</Button>
-      <Button variant="contained" onClick={handleDelete} >Xóa</Button>
+      {props.authenticated ? (
+         <>
+          <Button variant="" onClick={handleModify} >Sửa</Button>
+          <Button variant="contained" onClick={handleDelete} >Xóa</Button>
+        </>
+      ):(
+        <></>
+      )}
     </div>
   );
 }

@@ -53,7 +53,7 @@ export default function ListPosts() {
                     {posts.length>0?(
                         posts.map((item, index) =>
                             <Grid item xs={6} key={index} >
-                                <JobItem data={item} authenticated/>
+                                <JobItem data={item}/>
                             </Grid>
                         )
                     ):(

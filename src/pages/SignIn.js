@@ -50,6 +50,7 @@ export default function SignIn() {
       "client_secret":client.clientSecret
     }))
     console.log(res.data)
+    localStorage.clear()
     localStorage.setItem("token", res.data.access_token)
     getUserDetails()
 
