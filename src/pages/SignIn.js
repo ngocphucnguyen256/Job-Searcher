@@ -127,10 +127,11 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-  
+          <RouterLink to="/" >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
+          </RouterLink>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>

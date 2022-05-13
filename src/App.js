@@ -14,6 +14,7 @@ import myReducer from './reducers/UserReducer';
 import { BrowserRouter } from 'react-router-dom';
 import SearchJob from './pages/SearchJob';
 import ListPosts from './pages/ListPosts';
+import DashboardHome from './components/DashboardHome'
 
 export const UserContext = createContext()
 
@@ -53,20 +54,25 @@ function App() {
     <BrowserRouter>
       <UserContext.Provider value={[user, dispatch]}>
         <Routes>
-          <Route exact  path="/" element={<Home/>}/>
-          <Route  path="/profile/:id" element={<Profile/>}/>
-          <Route  path="/sign-in" element={<SignIn/>}/>
-          <Route  path="/sign-up" element={<SignUp/>}/>
-          <Route  path="/dashboard" element={<Dashboard/>}/>
-          <Route  path="/dashboard/all-posted" element={<DashboardPosted/>}/>
-          <Route  path="/dashboard/job-detail/:id" element={<JobDetails authenticated/>}/>
-          <Route  path="/dashboard/job-detail/:id/modify" element={<DashboardPost modify/>}/>
-          <Route  path="/job-list" element={<SearchJob/>}/>
-          <Route  path="/job-list/:id/posts" element={<ListPosts/>}/>
-          <Route  path="/job-list/posts" element={<ListPosts/>}/>
-          <Route  path="/dashboard/post" element={<DashboardPost/>}/>
-          <Route  path="/job-detail/:id" element={<JobDetails/>}/>
-          <Route  path="*" element={<PageNotFound/>}/>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/home" element={<Home/>}/>
+              <Route  path="/profile/:id" element={<Profile/>}/>
+              <Route  path="/sign-in" element={<SignIn/>}/>
+              <Route  path="/sign-up" element={<SignUp/>}/>
+              <Route  path="/dashboard"  element={<Dashboard/>}>
+                <Route  path="home" element={<DashboardHome/>}/>
+                <Route  path="all-posted" element={<DashboardPosted/>}/>
+                <Route  path="job-detail/:id" element={<JobDetails authenticated/>}/>
+                <Route  path="job-detail/:id/modify" element={<DashboardPost modify/>}/>
+                <Route  path="post" element={<DashboardPost/>}/>
+                <Route  path="*" element={<PageNotFound/>}/>
+              </Route>
+              <Route  path="job-list" element={<SearchJob/>}/>
+              <Route  path="/job-list/:id/posts" element={<ListPosts/>}/>
+              <Route  path="/job-list/posts" element={<ListPosts/>}/>
+              <Route  path="/job-detail/:id" element={<JobDetails/>}/>
+              <Route  path="*" element={<PageNotFound/>}/>
+    
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

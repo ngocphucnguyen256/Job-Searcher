@@ -37,7 +37,7 @@ const handleDelete =()=>{
 
 
     return(
-        <Dashboard>
+        <div>
             <Typography variant="h3" textAlign="center" gutterBottom component="h1" className="name">
             Các bài viết đã đăng
             </Typography>
@@ -54,7 +54,7 @@ const handleDelete =()=>{
                 )}
             </Grid>
           </Box>
-        </Dashboard>
+        </div>
     )
 
 

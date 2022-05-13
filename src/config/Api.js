@@ -14,6 +14,8 @@ export const endpoints = {
     "getUser":"/users/current-user/",
     "myPost":"/my-posts/",
     "myPostDelete": (postId) => `/my-posts/${postId}/`,
+    "waits": "/waits/",
+    "applies":"/applies/",
  
 }
 

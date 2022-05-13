@@ -15,17 +15,23 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../partials/SideMenu';
 // import SideMenu from '../partials/SideMenu'
+import Button from '@mui/material/Button';
+import Api, { endpoints } from '../config/Api';
+
 import DataTable from '../components/DataTable';
 import ActionAreaCard from '../components/ActionAreaCard'
 import Avatar from '@mui/material/Avatar';
 import img from '../images/404.jpg';
 import CenterDiv from '../components/CenterDiv'
-import {Link} from 'react-router-dom'
+import {Link, Outlet, useNavigate} from 'react-router-dom'
 import { UserContext } from '../App'
 import  { useState, useContext } from 'react'
 import SideMenuItem from '../components/SideMenuItem'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PropTypes from 'prop-types';
+import ModalComponent  from '../components/ModalComponent';
+
+
 
 
 function Copyright(props) {
@@ -92,6 +98,9 @@ const mdTheme = createTheme();
 export default function Dashboard(props) {
   const children = props.children;
   const [open, setOpen] = React.useState(true);
+  let navigate = useNavigate();
+
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -99,6 +108,20 @@ export default function Dashboard(props) {
   const isCompany =true;
 
   console.log(user.role)
+
+  const handleLogout = () => {
+
+    dispatch({
+      "type": "logout",
+      "payload": {
+          "username": ""
+      }
+  })
+  navigate("/", { replace: true });
+
+  }
+
+
 
   return (
     <ThemeProvider theme={mdTheme} >
@@ -184,6 +207,7 @@ export default function Dashboard(props) {
              )
            }
             {mainListItems}
+            <SideMenuItem name="Đăng xuất" onClick={handleLogout} icon={<DashboardIcon />}/>
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
@@ -201,28 +225,11 @@ export default function Dashboard(props) {
           }}
         >
           <Toolbar />
-          {children}
-          {children==null?(
-            <>
-            <CenterDiv>
-            {
-              user.avatar?(
-                <Avatar alt="Remy Sharp" src={ user.avatar} sx={{width: 170, height:170}} />
-
-              ):(
-                <Avatar alt="Remy Sharp" src={img} sx={{width: 170, height:170}} />
-
-              )
-            }
-          
-            </CenterDiv>
-            <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-             {user.username}
-            </Typography>
-            </>
-          ):(
-            <></>
-          )}
+          <Box m={5}>
+            {children}
+            <Outlet/>
+          </Box>
+         
           {/* <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
 
@@ -261,6 +268,7 @@ export default function Dashboard(props) {
      
             <Copyright sx={{ pt: 4 }} />
           </Container> */}
+     
         </Box>
       </Box>
     </ThemeProvider>

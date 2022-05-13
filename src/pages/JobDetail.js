@@ -8,10 +8,14 @@ import Item from '../components/Item';
 import Tags from '../components/Tags'
 import CommentList from '../components/CommentList';
 import { useParams  } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Api, { endpoints } from '../config/Api';
 import {Link} from 'react-router-dom'
 import Typography from '@mui/material/Typography';
+import CenterDiv from '../components/CenterDiv';
+import { UserContext } from '../App'
+import ModalComponent  from '../components/ModalComponent';
+import CkeditorComponent from '../components/CkeditorComponent'
 
 
 
@@ -21,6 +25,12 @@ export default function JobDetails(props) {
 
     const [post, setPost] = useState(null)
     const [applies, setApplies] = useState(null)
+    const [user, dispatch] = useContext(UserContext)
+    const [openDialog, setOpenDialog] = useState(false);
+    const [dataCkeditor, setDataCkeditor] = useState('')
+
+    const handleOpen = () => setOpenDialog(true);
+    const handleClose = () => setOpenDialog(false);
 
     const loadPostAppliessById = async () => {
         const res = await Api.get(endpoints['post-detail-applies'](id))
@@ -49,6 +59,33 @@ export default function JobDetails(props) {
 
     }, [])
 
+    const handleApplyFormOpen = () => {
+        handleOpen()
+    }
+
+
+    const handleApplySubmit = async () => {
+        if(props.authenticated){
+            alert('Khong the apply vao viec lam cua chinh ban')
+        }
+        else{
+            let res = await Api.post(endpoints['applies'],
+        {
+                description: "dataCkeditor",
+                post:id,
+                user: user.id,
+        }
+        ,{
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+        
+        })
+        console.log(res.data)
+        handleClose()
+        alert('Apply thanh cong')
+        }
+    }
 
     console.log(post)
 
@@ -62,12 +99,20 @@ export default function JobDetails(props) {
 
   return (
     <>
-        <Header/>
+            {
+                props.authenticated?(
+                    <></>
+                ):(
+                    <Header/>
+
+                )
+            }
   
             <main className="job-detail">
             {
                 props.authenticated?(
                         <section>
+                        
                             <Typography variant="h2"  gutterBottom component="h2">Danh sách ứng viên</Typography>
                             <Box sx={{ flexGrow: 1 }}>
                                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -110,7 +155,7 @@ export default function JobDetails(props) {
                     </Link>
 
                     {props.authenticated?(<></>):(
-                        <Button variant="contained">Nộp đơn ứng tuyển ngay</Button>
+                        <Button onClick={handleApplyFormOpen} variant="contained">Nộp đơn ứng tuyển ngay</Button>
                     )}
                 </section>
                 <section className="body">
@@ -127,11 +172,27 @@ export default function JobDetails(props) {
                     <CkeditorHtml data={post.description} />
                     <h2>JOB TAGS / SKILLS</h2>
                     <Tags/>
+                    <ModalComponent handleOpen={handleOpen} open={openDialog} handleClose={handleClose}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Mô tả chi tiết
+                        </Typography>
+                        <CkeditorComponent name="desc" setDataCkeditor={setDataCkeditor}/>
+                        <Button onClick={handleApplySubmit} variant="contained">Nộp đơn ứng tuyển ngay</Button>
+                    </ModalComponent>
                     <CommentList/>
                 </section>
             </main>
-          <Footer/>
+
+            {
+                props.authenticated?(
+                    <></>
+                ):(
+                    <Footer/>
      
+
+                )
+            }
+          
     </>
   );
 }

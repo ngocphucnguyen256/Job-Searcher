@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 
  const SideMenuItem =(props)=>{
 
-
-    return(
+    if(props.link){
+      return(
         <Link to={props.link} className="deco-none black">
         <ListItemButton>
             <ListItemIcon>
@@ -20,6 +20,19 @@ import { Link } from 'react-router-dom';
         </ListItemButton>
       </Link>
     )
+    }
+    else{
+      return(
+        <ListItemButton>
+        <ListItemIcon>
+          {props.icon}
+        </ListItemIcon>
+        <ListItemText primary={props.name} />
+    </ListItemButton>
+      )
+    }
+
+
 }
 
 

@@ -179,25 +179,25 @@ const ResponsiveAppBar = () => {
                     <Typography textAlign="center">{user.username}</Typography>
                     {settings.map((setting, key) => (
                
-                      <MenuItem key={key} onClick={handleCloseUserMenu}>
                       <Link to={setting.url} className="deco-none black">
+                      <MenuItem key={key} onClick={handleCloseUserMenu}>
                         <Typography textAlign="center">{setting.name}</Typography>
-                      </Link>
                     </MenuItem>
+                      </Link>
                     ))}
-                        <MenuItem  onClick={handleLogout}>
-                        <Link to='/sign-in' className="deco-none black">
+                        {/* <Link to='/sign-in' className="deco-none black"> */}
+                      <MenuItem  onClick={handleLogout}>
                           <Typography textAlign="center">Sign out</Typography>
-                        </Link>
                       </MenuItem>
+                        {/* </Link> */}
                   </Menu>
                 </Box>
                 ) :(<>
-                     <MenuItem  onClick={handleCloseNavMenu}>
                       <Link to='/sign-in' className="deco-none black">
+                     <MenuItem  onClick={handleCloseNavMenu}>
                           <Typography textAlign="center">Login</Typography>
-                        </Link>
                     </MenuItem>
+                        </Link>
                 </>)
               }
              
