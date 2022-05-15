@@ -7,6 +7,7 @@ import  { useState, useContext } from 'react'
 import img from '../images/404.jpg';
 import Api, { endpoints } from '../config/Api';
 import Button from '@mui/material/Button';
+import {useNavigate} from 'react-router-dom';
 
 
 
@@ -15,6 +16,9 @@ import Button from '@mui/material/Button';
 const DashboardHome = () => {
   const [user, dispatch] = useContext(UserContext)
   const [openDialog, setOpenDialog] = useState(false);
+  let navigate = useNavigate();
+
+  console.log(user)
 
   const handleOpen = () => setOpenDialog(true);
   const handleClose = () => setOpenDialog(false);
@@ -37,9 +41,15 @@ const DashboardHome = () => {
 
 
 
+    const handleModifyUser = async () => {
+      navigate(`/dashboard/modify/${user.id}`, { replace: true });
+    }
+
     return (
         <div className="dashboard-home">
+          
             <CenterDiv>
+              
             {
               user.avatar?(
                 <Avatar alt="Remy Sharp" src={ user.avatar} sx={{width: 170, height:170}} />
@@ -52,7 +62,13 @@ const DashboardHome = () => {
           
             </CenterDiv>
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-             User: {user.username}
+             First name: {user.firstname}
+            </Typography>
+            <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+             Last name: {user.lastname}
+            </Typography>
+            <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+             Username: {user.username}
             </Typography>
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
              ({user.role})
@@ -87,6 +103,8 @@ const DashboardHome = () => {
              Tài khoản của bạn đã đăng kí nâng cấp nhà tuyển dụng
             </Typography>
           </ModalComponent>
+          <Button variant="contained" color="primary" onClick={handleModifyUser}>Thay doi thong tin tai khoan</Button>
+
         </div>
     )
 }

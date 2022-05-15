@@ -64,11 +64,9 @@ export default function SignIn() {
 
   let userDetail =res.data
   console.log(userDetail)
-  localStorage.setItem("name", userDetail.username)
-  localStorage.setItem("avatar", userDetail.avatar)
-  localStorage.setItem("email", userDetail.email)
-  localStorage.setItem("id", userDetail.id)
-  localStorage.setItem("role",convertUserRole(userDetail.user_role))
+  userDetail["user_role"]=convertUserRole(userDetail.user_role)
+  localStorage.setItem("user",JSON.stringify(userDetail))
+
 
 
   dispatch({
@@ -78,7 +76,9 @@ export default function SignIn() {
         "avatar": userDetail.avatar,
         "email": userDetail.email,
         "id": userDetail.id,
-        "role": convertUserRole(userDetail.user_role)
+        "role": convertUserRole(userDetail.user_role),
+        "firstname": userDetail.first_name,
+        "lastname": userDetail.last_name
      
     }
 })

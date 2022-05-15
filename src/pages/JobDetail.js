@@ -150,7 +150,7 @@ export default function JobDetails(props) {
             }
                 <section className="header">
                     <h1>{post.title}</h1>
-                    <Link to={url} className="link">
+                    <Link to={`/profile/${post.user}`} className="link">
                     <h2>Công ty: {post.company}</h2>
                     </Link>
 

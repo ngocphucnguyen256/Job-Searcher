@@ -15,6 +15,7 @@ import { BrowserRouter } from 'react-router-dom';
 import SearchJob from './pages/SearchJob';
 import ListPosts from './pages/ListPosts';
 import DashboardHome from './components/DashboardHome'
+import DashboardModify  from './components/DashboardModify';
 
 export const UserContext = createContext()
 
@@ -24,25 +25,22 @@ function App() {
 
   useEffect(() => {
     
-  if(localStorage.getItem('name')){
-   
-
+  if(localStorage.getItem('user')){
+    let user = JSON.parse( localStorage.getItem('user'))
+    console.log(user)
     dispatch({
       "type": "login",
       "payload": {
-          "username":  localStorage.getItem('name'),
-          "avatar":localStorage.getItem('avatar'),
-          "email":localStorage.getItem('email'),
-          "id":localStorage.getItem('id'),
-          "role": localStorage.getItem('role')
+          "username": user.username,
+          "avatar": user.avatar,
+          "email": user.email,
+          "id": user.id,
+          "role": user.user_role,
+          "firstname": user.first_name,
+          "lastname": user.last_name
       
       }
   })
-  console.log(localStorage.getItem('name') )
-  console.log(localStorage.getItem('avatar') )
-  console.log(localStorage.getItem('email') )
-  console.log(localStorage.getItem('id') )
-  console.log(localStorage.getItem('role') )
 }
 
   },[])
@@ -62,9 +60,10 @@ function App() {
               <Route  path="/dashboard"  element={<Dashboard/>}>
                 <Route  path="home" element={<DashboardHome/>}/>
                 <Route  path="all-posted" element={<DashboardPosted/>}/>
+                <Route  path="post" element={<DashboardPost/>}/>
                 <Route  path="job-detail/:id" element={<JobDetails authenticated/>}/>
                 <Route  path="job-detail/:id/modify" element={<DashboardPost modify/>}/>
-                <Route  path="post" element={<DashboardPost/>}/>
+                <Route  path="modify/:id" element={<DashboardModify/>}/>
                 <Route  path="*" element={<PageNotFound/>}/>
               </Route>
               <Route  path="job-list" element={<SearchJob/>}/>

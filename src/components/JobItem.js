@@ -90,13 +90,22 @@ export default function JobItem(props) {
           {data?.title}
           </Typography>
           <Typography variant="body1" className="company" gutterBottom component="div">
-          {data?.company}
+          Công ty: {data?.company}
           </Typography>
           <div className="flex">
             <AttachMoneyIcon/> 
-            <Typography variant="body1" className="price" gutterBottom component="div">
-            Lương: {data?.from_salary} - {data?.to_salary}
+           {
+             data.from_salary?(
+              <Typography variant="body1" className="price" gutterBottom component="div">
+              Lương: {data?.from_salary} - {data?.to_salary}
             </Typography>
+
+             ):(
+              <Typography variant="body1" className="price" gutterBottom component="div">
+              Lương: Thỏa thuận
+              </Typography>
+             )
+           }
           </div>
           <div className="flex"> 
           <EditLocationIcon/>

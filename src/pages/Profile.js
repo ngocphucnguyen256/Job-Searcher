@@ -1,39 +1,114 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
+import Box from '@mui/material/Box';
 import Header from '../partials/Header';
 import PageIllustration from '../partials/PageIllustration';
 import Footer from '../partials/Footer';
+import Typography from '@mui/material/Typography';
+import CenterDiv from '../components/CenterDiv'
+import ModalComponent  from '../components/ModalComponent';
+import Avatar from '@mui/material/Avatar';
+import { UserContext } from '../App'
+import  { useState, useContext, useEffect } from 'react'
+import img from '../images/404.jpg';
+import Api, { endpoints } from '../config/Api';
+import Button from '@mui/material/Button';
+import Rating from '../components/Rating';
 
 function Profile() {
+  const [user, dispatch] = useContext(UserContext)
+  const [openDialog, setOpenDialog] = useState(false);
+  const { id } = useParams();
+  const [profile, setProfile] = useState(null)
 
+  const handleOpen = () => setOpenDialog(true);
+  const handleClose = () => setOpenDialog(false);
+
+
+  const handleGetProfile = async () => {
+    const res = await Api.get(endpoints['user-detail'](id))
+        console.log(res.data)
+        setProfile(res.data)
+    }
+
+  useEffect(() => {
+      handleGetProfile()
+  },[])
   
 
+  if(!profile){
+    return (
+      <div>
+        <Header />
+        <div>loading...</div>
+        <Footer />
+      </div>
+    )
+  }
 
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <div className="dashboard-home">
+      <Header/>
+      <Box m={4}>
+      <CenterDiv>
+    {
+      profile.avatar?(
+        <Avatar alt="Remy Sharp" src={ profile.avatar} sx={{width: 170, height:170}} />
 
-      {/*  Site header */}
-      <Header />
+      ):(
+        <Avatar alt="Remy Sharp" src={img} sx={{width: 170, height:170}} />
 
-      {/*  Page content */}
-      <main className="flex-grow">
+      )
+    }
+  
+    </CenterDiv>
+    <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+     User: {profile.username}
+    </Typography>
+    <Typography variant="h6" textAlign="center" gutterBottom component="div" className="name">
+     Your rate for this user
+    </Typography>
+    <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+    <Rating/> (AVG Rating: {profile.rateAvg})
+    </Typography>
+   
+    {/* <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+     ({profile.role})
+    </Typography> */}
+    <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+     Email: {profile.email}
+    </Typography>
+    
+   {
+     profile.role==="User"?(
+      <>
+                  <CenterDiv>
 
-        {/*  Page illustration */}
-        <div className="relative max-w-6xl mx-auto h-0 pointer-events-none" aria-hidden="true">
-          <PageIllustration />
-        </div>
+       {/* <Button variant="contained" color="primary" onClick={handleUpdateRole}>Nâng cấp tài khoản thành nhà tuyển dụng</Button> */}
 
-        <section className="relative">
+      </CenterDiv>
+      <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+       để tìm kiếm ứng viên
+      </Typography>
+      </>
+     ):(
+      <>
+     
+      </>
+     )
+   }
+
  
-        </section>
 
-      </main>
-      {/*  Site footer */}
-      <Footer />
-
-    </div>
+    <ModalComponent handleOpen={handleOpen} open={openDialog} handleClose={handleClose}>
+    <Typography id="modal-modal-title" variant="h6" component="h2">
+     Tài khoản của bạn đã đăng kí nâng cấp nhà tuyển dụng
+    </Typography>
+  </ModalComponent>
+      </Box>
+  <Footer/>
+</div>
   );
 }
 

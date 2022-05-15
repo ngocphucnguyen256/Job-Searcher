@@ -12,11 +12,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Api, { endpoints } from '../config/Api';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, useParams} from 'react-router-dom';
 import ModalComponent  from '../components/ModalComponent';
 import ImageUpload from "../components/ImageUpload";
 import {galleryImageList} from '../data/data'
 import CenterDiv from '../components/CenterDiv'
+import { UserContext } from '../App'
+
 
 function Copyright(props) {
   return (
@@ -32,62 +34,75 @@ function Copyright(props) {
 }
 
 
-export default function SignUp() {
+export default function DashboardModify() {
 
+    let {id } = useParams();
   let navigate = useNavigate();
 
   const [open, setOpen] = React.useState(false);
   const [selectedFile, setSelectedFile] = React.useState()
+  const [user, dispatch] = React.useContext(UserContext)
+  const [userModified, setUserModified] = React.useState(user)
+  const [password, setPassword] = React.useState("")
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleSignIn = () => {
-    navigate('/sign-in')
-  }
+
 
   console.log("file: "+selectedFile)
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      username : data.get('username'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // const data = new FormData(event.currentTarget);
 
 
-
-    let createUser = async () => {
+    let updateUser = async () => {
 
       var formData = new FormData();
       formData.append("avatar", selectedFile)
-      formData.append("firstName", data.get('firstName'))
-      formData.append("lastName", data.get('lastName'))
-      formData.append("username", data.get('username'))
-      formData.append("email", data.get('email'))
-      formData.append("password", data.get('password'))
-
-
-      let res = await Api.post(endpoints['users'], formData,
+      formData.append("first_name", userModified.firstname)
+      formData.append("last_name", userModified.lastname)
+      formData.append("username", userModified.username)
+    //   formData.append("email", data.get('email'))
+      formData.append("password", password)
+      
+      const res = await Api.patch(endpoints['user-detail'](id)
+      , formData,
       {
         headers: {
+           'Authorization': 'Bearer ' + localStorage.getItem('token'),
           'Content-Type': 'multipart/form-data'
         }
-      })
+      }
+      )
+
+      console.log(res)
       console.log("Res: "+res.data)
       if (res.data){
         // navigate('/sign-in')
         handleOpen()
       }
     }
-    createUser()
+    updateUser()
 
   };
 
+
+  const handleLogout = () => {
+    dispatch({
+      "type": "logout",
+      "payload": {
+          "username": ""
+      }
+  })
+  }
+
+  const handleSignIn = () => {
+    handleLogout()
+    navigate('/sign-in')
+  }
+
+  console.log(userModified)
 
 
   return (
@@ -103,10 +118,10 @@ export default function SignUp() {
         >
            <ModalComponent handleOpen={handleOpen} open={open} handleClose={handleClose}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-             Tài khoản của bạn đã đăng kí thành công
+             Tài khoản của bạn đã cập nhật thành công
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Bạn có thể đăng nhập ngay bây giờ
+              Vui lòng đăng nhập lại
             </Typography>
             <Button
               type=""
@@ -122,7 +137,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Cập nhật thông tin tài khoản
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -133,8 +148,12 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+              
                   autoFocus
+                  value={userModified.firstname}
+                  onChange={(e) => {
+                      setUserModified({...userModified, firstname: e.target.value})
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -142,12 +161,15 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  value={userModified.lastname}
+                  onChange={(e) => {
+                      setUserModified({...userModified, lastname: e.target.value})
+                  }}
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -156,15 +178,19 @@ export default function SignUp() {
                   name="email"
                   autoComplete="email"
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
                   id="username"
-                  label="Username"
+         
                   name="username"
                   autoComplete="username"
+                  value={userModified.username}
+                  onChange={(e) => {
+                      setUserModified({...userModified, username: e.target.value})
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -176,6 +202,10 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={password}
+                  onChange={(e) => {
+                     setPassword(e.target.value)
+                  }}
                 />
               </Grid>
                 <Grid item xs={12}>
@@ -193,12 +223,7 @@ export default function SignUp() {
              </CenterDiv>
              </Grid>
 
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
+   
             </Grid>
             
             <Button
@@ -207,15 +232,9 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Cập nhật
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/sign-in" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
+
           </Box>
         </Box>
         
