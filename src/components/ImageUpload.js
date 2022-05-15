@@ -1,11 +1,12 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect,forwardRef, useRef, useImperativeHandle } from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 
- const ImageUpload = (props) => {
-  // const [selectedFile, setSelectedFile] = useState()
-  let selectedFile = props.selectedFile
+ const ImageUpload = forwardRef((props,ref) => {
+  const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState()
+
+  console.log(ref)
 
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
@@ -23,12 +24,12 @@ import Button from '@mui/material/Button';
 
   const onSelectFile = e => {
       if (!e.target.files || e.target.files.length === 0) {
-          props.setSelectedFile(undefined)
+          setSelectedFile(undefined)
           return
       }
 
       // I've kept this example simple by using the first image instead of multiple
-      props.setSelectedFile(e.target.files[0])
+      setSelectedFile(e.target.files[0])
   }
 
   return (
@@ -42,6 +43,7 @@ import Button from '@mui/material/Button';
             multiple
             type="file"
             onChange={onSelectFile}
+            ref ={ref}
           />
  
           {selectedFile && <Avatar alt="Remy Sharp" src={preview} sx={{width: 170, height:170}} />}
@@ -54,6 +56,6 @@ import Button from '@mui/material/Button';
         
       </div>
   )
-}
+})
 
 export default ImageUpload

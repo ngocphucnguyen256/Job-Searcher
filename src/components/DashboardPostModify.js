@@ -14,12 +14,10 @@ import DatePicker  from './DatePicker';
 import {useParams} from 'react-router-dom';
 
 
-
-
-const PostComponent = ()=>{
+const DashboardPostModify = ()=>{
 
     const [categories, setCategories] = useState([])
-    const [posts, setPosts] = useState(null)
+    const [post, setPost] = useState(null)
     const [dataCkeditor, setDataCkeditor] = useState('')
     const [dataMajorId, setDataMajorId] = useState(null)
     const [user, dispatch] = useContext(UserContext)
@@ -35,6 +33,18 @@ const PostComponent = ()=>{
         loadCategories()
         
 
+        const loadPostDetailsById = async () => {
+            const res = await Api.get(endpoints['post-detail'](id))
+            setPost(res.data)
+            console.log(res.data)
+        }
+        loadPostDetailsById()
+        if(post && post.description){
+            setDataCkeditor(post.description)
+
+        }
+
+    
 
         
     }, [])
@@ -123,7 +133,12 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Vị trí cần tuyển
                     </Typography>
-                    <TextField required name="title" className="search" fullWidth id="outlined-search" label="Chức danh" type="search" />
+                    <TextField required name="title" className="search" fullWidth id="outlined-search" type="search"
+                        value={post?.title}
+                        onChange={(e) => {
+                            setPost({...post, title: e.target.value})
+                        }}
+                    />
 
                     </div>
                 </Grid>
@@ -165,7 +180,12 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Thời gian làm việc
                     </Typography>
-                    <TextField required name="timeWork" className="search" fullWidth id="outlined-search" label="Thời gian làm việc"/>
+                    <TextField required name="timeWork" className="search"
+                    value={post?.time_work}
+                    onChange={(e) => {
+                        setPost({...post, time_work: e.target.value})
+                    }}
+                    fullWidth id="outlined-search" />
                     </div>
                 </Grid>
 
@@ -174,7 +194,12 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Giới tính
                     </Typography>
-                    <TextField name="gender" className="search" fullWidth id="outlined-search" label="Giới tính" />
+                    <TextField name="gender" className="search" fullWidth
+                    value={post?.gender}
+                    onChange={(e) => {
+                        setPost({...post, gender: e.target.value})
+                    }}
+                    id="outlined-search"  />
                     </div>
                 </Grid>
                        
@@ -183,7 +208,13 @@ const PostComponent = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Số lượng
                     </Typography>
-                    <TextField type="number" name="quantity" className="search" fullWidth id="outlined-search" label="Số lượng" />
+                    <TextField type="number"
+                    value={post?.quantity}
+                    onChange={(e) => {
+                        setPost({...post, quantity: e.target.value})
+                    }}
+                    name="quantity" className="search" fullWidth id="outlined-search"
+                     />
                     </div>
                 </Grid>
                 <Grid item xs={2} sm={4} md={4} >
@@ -210,4 +241,4 @@ const PostComponent = ()=>{
     )
 }
 
-export default PostComponent
+export default DashboardPostModify

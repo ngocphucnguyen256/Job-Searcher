@@ -16,6 +16,7 @@ import SearchJob from './pages/SearchJob';
 import ListPosts from './pages/ListPosts';
 import DashboardHome from './components/DashboardHome'
 import DashboardModify  from './components/DashboardModify';
+import DashboardPostModify from './components/DashboardPostModify';
 
 export const UserContext = createContext()
 
@@ -62,7 +63,7 @@ function App() {
                 <Route  path="all-posted" element={<DashboardPosted/>}/>
                 <Route  path="post" element={<DashboardPost/>}/>
                 <Route  path="job-detail/:id" element={<JobDetails authenticated/>}/>
-                <Route  path="job-detail/:id/modify" element={<DashboardPost modify/>}/>
+                <Route  path="job-detail/:id/modify" element={<DashboardPostModify/>}/>
                 <Route  path="modify/:id" element={<DashboardModify/>}/>
                 <Route  path="*" element={<PageNotFound/>}/>
               </Route>
