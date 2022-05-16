@@ -120,7 +120,7 @@ export default function JobDetails(props) {
                 props.authenticated?(
                         <section>
                         
-                            <Typography variant="h2"  gutterBottom component="h2">Danh sách ứng viên</Typography>
+                            <Typography variant="h4"  gutterBottom component="h4" align="center">Danh sách ứng viên</Typography>
                             <Box sx={{ flexGrow: 1 }}>
                                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                                     {applies!=null && applies.length > 0?(
@@ -148,7 +148,7 @@ export default function JobDetails(props) {
                                         </Grid>
                                         ))
                                     ):(
-                                    <Typography variant="h3"  gutterBottom component="h3">Chưa có ứng viên nào apply</Typography>
+                                    <Typography variant="h2"  gutterBottom component="h2">Chưa có ứng viên nào apply</Typography>
 
  
                                     )}

@@ -8,7 +8,8 @@ import img from '../images/404.jpg';
 import Api, { endpoints } from '../config/Api';
 import Button from '@mui/material/Button';
 import {useNavigate} from 'react-router-dom';
-
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 
 
@@ -47,7 +48,7 @@ const DashboardHome = () => {
 
     return (
         <div className="dashboard-home">
-          
+   
             <CenterDiv>
               
             {
@@ -61,6 +62,7 @@ const DashboardHome = () => {
             }
           
             </CenterDiv>
+            
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
              First name: {user.firstname}
             </Typography>
@@ -86,7 +88,7 @@ const DashboardHome = () => {
  
               </CenterDiv>
               <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-               để tìm kiếm ứng viên
+             
               </Typography>
               </>
              ):(
@@ -95,6 +97,9 @@ const DashboardHome = () => {
               </>
              )
            }
+            <CenterDiv>
+                  <Button variant="contained"  color="primary" onClick={handleModifyUser}>Thay doi thong tin tai khoan</Button>
+            </CenterDiv>
        
          
 
@@ -103,7 +108,6 @@ const DashboardHome = () => {
              Tài khoản của bạn đã đăng kí nâng cấp nhà tuyển dụng
             </Typography>
           </ModalComponent>
-          <Button variant="contained" color="primary" onClick={handleModifyUser}>Thay doi thong tin tai khoan</Button>
 
         </div>
     )

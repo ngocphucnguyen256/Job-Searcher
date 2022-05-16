@@ -20,6 +20,7 @@ function Profile() {
   const [openDialog, setOpenDialog] = useState(false);
   const { id } = useParams();
   const [profile, setProfile] = useState(null)
+  const [rate, setRate] = useState(2)
 
   const handleOpen = () => setOpenDialog(true);
   const handleClose = () => setOpenDialog(false);
@@ -35,6 +36,7 @@ function Profile() {
       handleGetProfile()
   },[])
   
+
 
   if(!profile){
     return (
@@ -70,7 +72,7 @@ function Profile() {
      Your rate for this user
     </Typography>
     <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-    <Rating/> (AVG Rating: {profile.rateAvg})
+    <Rating value={rate} setRate={setRate}/> (AVG Rating: {profile.rateAvg})
     </Typography>
    
     {/* <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
@@ -80,32 +82,11 @@ function Profile() {
      Email: {profile.email}
     </Typography>
     
-   {
-     profile.role==="User"?(
-      <>
-                  <CenterDiv>
 
-       {/* <Button variant="contained" color="primary" onClick={handleUpdateRole}>Nâng cấp tài khoản thành nhà tuyển dụng</Button> */}
-
-      </CenterDiv>
-      <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-       để tìm kiếm ứng viên
-      </Typography>
-      </>
-     ):(
-      <>
-     
-      </>
-     )
-   }
 
  
 
-    <ModalComponent handleOpen={handleOpen} open={openDialog} handleClose={handleClose}>
-    <Typography id="modal-modal-title" variant="h6" component="h2">
-     Tài khoản của bạn đã đăng kí nâng cấp nhà tuyển dụng
-    </Typography>
-  </ModalComponent>
+
       </Box>
   <Footer/>
 </div>

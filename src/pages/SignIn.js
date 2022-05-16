@@ -56,6 +56,18 @@ export default function SignIn() {
 
  }
 
+ const convertUserRole = (numb) => {
+  if(numb === 1){
+    return "Admin"
+  }else if(numb === 2){
+     return "User"
+   }
+   else if(numb === 3){
+     return "Hirer"
+   }
+}
+
+
  const getUserDetails = async () => {
   const res = await Api.get(endpoints['getUser'],
   { headers:{
@@ -76,7 +88,7 @@ export default function SignIn() {
         "avatar": userDetail.avatar_path,
         "email": userDetail.email,
         "id": userDetail.id,
-        "role": convertUserRole(userDetail.user_role),
+        "role": userDetail.user_role,
         "firstname": userDetail.first_name,
         "lastname": userDetail.last_name
      
@@ -84,16 +96,6 @@ export default function SignIn() {
 })
  }
 
- const convertUserRole = (numb) => {
-   if(numb === 1){
-     return "Admin"
-   }else if(numb === 2){
-      return "User"
-    }
-    else if(numb === 3){
-      return "Hirer"
-    }
- }
 
 
 

@@ -5,7 +5,7 @@ import SideMenuItem from '../components/SideMenuItem';
 export const mainListItems = (
   <React.Fragment>
     <SideMenuItem name="Thông tin của tôi" icon={<DashboardIcon />} link="/dashboard/home" />
-    <SideMenuItem name="Việc làm của tôi" icon={<DashboardIcon />} link="/dashboard" />
+   
     {/* <SideMenuItem name="Thông báo việc làm" icon={<DashboardIcon />} link="/dashboard" /> */}
     {/* <SideMenuItem name="Nhà tuyển dụng của tôi" icon={<DashboardIcon />} link="/dashboard" /> */}
   </React.Fragment>

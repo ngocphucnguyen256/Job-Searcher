@@ -107,7 +107,7 @@ export default function Dashboard(props) {
   const [user, dispatch] = useContext(UserContext)
   const isCompany =true;
 
-  console.log(user.role)
+  console.log(user)
 
   const handleLogout = () => {
 
@@ -197,7 +197,7 @@ export default function Dashboard(props) {
            {
              user.role==="User"?(
               <>
-              
+               <SideMenuItem name="Việc làm đã ứng tuyển" icon={<DashboardIcon />} link="/dashboard/applied" />
               </>
              ):(
               <>

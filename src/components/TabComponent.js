@@ -58,19 +58,29 @@ function a11yProps(index) {
 export default function TabComponent() {
   const [value, setValue] = React.useState(0);
   const [posts, setPosts] = React.useState([])
+  const [page, setPage] = React.useState(1)
+  const [numpages, setNumpages] = React.useState(0)
+
+  const numItemsPerPage= 20;
 
   React.useEffect(() => {
-      let loadPosts = async () => {
-          let res = await Api.get(endpoints['posts'])
+      let loadPostsPage = async () => {
+          const res = await Api.get(endpoints['posts-page'](page))
+          console.log(res.data)
+          setNumpages (Math.ceil(res.data.count/numItemsPerPage))
           setPosts(res.data.results)
       }
       
-      loadPosts()
+      loadPostsPage()
   
-  }, [])
+  }, [page])
 
 
-  console.log(posts)
+  // let loadPosts = async () => {
+  //   let res = await Api.get(endpoints['posts'])
+    
+  // }
+
 
   const formatDateList =  posts.map(post=>{
     let localdate = new Date(post.created_date);
@@ -78,13 +88,18 @@ export default function TabComponent() {
     return copy
   })
 
+  //oldest first
   let sortedDateList= formatDateList.sort((a,b) =>b.date.getTime() -  a.date.getTime())
 
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const numrows = 10;
+
+  const handleChangePage = (event, newValue) => {
+    setPage(newValue)
+  }
+
 
   return (
     <Container maxWidth="">
@@ -132,7 +147,7 @@ export default function TabComponent() {
         </TabPanel>
         
       </Box>
-      <CenterDiv ><Pagination count={10} /></CenterDiv>
+      <CenterDiv ><Pagination count={numpages} page={page} onChange={handleChangePage}/></CenterDiv>
     </Container>
   );
 }

@@ -6,8 +6,9 @@ import axios from 'axios'
 export const endpoints = {
     "categories": "/categories/",
     "majors": "/majors/",
+    "posts":`/posts/`,
     "users": "/users/",
-    "posts": "/posts/",
+    "posts-page":(page)=> `/posts/?page=${page}`,
     "post-detail": (postId) => `/posts/${postId}/`,
     "post-detail-applies": (postId) => `/posts/${postId}/applies/`,
     "token":"/o/token/",
@@ -17,6 +18,7 @@ export const endpoints = {
     "waits": "/waits/",
     "applies":"/applies/",
     "user-detail": (userId) => `/users/${userId}/`,
+    "my-applies":"/my-applies/",
  
 }
 

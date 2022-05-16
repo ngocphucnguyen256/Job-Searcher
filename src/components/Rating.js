@@ -4,14 +4,18 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
 
-export default function CustomizedRating() {
+export default function CustomizedRating({rate,setRate}) {
   return (
     <Box
       sx={{
         '& > legend': { mt: 2 },
       }}
     >
-      <Rating name="customized-10" defaultValue={2} max={10} />
+      <Rating name="customized-10" defaultValue={rate} max={10} 
+      onChange={(event, newValue) => {
+        setRate(newValue);
+      }}
+      />
     </Box>
   );
 }
