@@ -73,7 +73,7 @@ export default function SignIn() {
     "type": "login",
     "payload": {
         "username": userDetail.username,
-        "avatar": userDetail.avatar,
+        "avatar": userDetail.avatar_path,
         "email": userDetail.email,
         "id": userDetail.id,
         "role": convertUserRole(userDetail.user_role),

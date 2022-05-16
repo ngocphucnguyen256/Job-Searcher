@@ -33,7 +33,7 @@ function App() {
       "type": "login",
       "payload": {
           "username": user.username,
-          "avatar": user.avatar,
+          "avatar": user.avatar_path,
           "email": user.email,
           "id": user.id,
           "role": user.user_role,

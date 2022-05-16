@@ -8,7 +8,7 @@ import Item from '../components/Item';
 import Tags from '../components/Tags'
 import CommentList from '../components/CommentList';
 import { useParams  } from 'react-router-dom';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import Api, { endpoints } from '../config/Api';
 import {Link} from 'react-router-dom'
 import Typography from '@mui/material/Typography';
@@ -22,6 +22,7 @@ import CkeditorComponent from '../components/CkeditorComponent'
 export default function JobDetails(props) {
 
     const { id } = useParams();
+    const cvRef = useRef()
 
     const [post, setPost] = useState(null)
     const [applies, setApplies] = useState(null)
@@ -65,19 +66,23 @@ export default function JobDetails(props) {
 
 
     const handleApplySubmit = async () => {
+
+        var formData = new FormData();
+        formData.append("CV", cvRef.current.files[0])
+        formData.append("post",id)
+        formData.append("user",user.id)
+        formData.append("description","dataCkeditor")
+
         if(props.authenticated){
             alert('Khong the apply vao viec lam cua chinh ban')
         }
         else{
-            let res = await Api.post(endpoints['applies'],
+            let res = await Api.post(endpoints['applies']
+            ,formData,
         {
-                description: "dataCkeditor",
-                post:id,
-                user: user.id,
-        }
-        ,{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'Content-Type': 'multipart/form-data'
             },
         
         })
@@ -177,6 +182,20 @@ export default function JobDetails(props) {
                         Mô tả chi tiết
                         </Typography>
                         <CkeditorComponent name="desc" setDataCkeditor={setDataCkeditor}/>
+                        <input
+                            // accept="image/*"
+                            // style={{ display: 'none' }}
+                            id="raised-button-file"
+                            multiple
+                            type="file"
+                            ref ={cvRef}
+                        />
+                        {/* <label htmlFor="raised-button-file">
+                            <Button fullWidth variant="contained" component="div" sx={{ mt: 3, mb: 2 }}>
+                            Upload CV
+                            </Button>
+                        </label> */}
+    
                         <Button onClick={handleApplySubmit} variant="contained">Nộp đơn ứng tuyển ngay</Button>
                     </ModalComponent>
                     <CommentList/>

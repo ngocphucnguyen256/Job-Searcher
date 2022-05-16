@@ -40,7 +40,7 @@ export default function DashboardModify() {
   let navigate = useNavigate();
   const uploadImageRef = React.useRef()
 
-  const test = React.useRef()
+
 
   const [open, setOpen] = React.useState(false);
   const [selectedFile, setSelectedFile] = React.useState()
@@ -63,7 +63,7 @@ export default function DashboardModify() {
 
       var formData = new FormData();
       // formData.append("avatar", uploadImageRef.current.files[0])
-      formData.append("avatar", test.current.files[0])
+      formData.append("avatar", uploadImageRef.current.files[0])
       formData.append("first_name", userModified.firstname)
       formData.append("last_name", userModified.lastname)
       formData.append("username", userModified.username)
@@ -220,15 +220,6 @@ export default function DashboardModify() {
               </Grid>
 
               <Grid item xs={12}>
-              <input
-            accept="image/*"
- 
-            id="raised-button-file"
-            multiple
-            type="file"
-         
-            ref ={test}
-          />
               <CenterDiv>
          
                <ImageUpload cardName="Input Image"  ref={uploadImageRef}  />
