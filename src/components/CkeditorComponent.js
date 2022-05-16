@@ -2,9 +2,20 @@
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-const CkeditorComponent=({setDataCkeditor}) =>{
+const CkeditorComponent=({setDataCkeditor, value}) =>{
     
-
+        if(value){
+            return(
+                <CKEditor
+                    editor={ ClassicEditor }
+                    data={value}
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        setDataCkeditor(data)
+                    }}
+                />
+            )
+        }
 
  
         return (
@@ -31,6 +42,9 @@ const CkeditorComponent=({setDataCkeditor}) =>{
                 />
             </div>
         );
+
+
+
  
 }
 

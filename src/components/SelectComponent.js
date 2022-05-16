@@ -32,6 +32,7 @@ function getStyles(name, personName, theme) {
 export default function SelectComponent(props) {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
+
   let list=[];
 
   const handleChange = (event) => {
@@ -43,13 +44,10 @@ export default function SelectComponent(props) {
       typeof value === 'string' ? value.split(',') : value,
     );
   };
-
   if(props.data){
     list=props.data
   }
 
-
-  
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>

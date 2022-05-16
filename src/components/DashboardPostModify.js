@@ -36,6 +36,7 @@ const DashboardPostModify = ()=>{
         const loadPostDetailsById = async () => {
             const res = await Api.get(endpoints['post-detail'](id))
             setPost(res.data)
+            setDataCkeditor(res.data.description)
             console.log(res.data)
         }
         loadPostDetailsById()
@@ -48,7 +49,6 @@ const DashboardPostModify = ()=>{
 
         
     }, [])
-
 
     let from_salary, to_salary
 
@@ -90,8 +90,8 @@ const DashboardPostModify = ()=>{
     // })
         
         const postPost = async () => {
-            let res = await Api.post(endpoints['posts'],
-                {
+            const res = await Api.patch(endpoints['post-detail'](id)
+             ,   {
                     title: data.get('title'),
                     major: dataMajorId,
                     location : data.get('location'),
@@ -100,10 +100,11 @@ const DashboardPostModify = ()=>{
                     type: data.get('type'),
                     time_work:data.get('timeWork'),
                     description: dataCkeditor,
-                    company: user.username,
-                    user: user.id,
+                    // company: user.username,
+                    // user: user.id,
                     quantity: data.get('quantity'),
-                    due: dateValue
+                    due: dateValue,
+                    gender: data.get('gender'),
         
             }
             ,{
@@ -156,7 +157,7 @@ const DashboardPostModify = ()=>{
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn nơi làm việc
                     </Typography>
-                   <SelectComponent required name="location" data={location}/>
+                   <SelectComponent required name="location" data={location} value={post?.location} />
                     </div>
                 </Grid>
                 <Grid item xs={2} sm={4} md={4} >
@@ -232,7 +233,7 @@ const DashboardPostModify = ()=>{
             Mô tả chi tiết
         </Typography>
         
-         <CkeditorComponent name="detail" setDataCkeditor={setDataCkeditor}/>
+         <CkeditorComponent name="detail" value={dataCkeditor} setDataCkeditor={setDataCkeditor}/>
          <div className='center-div'>
           <Button className="post" variant="contained"   type="submit" >Đăng ngay</Button>
         </div>

@@ -64,7 +64,6 @@ export default function JobDetails(props) {
         handleOpen()
     }
 
-
     const handleApplySubmit = async () => {
 
         var formData = new FormData();
@@ -102,6 +101,9 @@ export default function JobDetails(props) {
 
     let url=`/job-list`
 
+
+   
+
   return (
     <>
             {
@@ -130,10 +132,15 @@ export default function JobDetails(props) {
                                                     <p>{item.description}</p>
                                                 </Item>
                                             {
-                                                item.CV?(
-                                                    <Link to={item.CV} download className="link">
-                                                        <h3>CV: {item.CV}</h3>
-                                                    </Link>
+                                                item.CV_path?(
+                                                      <Button onClick={()=>{
+                                                   
+                                                            let link = document.createElement("a");
+                                                            link.target = "_blank";
+                                                            link.download = `CV-${item.user}.txt`;
+                                                            link.href = `${item.CV_path}`;
+                                                            link.click();
+                                                      }} variant="contained" fullWidth>Tải CV</Button>
                                                 ):(
                                                 <></>
                                                 )
