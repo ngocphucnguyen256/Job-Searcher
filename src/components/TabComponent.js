@@ -10,6 +10,10 @@ import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';
 import CenterDiv from './CenterDiv';
 import Api, { endpoints } from '../config/Api';
+import TextField from '@mui/material/TextField';
+import HirerCardItem from './HirerCardItem'
+import Button from '@mui/material/Button';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -60,6 +64,8 @@ export default function TabComponent() {
   const [posts, setPosts] = React.useState([])
   const [page, setPage] = React.useState(1)
   const [numpages, setNumpages] = React.useState(0)
+  const [hirer, setHirer] = React.useState([])
+  const [kw, setKw] = React.useState("")
 
   const numItemsPerPage= 20;
 
@@ -76,11 +82,26 @@ export default function TabComponent() {
   }, [page])
 
 
-  // let loadPosts = async () => {
-  //   let res = await Api.get(endpoints['posts'])
-    
-  // }
 
+  let loadHirer = async () => {
+    const res = await Api.get(endpoints['hirer'])
+    setHirer(res.data)
+    console.log(res.data)
+  
+}
+
+
+const handleFindHirer=() =>{
+      let loadHirerByKeyword = async () => {
+        let res = await Api.get(`${endpoints['hirer']}?keyword=${kw}`)
+        setHirer(res.data)
+        console.log(res.data)
+      
+    }
+
+    loadHirerByKeyword()
+
+}
 
   const formatDateList =  posts.map(post=>{
     let localdate = new Date(post.created_date);
@@ -106,9 +127,9 @@ export default function TabComponent() {
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Việc làm nổi bật" {...a11yProps(0)} />
+            <Tab label="Tất cả việc làm " {...a11yProps(0)} />
             <Tab label="Việc làm mới đăng" {...a11yProps(1)} />
-            <Tab label="Việc làm dành cho bạn" {...a11yProps(2)} />
+            <Tab onClick={loadHirer} label="Các nhà tuyển dụng" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
@@ -136,10 +157,16 @@ export default function TabComponent() {
         </TabPanel>
         <TabPanel value={value} index={2}>
         <Box sx={{ width:'100%' }}>
+          <CenterDiv>
+         <TextField onChange={e=>{setKw(e.target.value)}} name="title" className="search" fullWidth id="outlined-search" label="Chức danh, tên công ty" type="search" />
+          <Button variant="contained" size="small" onClick={handleFindHirer}>Tìm ngay</Button>
+
+          </CenterDiv>
           <Grid container spacing={1} >
-                    {posts.map((item, index) =>
+         
+                    {hirer.map((item, index) =>
                     <Grid item xs={6} key={index} >
-                        <TabItem data={item}/>
+                        <HirerCardItem data={item}/>
                     </Grid>
                 )}
             </Grid>
