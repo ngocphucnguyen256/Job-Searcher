@@ -14,6 +14,7 @@ import img from '../images/404.jpg';
 import Api, { endpoints } from '../config/Api';
 import Button from '@mui/material/Button';
 import Rating from '../components/Rating';
+import CommentList from '../components/CommentList';
 
 function Profile() {
   const [user, dispatch] = useContext(UserContext)
@@ -28,14 +29,33 @@ function Profile() {
 
   const handleGetProfile = async () => {
     const res = await Api.get(endpoints['user-detail'](id))
-        console.log(res.data)
+        // console.log(res.data)
         setProfile(res.data)
     }
 
   useEffect(() => {
       handleGetProfile()
-  },[])
+      handleRating()
+  },[rate])
   
+
+  const handleRating = async () => {
+    const res = await Api.post(endpoints['user-rating'](id),{
+      rate: rate
+    },{
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+    },
+
+    })
+
+    console.log(res.data)
+       
+        setProfile(res.data)
+    }
+
+
+    console.log(rate)
 
 
   if(!profile){
@@ -72,7 +92,7 @@ function Profile() {
      Your rate for this user
     </Typography>
     <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-    <Rating value={rate} setRate={setRate}/> (AVG Rating: {profile.rateAvg})
+    <Rating value={rate} setRate={setRate} handleRating={handleRating} /> (AVG Rating: {profile.rateAvg})
     </Typography>
    
     {/* <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
@@ -81,6 +101,7 @@ function Profile() {
     <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
      Email: {profile.email}
     </Typography>
+    <CommentList/>
     
 
 

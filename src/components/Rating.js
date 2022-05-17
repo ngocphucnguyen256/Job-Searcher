@@ -11,7 +11,7 @@ export default function CustomizedRating({rate,setRate}) {
         '& > legend': { mt: 2 },
       }}
     >
-      <Rating name="customized-10" defaultValue={rate} max={10} 
+      <Rating name="customized-10" value={rate} max={10} 
       onChange={(event, newValue) => {
         setRate(newValue);
       }}

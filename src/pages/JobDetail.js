@@ -205,7 +205,7 @@ export default function JobDetails(props) {
     
                         <Button onClick={handleApplySubmit} variant="contained">Nộp đơn ứng tuyển ngay</Button>
                     </ModalComponent>
-                    <CommentList/>
+                
                 </section>
             </main>
 

@@ -18,6 +18,7 @@ export const endpoints = {
     "waits": "/waits/",
     "applies":"/applies/",
     "user-detail": (userId) => `/users/${userId}/`,
+    "user-rating": (userId) => `/users/${userId}/rating/`,
     "my-applies":"/my-applies/",
  
 }

@@ -12,6 +12,8 @@ import { location, salary, level  } from '../data/data';
 import { UserContext } from '../App'
 import DatePicker  from './DatePicker';
 import {useParams} from 'react-router-dom';
+import ModalComponent  from '../components/ModalComponent';
+
 
 
 const DashboardPostModify = ()=>{
@@ -23,6 +25,12 @@ const DashboardPostModify = ()=>{
     const [user, dispatch] = useContext(UserContext)
     const [dateValue, setDateValue] = useState(new Date())
     const {id} =useParams();
+    const [openDialog, setOpenDialog] = useState(false);
+
+
+
+    const handleOpen = () => setOpenDialog(true);
+    const handleClose = () => setOpenDialog(false);
 
     useEffect(() => {
         let loadCategories = async () => {
@@ -112,7 +120,12 @@ const DashboardPostModify = ()=>{
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
             
-            })
+            }
+            
+            ).then(
+                handleOpen()
+
+            ).catch(err => alert(err))
     
             console.log(res.data)
         }
@@ -235,8 +248,13 @@ const DashboardPostModify = ()=>{
         
          <CkeditorComponent name="detail" value={dataCkeditor} setDataCkeditor={setDataCkeditor}/>
          <div className='center-div'>
-          <Button className="post" variant="contained"   type="submit" >Đăng ngay</Button>
+          <Button className="post" variant="contained"   type="submit" >Sửa ngay</Button>
         </div>
+        <ModalComponent handleOpen={handleOpen} open={openDialog} handleClose={handleClose}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+             Sửa bài đăng thành công
+            </Typography>
+          </ModalComponent>
         </Box>
         </div>
     )
