@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 // const numrows = 10;
 
@@ -25,7 +26,10 @@ const CommentList=(props)=> {
 
   return (
     <div  className="comment-list">
-      <h2>COMMENTS</h2>
+   
+      <Typography variant="h2" textAlign="left" component="h2" >
+      Bình luận
+    </Typography>
         <div className="fl">
             <Box
             sx={{

@@ -13,6 +13,7 @@ import Api, { endpoints } from '../config/Api';
 import TextField from '@mui/material/TextField';
 import HirerCardItem from './HirerCardItem'
 import Button from '@mui/material/Button';
+import TabItem from './TabItem'
 
 
 function TabPanel(props) {
@@ -36,15 +37,6 @@ function TabPanel(props) {
 }
 
 
-function TabItem(props) {
-    const { children, value, index, ...other } = props;
-    return (
-      <div className="tab-item">
-          <JobItem data={props.data}/>
-      </div>
-    );
-  }
-  
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -62,36 +54,55 @@ function a11yProps(index) {
 export default function TabComponent() {
   const [value, setValue] = React.useState(0);
   const [posts, setPosts] = React.useState([])
+  const [oldPosts, setOldPosts] = React.useState([])
   const [page, setPage] = React.useState(1)
   const [numpages, setNumpages] = React.useState(0)
   const [hirer, setHirer] = React.useState([])
   const [kw, setKw] = React.useState("")
 
+
+
   const numItemsPerPage= 20;
 
+
+
+
   React.useEffect(() => {
-      let loadPostsPage = async () => {
-          const res = await Api.get(endpoints['posts-page'](page))
-          console.log(res.data)
-          setNumpages (Math.ceil(res.data.count/numItemsPerPage))
-          setPosts(res.data.results)
-      }
-      
+    const loadOlderPost = async () => {
+      const res = await Api.get(`${endpoints['posts-page'](page)}&old=true`)
+      console.log(res.data)
+      setNumpages (Math.ceil(res.data.count/numItemsPerPage))
+      setOldPosts(res.data.results)
+    
+  }
+
+    let loadPostsPage = async () => {
+      const res = await Api.get(endpoints['posts-page'](page))
+      console.log(res.data)
+      setNumpages (Math.ceil(res.data.count/numItemsPerPage))
+      setPosts(res.data.results)
+  }
+
+  
+
+    if(value===1){
+      loadOlderPost()
+    }
+    if(value===2){
+
+    }
+    else{
       loadPostsPage()
+    }
+ 
   
-  }, [page])
+  }, [page,value])
 
 
   
 
 
-  const loadOlderPost = async () => {
-    const res = await Api.get(`${endpoints['posts-page'](page)}?key`)
-    console.log(res.data)
-    setNumpages (Math.ceil(res.data.count/numItemsPerPage))
-    setPosts(res.data.results)
-  
-}
+
 
 
 
@@ -141,7 +152,7 @@ const handleFindHirer=() =>{
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="Việc làm mới đăng " {...a11yProps(0)} />
-            <Tab onClick={loadOlderPost} label="Tất cả việc làm" {...a11yProps(1)} />
+            <Tab  label="Tất cả việc làm" {...a11yProps(1)} />
             <Tab onClick={loadHirer} label="Các nhà tuyển dụng" {...a11yProps(2)} />
           </Tabs>
         </Box>
@@ -160,7 +171,7 @@ const handleFindHirer=() =>{
         <TabPanel value={value} index={1}>
         <Box sx={{ width:'100%' }}>
         <Grid container spacing={1} >
-                  {posts.map((item, index) =>
+                  {oldPosts.map((item, index) =>
                   <Grid item xs={6} key={index} >
                       <TabItem data={item}/>
                   </Grid>

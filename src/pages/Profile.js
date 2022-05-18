@@ -15,6 +15,9 @@ import Api, { endpoints } from '../config/Api';
 import Button from '@mui/material/Button';
 import Rating from '../components/Rating';
 import CommentList from '../components/CommentList';
+import Grid from '@mui/material/Grid';
+import TabItem from '../components/TabItem';
+
 
 
 
@@ -29,6 +32,7 @@ function Profile() {
   const [rate, setRate] = useState(null)
   const [comment, setComment] = useState('')
   const [commentData, setCommentData] = useState([])  
+  const [posts, setPosts] = useState([])
 
 
 
@@ -87,6 +91,13 @@ function Profile() {
       }
 
 
+
+    const handleGetHirerPost = async () => {
+      const res = await Api.get(endpoints['hirer-posts'](id))
+        setPosts(res.data)
+      
+    }
+
         
   useEffect(() => {
       if(rate){
@@ -103,6 +114,7 @@ function Profile() {
       
      
       getComments()
+      handleGetHirerPost()
   },[rate])
   
 
@@ -123,7 +135,7 @@ function Profile() {
 
 
   return (
-    <div className="dashboard-home">
+    <div className="profile">
       <Header/>
       <Box m={4}>
       <CenterDiv>
@@ -159,6 +171,21 @@ function Profile() {
     <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
      Email: {profile.email}
     </Typography>
+
+    <Typography variant="h2" textAlign="left" component="h2" >
+    Các bài đăng của công ty
+    </Typography>
+
+
+    <Box sx={{ width:'100%' }}>
+            <Grid container spacing={1} >
+                  {posts.map((item, index) =>
+                  <Grid item xs={4} key={index} >
+                      <TabItem data={item}/>
+                  </Grid>
+              )}
+            </Grid>
+    </Box>
     <CommentList data={commentData} handlePostComment={handlePostComment}
      comment={comment} setComment={setComment} getComments={getComments}/>
 

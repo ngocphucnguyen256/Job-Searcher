@@ -24,7 +24,7 @@ const CommentItem = (props) => {
           })
 
         props.getComments()
-        console.log(res)
+
     }
 
 

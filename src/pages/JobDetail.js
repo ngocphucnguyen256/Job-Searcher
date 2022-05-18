@@ -16,6 +16,10 @@ import CenterDiv from '../components/CenterDiv';
 import { UserContext } from '../App'
 import ModalComponent  from '../components/ModalComponent';
 import CkeditorComponent from '../components/CkeditorComponent'
+import img from '../images/404.jpg';
+import Avatar from '@mui/material/Avatar';
+import Moment from 'react-moment';
+
 
 
 
@@ -163,6 +167,23 @@ export default function JobDetails(props) {
                 <section className="header">
                     <h1>{post.title}</h1>
                     <Link to={`/profile/${post.user}`} className="link">
+                    <CenterDiv>
+                    {
+                    post.avatar_user?(
+                        <Avatar alt="Remy Sharp" src={ post.avatar_user}
+                        style={{ height: '170px', width: '170px' }}
+                        />
+
+                    ):(
+                        <Avatar alt="alt" src={img}
+                        style={{ height: '170px', width: '170px' }}
+                        />
+                        
+
+                    )
+                    }
+                
+                    </CenterDiv>
                     <h2>Công ty: {post.company}</h2>
                     </Link>
 
@@ -173,17 +194,39 @@ export default function JobDetails(props) {
                 <section className="body">
                     <Box sx={{ flexGrow: 1 }}>
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                            {Array.from(Array(6)).map((_, index) => (
-                            <Grid item xs={2} sm={4} md={4} key={index}>
-                                <Item><p className="heading">Kinh nghiem</p><p>2-4 Nam</p></Item>
+     
+                            <Grid item xs={2} sm={4} md={4} >
+                                <Item><p className="heading">Lương từ</p><p>{post?.from_salary}</p></Item>
                             </Grid>
-                            ))}
+                            <Grid item xs={2} sm={4} md={4} >
+                                <Item><p className="heading">Lương đến</p><p>{post?.to_salary}</p> </Item>
+                            </Grid>             <Grid item xs={2} sm={4} md={4} >
+                                <Item><p className="heading">Giới tính</p><p>{post?.gender}</p></Item>
+                            </Grid>             <Grid item xs={2} sm={4} md={4} >
+                                <Item><p className="heading">Địa điểm</p><p>{post?.location}</p></Item>
+                            </Grid>             <Grid item xs={2} sm={4} md={4} >
+                                <Item><p className="heading">Số lượng</p><p>{post?.quantity}</p></Item>
+                            </Grid> 
+                              <Grid item xs={2} sm={4} md={4} >
+                                <Item><p className="heading">Thời gian làm việc</p><p>{post?.time_work}</p></Item>
+                            </Grid>
+                            <Grid item xs={2} sm={4} md={4} >
+                                <Item><p className="heading">Trình độ</p><p>{post?.type}</p></Item>
+                            </Grid>
+                            <Grid item xs={2} sm={4} md={4} >
+                                <Item><p className="heading">Ngày hết hạn</p>
+                                <Moment >{post?.due}</Moment>
+                               </Item>
+                            </Grid>
+                            
+                            
+                    
                         </Grid>
                     </Box>
                     <h2>MÔ TẢ CÔNG VIỆC</h2>
                     <CkeditorHtml data={post.description} />
-                    <h2>JOB TAGS / SKILLS</h2>
-                    <Tags/>
+                    {/* <h2>JOB TAGS / SKILLS</h2>
+                    <Tags/> */}
                     <ModalComponent handleOpen={handleOpen} open={openDialog} handleClose={handleClose}>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
                         Mô tả chi tiết
