@@ -83,7 +83,7 @@ export default function JobItem(props) {
           sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
         >
           <Item>
-              <img src="https://www.gstatic.com/webp/gallery/1.sm.jpg" alt="1" />
+              <img         style={{ height: '270px', width: '270px' }} src={data?.avatar_user} alt="1" />
           </Item>
           <Item sx={{ flexGrow: 1 }}>
           <Typography variant="h5" className="title" gutterBottom component="div">

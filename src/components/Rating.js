@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 
 
 export default function CustomizedRating({rate,setRate}) {
+
   return (
     <Box
       sx={{

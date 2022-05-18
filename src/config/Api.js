@@ -19,8 +19,11 @@ export const endpoints = {
     "applies":"/applies/",
     "user-detail": (userId) => `/users/${userId}/`,
     "user-rating": (userId) => `/users/${userId}/rating/`,
+    "user-comments": (userId) => `/users/${userId}/comments/`,
     "my-applies":"/my-applies/",
-    "hirer":"/users/hirer-user/"
+    "hirer":"/users/hirer-user/",
+    "comments":"/comments/",
+    "comment-detail": (id) => `/comments/${id}/`,
  
 }
 

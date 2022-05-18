@@ -82,6 +82,19 @@ export default function TabComponent() {
   }, [page])
 
 
+  
+
+
+  const loadOlderPost = async () => {
+    const res = await Api.get(`${endpoints['posts-page'](page)}?key`)
+    console.log(res.data)
+    setNumpages (Math.ceil(res.data.count/numItemsPerPage))
+    setPosts(res.data.results)
+  
+}
+
+
+
 
   let loadHirer = async () => {
     const res = await Api.get(endpoints['hirer'])
@@ -127,8 +140,8 @@ const handleFindHirer=() =>{
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Tất cả việc làm " {...a11yProps(0)} />
-            <Tab label="Việc làm mới đăng" {...a11yProps(1)} />
+            <Tab label="Việc làm mới đăng " {...a11yProps(0)} />
+            <Tab onClick={loadOlderPost} label="Tất cả việc làm" {...a11yProps(1)} />
             <Tab onClick={loadHirer} label="Các nhà tuyển dụng" {...a11yProps(2)} />
           </Tabs>
         </Box>
@@ -147,7 +160,7 @@ const handleFindHirer=() =>{
         <TabPanel value={value} index={1}>
         <Box sx={{ width:'100%' }}>
         <Grid container spacing={1} >
-                  {sortedDateList.map((item, index) =>
+                  {posts.map((item, index) =>
                   <Grid item xs={6} key={index} >
                       <TabItem data={item}/>
                   </Grid>
