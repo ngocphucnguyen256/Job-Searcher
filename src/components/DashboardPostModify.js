@@ -79,7 +79,10 @@ const DashboardPostModify = ()=>{
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        convertSalary(data.get('salary'))
+        if(data.get('salary')){
+            convertSalary(data.get('salary'))
+        }
+
     //     console.log(            {
     //         title: data.get('title'),
     //         major: dataMajorId,
@@ -120,17 +123,25 @@ const DashboardPostModify = ()=>{
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
             
-            }
-            
-            ).then(
+            }).then(function (response) {
                 handleOpen()
-
+            }
             ).catch(err => alert(err))
     
             console.log(res.data)
         }
 
-        postPost()
+            if(data.get('title') &&  data.get('location')
+            && data.get('type') && dataMajorId && dataCkeditor && user.id
+            && data.get('timeWork')){
+                postPost()
+
+        }
+        else{
+                alert('Please fill all required fields')
+        }
+
+      
 
     };
     

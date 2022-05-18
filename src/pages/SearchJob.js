@@ -34,7 +34,7 @@ export default function SearchJobs(props) {
             <main className="search-job">
             <Container fixed>
                 <section className="header">
-                <Typography variant="h1" component="h1" className="heading">All Job Categories</Typography>
+                <Typography variant="h1" component="h1" className="heading">Tất cả danh mục việc làm</Typography>
                 </section>
                 <section className="body">
                 {

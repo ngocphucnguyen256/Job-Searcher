@@ -83,7 +83,7 @@ export default function JobItem(props) {
           sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
         >
           <Item>
-              <img         style={{ height: '270px', width: '270px' }} src={data?.avatar_user} alt="1" />
+              <img         style={{ height: '200px', width: '200px' }} src={data?.avatar_user} alt="1" />
           </Item>
           <Item sx={{ flexGrow: 1 }}>
           <Typography variant="h5" className="title" gutterBottom component="div">
@@ -91,6 +91,9 @@ export default function JobItem(props) {
           </Typography>
           <Typography variant="body1" className="company" gutterBottom component="div">
           Công ty: {data?.company}
+          </Typography>
+          <Typography variant="body1" className="location" gutterBottom component="div">
+          Ngành nghề: {data?.major}
           </Typography>
           <div className="flex">
             <AttachMoneyIcon/> 
@@ -107,12 +110,17 @@ export default function JobItem(props) {
              )
            }
           </div>
+
           <div className="flex"> 
           <EditLocationIcon/>
           <Typography variant="body1" className="location" gutterBottom component="div">
           {data?.location}
           </Typography>
+     
           </div>
+          <Typography variant="body1" className="location" gutterBottom component="div">
+          Trình độ: {data?.type}
+          </Typography>
           </Item>
    
         </Box>

@@ -1,13 +1,13 @@
 import Typography from '@mui/material/Typography';
 import { UserContext } from '../App'
 import  { useState, useContext, useEffect } from 'react'
-import img from '../images/404.jpg';
 import Api, { endpoints } from '../config/Api';
-import Button from '@mui/material/Button';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import JobItem from './JobItem'
+import CenterDiv from './CenterDiv'
+import Item from './Item';
 
 
 
@@ -15,7 +15,11 @@ import JobItem from './JobItem'
 const DashboardApplied = () => {
   const [user, dispatch] = useContext(UserContext)
   const [openDialog, setOpenDialog] = useState(false);
+  const [applies, setApplies] = useState([]);
   let navigate = useNavigate();
+
+
+
 
   console.log(user)
 
@@ -23,12 +27,31 @@ const DashboardApplied = () => {
   const handleClose = () => setOpenDialog(false);
 
 
-  let loadApplied= async () => {
+    const handleDelete =(id )=>{
+        const handleDeleteApply = async () => {
+            const res = await Api.delete(endpoints['applies-detail'](id)
+            ,{
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+            
+            })
+            console.log(res.data)
+            loadApplied()
+        }
+        handleDeleteApply()
+    }
+
+
+
+
+  const loadApplied= async () => {
     const res = await Api.get(endpoints['my-applies'],
     { headers:{
       "Authorization": `Bearer ${localStorage.getItem("token")}`
     }})
     console.log(res.data)
+    setApplies(res.data)
 }
 
     
@@ -45,15 +68,44 @@ const DashboardApplied = () => {
             </Typography>
             <Box sx={{ width:'100%' }}>
             <Grid container spacing={1} >
-                {/* {posts.length>0?(
-                    posts.map((item, index) =>
-                        <Grid item xs={6} key={index} >
-                            <JobItem handleDelete={handleDelete} data={item} authenticated/>
-                        </Grid>
-                    )
+            {applies!=null && applies.length > 0?(
+                    applies.map((item, index) => (
+                    <Grid item xs={2} sm={6} md={6} key={index}>
+                          <Link to={`/job-detail/${item.post}`} className="link">
+                        
+                            <Item>
+                                <p className="heading">{item.user}</p>
+                                <p>{item.description}</p>
+                            </Item>
+                        </Link>
+                        <CenterDiv>
+                        {
+                            item.CV_path?(
+                                    <Button onClick={()=>{
+                                
+                                        let link = document.createElement("a");
+                                        link.target = "_blank";
+                                        link.download = `CV-${item.user}.txt`;
+                                        link.href = `${item.CV_path}`;
+                                        link.click();
+                                    }} variant="contained" >Tải CV</Button>
+                            ):(
+                            <></>
+                            )
+                        }
+                         <Button  variant="contained" onClick={()=>handleDelete(item.id)} >Xóa</Button>
+                       
+                        </CenterDiv>
+
+                     
+
+                    </Grid>
+                    ))
                 ):(
-                    <p>Khong co ket qua</p>
-                )} */}
+                <Typography variant="h2"  gutterBottom component="h2">Chưa có apply</Typography>
+
+
+                )}
             </Grid>
           </Box>
 

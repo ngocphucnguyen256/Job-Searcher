@@ -18,9 +18,7 @@ const DashboardPosted = () => {
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         }})
         console.log(res)
-        console.log(localStorage.getItem("token"))
-
-        setPosts(res.data)
+        setPosts(res.data.results)
     }
 
     useEffect(() => {

@@ -1,18 +1,15 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Header from '../partials/Header';
-import PageIllustration from '../partials/PageIllustration';
 import Footer from '../partials/Footer';
 import Typography from '@mui/material/Typography';
 import CenterDiv from '../components/CenterDiv'
-import ModalComponent  from '../components/ModalComponent';
 import Avatar from '@mui/material/Avatar';
 import { UserContext } from '../App'
 import  { useState, useContext, useEffect } from 'react'
 import img from '../images/404.jpg';
 import Api, { endpoints } from '../config/Api';
-import Button from '@mui/material/Button';
 import Rating from '../components/Rating';
 import CommentList from '../components/CommentList';
 import Grid from '@mui/material/Grid';
@@ -67,7 +64,8 @@ function Profile() {
 
   }
 
-  
+
+
 
     const handleRating = async () => {
       const res = await Api.post(endpoints['user-rating'](id),{
@@ -95,6 +93,7 @@ function Profile() {
     const handleGetHirerPost = async () => {
       const res = await Api.get(endpoints['hirer-posts'](id))
         setPosts(res.data)
+        console.log(res.data)
       
     }
 
@@ -173,23 +172,28 @@ function Profile() {
     </Typography>
 
     <Typography variant="h2" textAlign="left" component="h2" >
-    Các bài đăng của công ty
+    Một số bài đăng của công ty
     </Typography>
 
 
     <Box sx={{ width:'100%' }}>
             <Grid container spacing={1} >
-                  {posts.map((item, index) =>
-                  <Grid item xs={4} key={index} >
+                  {posts.slice(0,6).map((item, index) =>
+                  <Grid item xs={6} key={index} >
                       <TabItem data={item}/>
                   </Grid>
               )}
             </Grid>
     </Box>
+    
+
+
+
     <CommentList data={commentData} handlePostComment={handlePostComment}
      comment={comment} setComment={setComment} getComments={getComments}/>
 
       </Box>
+     
   <Footer/>
 </div>
   );

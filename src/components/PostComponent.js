@@ -68,23 +68,10 @@ const PostComponent = ()=>{
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        convertSalary(data.get('salary'))
-    //     console.log(            {
-    //         title: data.get('title'),
-    //         major: dataMajorId,
-    //         location : data.get('location'),
-    //         from_salary: from_salary,
-    //         to_salary: to_salary,
-    //         type: data.get('type'),
-    //         time_work:data.get('timeWork'),
-    //         description: dataCkeditor,
-    //         company: user.username,
-    //         user: user.id,
-    //         quantity: data.get('quantity'),
-    //         due: dateValue
+        if(data.get('salary')){
+            convertSalary(data.get('salary'))
+        }
 
-
-    // })
         
         const postPost = async () => {
             let res = await Api.post(endpoints['posts'],
@@ -108,14 +95,23 @@ const PostComponent = ()=>{
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
             
-            }).then(
+            }).then(function (response) {
                 handleOpen()
+            }
             ).catch(err => alert(err))
     
             console.log(res.data)
         }
+        if(data.get('title') &&  data.get('location')
+        && data.get('type') && dataMajorId && dataCkeditor && user.id
+         && data.get('timeWork')){
+            postPost()
 
-        postPost()
+       }
+       else{
+              alert('Please fill all required fields')
+       }
+
 
     };
     

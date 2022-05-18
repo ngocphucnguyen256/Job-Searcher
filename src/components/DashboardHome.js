@@ -34,10 +34,16 @@ const DashboardHome = () => {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
         
+        }).then(
+          function (res) {
+            setOpenDialog(true)
+          }
+        ).catch(err => {
+          console.log(err)
+          alert('Bạn đã đăng kí nâng cấp nhà tuyển dung từ trước rồi')
         })
 
-        console.log(res.data)
-        setOpenDialog(true)
+      
     }
 
 

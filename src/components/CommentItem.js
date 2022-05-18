@@ -2,16 +2,16 @@ import {  Avatar, Grid, Paper } from "@material-ui/core";
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { UserContext } from '../App'
-import  { useState, useContext, useEffect } from 'react'
+import  {  useContext } from 'react'
 import Api, { endpoints } from '../config/Api';
 
 
 
 const CommentItem = (props) => {
-    const [user, dispatch] = useContext(UserContext)
+    const [user] = useContext(UserContext)
 
     const data = props.data
-    // console.log(data)
+
 
 
    const  handleDeleteComment= async () => {
@@ -22,7 +22,6 @@ const CommentItem = (props) => {
           },
       
           })
-
         props.getComments()
 
     }
@@ -46,7 +45,7 @@ const CommentItem = (props) => {
                     </p> */}
                 </Grid>
                 {
-                    data.creator===user.id&&
+                    user && data.creator===user.id&&
                     <Button size="large" variant="contained" onClick={handleDeleteComment} >
                     Delete Comment
                      </Button>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import  { useState, useContext } from 'react'
+import  {  useContext } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,9 +11,10 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import img from '../images/404.jpg';
 import { UserContext } from '../App'
+
 
 
 const pages = [
@@ -39,6 +40,7 @@ const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [user, dispatch] = useContext(UserContext)
+  const navigate = useNavigate()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -61,6 +63,7 @@ const ResponsiveAppBar = () => {
           "username": ""
       }
   })
+    navigate('/')
   }
 
   
