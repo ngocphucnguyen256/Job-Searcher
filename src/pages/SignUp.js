@@ -15,7 +15,6 @@ import Api, { endpoints } from '../config/Api';
 import { useNavigate } from 'react-router-dom';
 import ModalComponent from '../components/ModalComponent';
 import ImageUpload from "../components/ImageUpload";
-import { galleryImageList } from '../data/data'
 import CenterDiv from '../components/CenterDiv'
 
 function Copyright(props) {
@@ -23,7 +22,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Job Searcher
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -52,15 +51,6 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      username: data.get('username'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-
-
 
     let createUser = async () => {
 
@@ -78,14 +68,24 @@ export default function SignUp() {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
+        }).then((res) => {
+          handleOpen()
+    
+        }).catch(err => {
+          if(err.response.status === 400){
+            alert("Tên đăng nhập hơạc email đã tồn tại")
+          }
         })
-      console.log("Res: " + res.data)
-      if (res.data) {
-        // navigate('/sign-in')
-        handleOpen()
-      }
     }
-    createUser()
+
+    if(avatar.current.files[0] && data.get('firstName') && data.get('lastName')
+    && data.get('email') && data.get('password') ){
+      createUser()
+
+   }
+   else{
+      alert("Please fill all fields")
+   }
 
   };
 

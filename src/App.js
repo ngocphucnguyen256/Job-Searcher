@@ -80,7 +80,7 @@ function App() {
                 <Route  path="/sign-in" element={<SignIn/>}/>
                 <Route  path="/sign-up" element={<SignUp/>}/>
                 <Route  path="/dashboard"  element={<Dashboard/>}>
-                  <Route  path="home" element={<DashboardHome/>}/>
+                  <Route path="home" element={<DashboardHome/>}/>
                   <Route  path="applied" element={<DashboardApplied/>}/>
                   <Route  path="all-posted" element={<DashboardPosted/>}/>
                   <Route  path="post" element={<DashboardPost/>}/>

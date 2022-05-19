@@ -52,6 +52,7 @@ export default function DashboardModify() {
   const handleClose = () => setOpen(false);
 
 
+
   console.log("file: "+selectedFile)
 
   const handleSubmit = (event) => {
@@ -78,16 +79,29 @@ export default function DashboardModify() {
           'Content-Type': 'multipart/form-data'
         }
       }
-      )
-
-      console.log(res)
-      console.log("Res: "+res.data)
-      if (res.data){
-        // navigate('/sign-in')
+      ).then((res) => {
         handleOpen()
-      }
+        console.log("Res: "+res.data)
+  
+      }).catch(err => {
+        if(err.response.status === 400){
+          alert("Avatar required")
+        }
+      })
+
     }
-    updateUser()
+
+      if(userModified.username.lenght!==0 &&password.length!==0 ){
+      
+          updateUser()
+
+
+    }
+    else{
+        alert("Username or password is invalid")
+    }
+
+
 
   };
 

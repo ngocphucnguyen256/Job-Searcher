@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 
 
-
  const SideMenuItem =(props)=>{
 
     if(props.link){
@@ -23,12 +22,16 @@ import { Link } from 'react-router-dom';
     }
     else{
       return(
-        <ListItemButton>
-        <ListItemIcon>
-          {props.icon}
-        </ListItemIcon>
-        <ListItemText primary={props.name} />
-    </ListItemButton>
+
+          <ListItemButton onClick={(()=>{
+            props.onClick()
+          })}>
+          <ListItemIcon>
+            {props.icon}
+          </ListItemIcon>
+          <ListItemText primary={props.name} />
+       </ListItemButton>
+
       )
     }
 

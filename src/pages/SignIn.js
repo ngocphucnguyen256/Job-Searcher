@@ -48,11 +48,18 @@ export default function SignIn() {
       "password":password,
       "client_id":client.clientId,
       "client_secret":client.clientSecret
-    }))
-    console.log(res.data)
-    localStorage.clear()
-    localStorage.setItem("token", res.data.access_token)
-    getUserDetails()
+    })).then((res) => {
+      console.log(res.data)
+      localStorage.clear()
+      localStorage.setItem("token", res.data.access_token)
+      getUserDetails()
+
+    }).catch(err => {
+      if(err.response.status === 400){
+        alert("Invalid username or password")
+      }
+    })
+
 
  }
 
@@ -72,7 +79,9 @@ export default function SignIn() {
   const res = await Api.get(endpoints['getUser'],
   { headers:{
     "Authorization": `Bearer ${localStorage.getItem("token")}`
-  }})
+  }}).catch(err => {
+    alert(err)
+  })
 
   let userDetail =res.data
   console.log(userDetail)

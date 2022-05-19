@@ -71,27 +71,43 @@ export default function JobDetails(props) {
     const handleApplySubmit = async () => {
 
         var formData = new FormData();
-        formData.append("CV", cvRef.current.files[0])
-        formData.append("post",id)
-        formData.append("user",user.id)
-        formData.append("description","dataCkeditor")
 
         if(props.authenticated){
             alert('Khong the apply vao viec lam cua chinh ban')
         }
-        else{
+        
+        else if(cvRef.current.files[0] && id && user.id && dataCkeditor){
+            formData.append("CV", cvRef.current.files[0])
+            formData.append("post",id)
+            formData.append("user",user.id)
+            formData.append("description",dataCkeditor)
+
+
             let res = await Api.post(endpoints['applies']
             ,formData,
-        {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),
-                'Content-Type': 'multipart/form-data'
-            },
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'multipart/form-data'
+                },
+            
+            }).then((res) => {
+                console.log(res.data)
+                handleClose()
+                alert('Apply thanh cong')
+          
+              }).catch(err => {
+                alert(err)
+              })
+
+
         
-        })
-        console.log(res.data)
-        handleClose()
-        alert('Apply thanh cong')
+        }
+ 
+
+        else{
+            alert('Vui lòng nhập các trường ')
+       
         }
     }
 
@@ -231,7 +247,7 @@ export default function JobDetails(props) {
                         <Typography id="modal-modal-title" variant="h6" component="h2">
                         Mô tả chi tiết
                         </Typography>
-                        <CkeditorComponent name="desc" setDataCkeditor={setDataCkeditor}/>
+                        <CkeditorComponent name="desc" value={dataCkeditor} setDataCkeditor={setDataCkeditor}/>
                         <input
                             // accept="image/*"
                             // style={{ display: 'none' }}

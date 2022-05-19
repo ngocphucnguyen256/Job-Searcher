@@ -160,7 +160,7 @@ const handleFindHirer=() =>{
           <Box sx={{ width:'100%' }}>
             <Grid container spacing={1} >
                   {posts.map((item, index) =>
-                  <Grid item xs={6} key={index} >
+                  <Grid item xs={12} sm={6} md={6} key={index} >
                       <TabItem data={item}/>
                   </Grid>
               )}
@@ -172,7 +172,7 @@ const handleFindHirer=() =>{
         <Box sx={{ width:'100%' }}>
         <Grid container spacing={1} >
                   {oldPosts.map((item, index) =>
-                  <Grid item xs={6} key={index} >
+                  <Grid item xs={12} sm={6} md={6} key={index} >
                       <TabItem data={item}/>
                   </Grid>
               )}
@@ -189,7 +189,7 @@ const handleFindHirer=() =>{
           <Grid container spacing={1} >
          
                     {hirer.map((item, index) =>
-                    <Grid item xs={6} key={index} >
+                    <Grid item xs={12} sm={6} md={6} key={index} >
                         <HirerCardItem data={item}/>
                     </Grid>
                 )}

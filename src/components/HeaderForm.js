@@ -97,7 +97,7 @@ export default function HeaderForm() {
            <SelectComponent name="location" label="Địa điểm" data={location} fullWidth/>
         </Grid>
         <Grid item xs={6}>
-        <SeclectGroup required name="major" data={categories} setDataMajorId={setDataMajorId} />
+        <SeclectGroup  required name="major" data={categories} setDataMajorId={setDataMajorId} />
         </Grid>
         <Grid item xs={6}>
        <SelectComponent name="salary" label="Chọn mức lương" data={salary} fullWidth/>

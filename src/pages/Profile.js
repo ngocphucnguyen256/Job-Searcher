@@ -47,19 +47,25 @@ function Profile() {
 
 
   const handlePostComment = async () => {
+    if (comment.length>0){
       const res = await Api.post(endpoints['comments'],{
         creator: user.id,
         hirer:profile.id,
         content:comment
-
-
       },  { headers:{
       "Authorization": `Bearer ${localStorage.getItem("token")}`
-    }}
-    )
+      }}
+      ).then((res) => {
+        getComments()
 
-    // setCommentData([...commentData, res.data])
-    getComments()
+
+      }).catch(err => {
+        alert(err.message)
+      })
+      }
+    else{
+      alert('Bình luận không thể trống')
+    }
 
 
   }

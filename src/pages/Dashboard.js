@@ -117,7 +117,7 @@ export default function Dashboard(props) {
           "username": ""
       }
   })
-  navigate("/", { replace: true });
+  navigate("/")
 
   }
 
