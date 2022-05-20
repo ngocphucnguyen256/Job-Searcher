@@ -31,8 +31,8 @@ export const endpoints = {
 
 
 export const client = {
-    "clientId" :"6BWELa46xitqudxnPl6pbtEk7qlXqb2RRemJnNd3",
-    "clientSecret" :"IsX5DexNhy5cxQOQalpiMDEjjLgMbgKxdbHYdPXJQ0YikEkf7IwjRtYEfci7q7cOAK64KOaZTS7JnRRUEEw0UCDyRegqZSAeGOFwUxIIxbILVbZJ70aP1cSkJ02Nd6Ss"
+    "clientId" :"KXfGCQFdtYVSSppBfpYfj11GtbRLR5seplh85BYW",
+    "clientSecret" :"UknUQiLOnzpg9m8wOPaBhzIOyYoiyD0B30julpHvEgmbndkjtOJ4b2ra5S36GxyLytXAW6G3FuWj59TqpU9g03mDb8PDWW5DJqOs2vrz3wlSRi6yh9IHcHHKprCs55kO"
 }
 
 
