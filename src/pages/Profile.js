@@ -91,6 +91,7 @@ function Profile() {
       const res = await Api.get(endpoints['user-detail'](id))
         console.log(res.data)
         setProfile(res.data)
+        
         // setRate(res.data.rateAvg)
       }
 
@@ -163,12 +164,16 @@ function Profile() {
     <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
      User: {profile.username}
     </Typography>
-    <Typography variant="h6" textAlign="center" gutterBottom component="div" className="name">
-     Your rate for this user
-    </Typography>
-    <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-    <Rating value={rate} setRate={setRate}  /> (AVG Rating: {profile.rateAvg})
-    </Typography>
+    {
+      profile.user_role!==2 && <>
+          <Typography variant="h6" textAlign="center" gutterBottom component="div" className="name">
+          Your rate for this user
+          </Typography>
+          <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+          <Rating value={rate} setRate={setRate}  /> (AVG Rating: {profile.rateAvg})
+          </Typography>
+      </>
+    }
    
     {/* <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
      ({profile.role})
@@ -177,28 +182,34 @@ function Profile() {
      Email: {profile.email}
     </Typography>
 
-    <Typography variant="h2" textAlign="left" component="h2" >
-    Một số bài đăng của công ty
-    </Typography>
+
+    {
+      profile.user_role!==2 && <>
+             <Typography variant="h2" textAlign="left" component="h2" >
+            Một số bài đăng của công ty
+            </Typography>
 
 
-    <Box sx={{ width:'100%' }}>
-            <Grid container spacing={1} >
-                  {posts.slice(0,6).map((item, index) =>
-                  <Grid item xs={6} key={index} >
-                      <TabItem data={item}/>
-                  </Grid>
-              )}
-            </Grid>
+            <Box sx={{ width:'100%' }}>
+                    <Grid container spacing={1} >
+                          {posts.slice(0,6).map((item, index) =>
+                          <Grid item xs={6} key={index} >
+                              <TabItem data={item}/>
+                          </Grid>
+                      )}
+                    </Grid>
+            </Box>
+            
+
+
+
+            <CommentList data={commentData} handlePostComment={handlePostComment}
+            comment={comment} setComment={setComment} getComments={getComments}/>
+      </>
+    }
+
+
     </Box>
-    
-
-
-
-    <CommentList data={commentData} handlePostComment={handlePostComment}
-     comment={comment} setComment={setComment} getComments={getComments}/>
-
-      </Box>
      
   <Footer/>
 </div>

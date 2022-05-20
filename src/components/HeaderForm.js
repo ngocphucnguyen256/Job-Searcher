@@ -5,7 +5,7 @@ import SelectComponent from './SelectComponent'
 import Button from '@mui/material/Button';
 import React, { useEffect, useState } from 'react';
 import Api, { endpoints } from '../config/Api';
-import { location, salary, level  } from '../data/data';
+import { location, salary  } from '../data/data';
 import { useNavigate} from 'react-router-dom';
 import SeclectGroup  from './SelectGroup';
 
@@ -15,12 +15,10 @@ import SeclectGroup  from './SelectGroup';
 
 export default function HeaderForm() {
 
-    const [name, email, subject] = useState('');
-    const [currency, setCurrency] = useState('EUR');
+
     const [categories, setCategories] = useState([])
     const [dataMajorId, setDataMajorId] = useState(null)
 
-    const [kw, setKw] = useState("")
 
 
     let navigate = useNavigate();
@@ -87,9 +85,9 @@ export default function HeaderForm() {
     return(
      <Box component="form" noValidate onSubmit={handleSubmit} className='react-form header-form'>
       <h2>Đón lấy thành công với
-            29,913 cơ hội nghề nghiệp</h2>
+            các cơ hội nghề nghiệp</h2>
   
-      <TextField name="title" className="search" fullWidth id="outlined-search" label="Chức danh, tên công ty" type="search" />
+      <TextField name="title" className="search" fullWidth id="outlined-search" label="Chức danh" type="search" />
     
       <Box sx={{ width:'100%' }}>
       <Grid container spacing={1} >
@@ -97,14 +95,16 @@ export default function HeaderForm() {
            <SelectComponent name="location" label="Địa điểm" data={location} fullWidth/>
         </Grid>
         <Grid item xs={6}>
-        <SeclectGroup  required name="major" data={categories} setDataMajorId={setDataMajorId} />
+          <div className="major-wrapper">
+           <SeclectGroup  required name="major" data={categories} setDataMajorId={setDataMajorId} />
+         </div>
         </Grid>
         <Grid item xs={6}>
        <SelectComponent name="salary" label="Chọn mức lương" data={salary} fullWidth/>
         </Grid>
-        <Grid item xs={6}>   
+        {/* <Grid item xs={6}>   
             <SelectComponent name="type" label="Cấp bậc" data={level} fullWidth/>
-        </Grid>
+        </Grid> */}
     </Grid>
         </Box>
       <div className='form-group'>

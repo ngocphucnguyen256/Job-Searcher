@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -15,7 +13,6 @@ import Api, { endpoints } from '../config/Api';
 import { useNavigate, useParams} from 'react-router-dom';
 import ModalComponent  from '../components/ModalComponent';
 import ImageUpload from "../components/ImageUpload";
-import {galleryImageList} from '../data/data'
 import CenterDiv from '../components/CenterDiv'
 import { UserContext } from '../App'
 
@@ -43,7 +40,6 @@ export default function DashboardModify() {
 
 
   const [open, setOpen] = React.useState(false);
-  const [selectedFile, setSelectedFile] = React.useState()
   const [user, dispatch] = React.useContext(UserContext)
   const [userModified, setUserModified] = React.useState(user)
   const [password, setPassword] = React.useState("")
@@ -53,7 +49,7 @@ export default function DashboardModify() {
 
 
 
-  console.log("file: "+selectedFile)
+
 
   const handleSubmit = (event) => {
     event.preventDefault();

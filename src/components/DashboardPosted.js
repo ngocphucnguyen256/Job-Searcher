@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react'
-import Dashboard from '../pages/Dashboard';
 import Typography from '@mui/material/Typography';
 import Api, { endpoints } from '../config/Api';
 import Box from '@mui/material/Box';

@@ -8,7 +8,7 @@ export default function SectionRegEmail() {
             <div>
                 <h2> Đăng bài tuyển dụng để dễ dàng tiếp cận với ứng viên</h2>
                 <div className='center-div'>
-                 <Button variant="contained">Đăng ngay</Button>
+                 {/* <Button variant="contained">Đăng ngay</Button> */}
                 </div>
             </div>
         </section>

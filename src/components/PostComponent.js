@@ -83,6 +83,8 @@ const PostComponent = ()=>{
                     to_salary: to_salary,
                     type: data.get('type'),
                     time_work:data.get('timeWork'),
+                    gender: data.get('gender'),
+
                     description: dataCkeditor,
                     company: user.username,
                     user: user.id,
@@ -99,8 +101,6 @@ const PostComponent = ()=>{
                 handleOpen()
             }
             ).catch(err => alert(err))
-    
-            console.log(res.data)
         }
         if(data.get('title') &&  data.get('location')
         && data.get('type') && dataMajorId && dataCkeditor && user.id

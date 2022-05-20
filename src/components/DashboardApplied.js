@@ -2,7 +2,7 @@ import Typography from '@mui/material/Typography';
 import { UserContext } from '../App'
 import  { useState, useContext, useEffect } from 'react'
 import Api, { endpoints } from '../config/Api';
-import {useNavigate, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -14,17 +14,14 @@ import Item from './Item';
 
 const DashboardApplied = () => {
   const [user, dispatch] = useContext(UserContext)
-  const [openDialog, setOpenDialog] = useState(false);
   const [applies, setApplies] = useState([]);
-  let navigate = useNavigate();
+
 
 
 
 
   console.log(user)
 
-  const handleOpen = () => setOpenDialog(true);
-  const handleClose = () => setOpenDialog(false);
 
 
     const handleDelete =(id )=>{

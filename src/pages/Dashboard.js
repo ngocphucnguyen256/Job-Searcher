@@ -9,17 +9,13 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../partials/SideMenu';
 // import SideMenu from '../partials/SideMenu'
-import Button from '@mui/material/Button';
-import Api, { endpoints } from '../config/Api';
-
-import DataTable from '../components/DataTable';
-import ActionAreaCard from '../components/ActionAreaCard'
+// import Button from '@mui/material/Button';
+// import Api, { endpoints } from '../config/Api';
+// import ActionAreaCard from '../components/ActionAreaCard'
 import Avatar from '@mui/material/Avatar';
 import img from '../images/404.jpg';
 import CenterDiv from '../components/CenterDiv'
@@ -29,23 +25,9 @@ import  { useState, useContext } from 'react'
 import SideMenuItem from '../components/SideMenuItem'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PropTypes from 'prop-types';
-import ModalComponent  from '../components/ModalComponent';
+// import ModalComponent  from '../components/ModalComponent';
 
 
-
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {/* {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'} */}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -105,7 +87,7 @@ export default function Dashboard(props) {
     setOpen(!open);
   };
   const [user, dispatch] = useContext(UserContext)
-  const isCompany =true;
+
 
   console.log(user)
 
@@ -229,45 +211,7 @@ export default function Dashboard(props) {
             {children}
             <Outlet/>
           </Box>
-         
-          {/* <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
 
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <ActionAreaCard/>
-                </Paper>
-              </Grid>
-    
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <ActionAreaCard/>
-                </Paper>
-              </Grid>
-      
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <DataTable />
-                </Paper>
-              </Grid>
-            </Grid>
-     
-            <Copyright sx={{ pt: 4 }} />
-          </Container> */}
      
         </Box>
       </Box>

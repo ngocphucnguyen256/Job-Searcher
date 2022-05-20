@@ -127,14 +127,14 @@ const handleFindHirer=() =>{
 
 }
 
-  const formatDateList =  posts.map(post=>{
-    let localdate = new Date(post.created_date);
-    const copy ={date: localdate, ...post}
-    return copy
-  })
+  // const formatDateList =  posts.map(post=>{
+  //   let localdate = new Date(post.created_date);
+  //   const copy ={date: localdate, ...post}
+  //   return copy
+  // })
 
   //oldest first
-  let sortedDateList= formatDateList.sort((a,b) =>b.date.getTime() -  a.date.getTime())
+  // let sortedDateList= formatDateList.sort((a,b) =>b.date.getTime() -  a.date.getTime())
 
 
   const handleChange = (event, newValue) => {
@@ -182,7 +182,7 @@ const handleFindHirer=() =>{
         <TabPanel value={value} index={2}>
         <Box sx={{ width:'100%' }}>
           <CenterDiv>
-         <TextField onChange={e=>{setKw(e.target.value)}} name="title" className="search" fullWidth id="outlined-search" label="Chức danh, tên công ty" type="search" />
+         <TextField onChange={e=>{setKw(e.target.value)}} name="title" className="search" fullWidth id="outlined-search" label="Tên công ty" type="search" />
           <Button variant="contained" size="small" onClick={handleFindHirer}>Tìm ngay</Button>
 
           </CenterDiv>

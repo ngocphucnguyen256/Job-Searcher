@@ -58,7 +58,7 @@ export default function ListPosts() {
                         )
                     ):(
                         <Typography variant="h3" textAlign="center" gutterBottom component="h1" className="name">
-                       Khong co ket qua
+                       Không có kết quả
                         </Typography>
                     )}
                 </Grid>

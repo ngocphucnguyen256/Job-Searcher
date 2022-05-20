@@ -1,13 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import EditLocationIcon from '@mui/icons-material/EditLocation';
 import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom'
-import Button from '@mui/material/Button';
-import Api, { endpoints } from '../config/Api';
-import {useNavigate } from 'react-router-dom';
 
 
 

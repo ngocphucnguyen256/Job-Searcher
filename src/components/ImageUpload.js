@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 
   console.log(ref)
 
-  // create a preview as a side effect, whenever selected file is changed
+
   useEffect(() => {
       if (!selectedFile) {
           setPreview(undefined)
@@ -18,7 +18,7 @@ import Button from '@mui/material/Button';
       const objectUrl = URL.createObjectURL(selectedFile)
       setPreview(objectUrl)
 
-      // free memory when ever this component is unmounted
+      // free memory 
       return () => URL.revokeObjectURL(objectUrl)
   }, [selectedFile])
 
@@ -28,7 +28,7 @@ import Button from '@mui/material/Button';
           return
       }
 
-      // I've kept this example simple by using the first image instead of multiple
+   
       setSelectedFile(e.target.files[0])
   }
 

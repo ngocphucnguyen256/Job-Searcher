@@ -5,8 +5,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import CkeditorHtml from '../components/CkeditorHtml';
 import Item from '../components/Item';
-import Tags from '../components/Tags'
-import CommentList from '../components/CommentList';
 import { useParams  } from 'react-router-dom';
 import React, { useEffect, useState, useContext, useRef } from 'react';
 import Api, { endpoints } from '../config/Api';
@@ -119,7 +117,7 @@ export default function JobDetails(props) {
     }
 
 
-    let url=`/job-list`
+ 
 
 
    
@@ -148,8 +146,28 @@ export default function JobDetails(props) {
                                         <Grid item xs={2} sm={4} md={4} key={index}>
                                             
                                                 <Item>
-                                                    <p className="heading">{item.user}</p>
-                                                    <p>{item.description}</p>
+                                                    <Link to={`/profile/${item.user}`} className="link">
+                                                            <CenterDiv>
+                                                            {
+                                                            post.avatar_user?(
+                                                                <Avatar alt="Remy Sharp" src={ item?.avatar_user}
+                                                                style={{ height: '170px', width: '170px' }}
+                                                                />
+
+                                                            ):(
+                                                                <Avatar alt="alt" src={img}
+                                                                style={{ height: '170px', width: '170px' }}
+                                                                />
+                                                                
+
+                                                            )
+                                                            }
+                                                        
+                                                            </CenterDiv>
+                                                    
+                                                        <p className="heading">{item.user}</p>
+                                                        <p>{item?.description}</p>
+                                                    </Link>
                                                 </Item>
                                             {
                                                 item.CV_path?(
@@ -210,16 +228,30 @@ export default function JobDetails(props) {
                 <section className="body">
                     <Box sx={{ flexGrow: 1 }}>
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-     
-                            <Grid item xs={2} sm={4} md={4} >
-                                <Item><p className="heading">Lương từ</p><p>{post?.from_salary}</p></Item>
+
+                             <Grid item xs={2} sm={4} md={4} >
+                                 <Link to={`/job-list/posts?keyword=&major_id=${post?.major}`} className="link">
+                                     <Item><p className="heading">Ngành nghề</p><p>{post?.major_name}</p></Item>
+                               </Link>
+
                             </Grid>
                             <Grid item xs={2} sm={4} md={4} >
+                              <Link to={`/job-list/posts?keyword=&from_salary=${post?.from_salary}`} className="link">
+                                <Item><p className="heading">Lương từ</p><p>{post?.from_salary}</p></Item>
+                               </Link>
+                            </Grid>
+                            <Grid item xs={2} sm={4} md={4} >
+                              <Link to={`/job-list/posts?keyword=&to_salary=${post?.to_salary}`} className="link">
                                 <Item><p className="heading">Lương đến</p><p>{post?.to_salary}</p> </Item>
-                            </Grid>             <Grid item xs={2} sm={4} md={4} >
+                               </Link>
+                            </Grid>             
+                            <Grid item xs={2} sm={4} md={4} >
                                 <Item><p className="heading">Giới tính</p><p>{post?.gender}</p></Item>
-                            </Grid>             <Grid item xs={2} sm={4} md={4} >
-                                <Item><p className="heading">Địa điểm</p><p>{post?.location}</p></Item>
+                            </Grid>             
+                            <Grid item xs={2} sm={4} md={4} >
+                                <Link to={`/job-list/posts?keyword=&location=${post?.location}`} className="link">
+                                  <Item><p className="heading">Địa điểm</p><p>{post?.location}</p></Item>
+                               </Link>
                             </Grid>             <Grid item xs={2} sm={4} md={4} >
                                 <Item><p className="heading">Số lượng</p><p>{post?.quantity}</p></Item>
                             </Grid> 

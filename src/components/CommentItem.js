@@ -7,10 +7,12 @@ import Api, { endpoints } from '../config/Api';
 
 
 
+
 const CommentItem = (props) => {
     const [user] = useContext(UserContext)
 
     const data = props.data
+
 
 
 
@@ -21,8 +23,9 @@ const CommentItem = (props) => {
               'Authorization': 'Bearer ' + localStorage.getItem('token')
           },
       
-          })
+          }).catch(err => console.log(err))
         props.getComments()
+
 
     }
 
@@ -31,12 +34,18 @@ const CommentItem = (props) => {
         <Paper style={{ padding: "40px 20px", marginTop: 20 }}>
             <Grid container wrap="nowrap" spacing={2}>
                 <Grid item>
+                     {/* <Link to={`/profile/${data.creator}`} className="link"> */}
                     <Avatar alt="Remy Sharp" src={data.avatar_user} />
+                    {/* </Link> */}
+
                 </Grid>
                 <Grid  item xs zeroMinWidth>
+                    {/* <Link to={`/profile/${data.creator}`} className="link"> */}
                     <Typography variant="h4" textAlign="left" gutterBottom component="div" className="name">
                     {data.name_user}
                     </Typography>
+                    {/* </Link> */}
+
                     <p style={{ textAlign: "left" }}>
                         {data.content}{" "}
                     </p>
