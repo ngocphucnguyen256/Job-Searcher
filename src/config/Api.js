@@ -40,8 +40,8 @@ export const client = {
 
 
 export default axios.create({
-    baseURL: "https://ttken01.pythonanywhere.com"
-    //baseURL: "http://127.0.0.1:8000"
+    // baseURL: "https://ttken01.pythonanywhere.com"
+    baseURL: "http://127.0.0.1:8000"
 })
 
 

@@ -56,8 +56,8 @@ export default function SignUp() {
 
       var formData = new FormData();
       formData.append("avatar", avatar.current.files[0])
-      formData.append("firstName", data.get('firstName'))
-      formData.append("lastName", data.get('lastName'))
+      formData.append("first_name", data.get('firstName'))
+      formData.append("last_name", data.get('lastName'))
       formData.append("username", data.get('username'))
       formData.append("email", data.get('email'))
       formData.append("password", data.get('password'))
