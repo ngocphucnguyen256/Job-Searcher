@@ -17,10 +17,9 @@ import CkeditorComponent from '../components/CkeditorComponent'
 import img from '../images/404.jpg';
 import Avatar from '@mui/material/Avatar';
 import Moment from 'react-moment';
-
-
-
-
+import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
+import BeenhereIcon from '@mui/icons-material/Beenhere';
+  
 export default function JobDetails(props) {
 
     const { id } = useParams();
@@ -31,6 +30,8 @@ export default function JobDetails(props) {
     const [user, dispatch] = useContext(UserContext)
     const [openDialog, setOpenDialog] = useState(false);
     const [dataCkeditor, setDataCkeditor] = useState('')
+    const [saved, setSaved] = useState(false);
+
 
     const handleOpen = () => setOpenDialog(true);
     const handleClose = () => setOpenDialog(false);
@@ -55,9 +56,29 @@ export default function JobDetails(props) {
     
     
         }
+        const loadPostDetailsByIdWithHeader = async () => {
+            const res = await Api.get(endpoints['post-detail'](id),{
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            })
+            setPost(res.data)
+            setSaved(res.data.is_saved)
+            if(props.authenticated){
+                loadPostAppliessById()
+            
+           }
+    
+    
+        }
         
-       
-        loadPostDetailsById()
+        if(localStorage.getItem('token')){
+            loadPostDetailsByIdWithHeader()
+        }
+        else{
+            loadPostDetailsById()
+        }
+        
   
 
     }, [])
@@ -108,6 +129,33 @@ export default function JobDetails(props) {
        
         }
     }
+
+
+    const handleSaveSubmit = async () => {
+
+
+            let res = await Api.post(endpoints['mySavedPosts']
+            ,{
+                post: id,
+            },
+            {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            },
+            
+            }).then((res) => {
+                setSaved(true)
+          
+              }).catch(err => {
+                alert(err)
+              })
+
+
+        
+    }
+
+    
+
 
     console.log(post)
 
@@ -222,7 +270,18 @@ export default function JobDetails(props) {
                     </Link>
 
                     {props.authenticated?(<></>):(
+                    <>
                         <Button onClick={handleApplyFormOpen} variant="contained">Nộp đơn ứng tuyển ngay</Button>
+                        <div style={{marginTop:20}}>
+                            {
+                                saved?(
+                                    <Button disabled variant="contained" onClick={handleSaveSubmit} endIcon={<BeenhereIcon/>}>Saved</Button>
+                                ):(
+                                    <Button variant="contained" onClick={handleSaveSubmit} endIcon={<BookmarkAddIcon/>}>Save</Button>
+                                )
+                            }
+                        </div>
+                    </>
                     )}
                 </section>
                 <section className="body">
@@ -230,7 +289,7 @@ export default function JobDetails(props) {
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
 
                              <Grid item xs={2} sm={4} md={4} >
-                                 <Link to={`/job-list/posts?keyword=&major_id=${post?.major}`} className="link">
+                                 <Link to={`/job-list/posts?keyword=&major_id=${post?.major}`} className="link ">
                                      <Item><p className="heading">Ngành nghề</p><p>{post?.major_name}</p></Item>
                                </Link>
 
@@ -295,7 +354,10 @@ export default function JobDetails(props) {
                         </label> */}
     
                         <Button onClick={handleApplySubmit} variant="contained">Nộp đơn ứng tuyển ngay</Button>
+                      
+                    
                     </ModalComponent>
+                   
                 
                 </section>
             </main>

@@ -180,6 +180,7 @@ export default function Dashboard(props) {
              user.role==="User"?(
               <>
                <SideMenuItem name="Việc làm đã ứng tuyển" icon={<DashboardIcon />} link="/dashboard/applied" />
+                <SideMenuItem name="Các bài viết đã lưu" icon={<DashboardIcon />} link="/dashboard/saved-posted" />
               </>
              ):(
               <>

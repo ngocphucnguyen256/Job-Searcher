@@ -83,12 +83,14 @@ export default function JobItem(props) {
           sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
         >
           <Item>
-              <img         style={{ height: '200px', width: '200px' }} src={data?.avatar_user} alt="1" />
+              <img style={{ height: '200px', width: '200px' }} src={data?.avatar_user} alt="1" />
           </Item>
           <Item sx={{ flexGrow: 1 }}>
-          <Typography variant="h5" className="title" gutterBottom component="div">
-          {data?.title}
-          </Typography>
+          <div style={{overflow: "hidden", textOverflow: "ellipsis", width: '11rem'}}> 
+            <Typography noWrap variant="h5" className="title" gutterBottom component="div">
+            {data?.title}
+            </Typography>
+          </div>
           <Typography variant="body1" className="company" gutterBottom component="div">
           Công ty: {data?.company}
           </Typography>

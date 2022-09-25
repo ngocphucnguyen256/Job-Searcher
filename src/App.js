@@ -18,6 +18,7 @@ import DashboardHome from './components/DashboardHome'
 import DashboardModify  from './components/DashboardModify';
 import DashboardPostModify from './components/DashboardPostModify';
 import DashboardApplied from './components/DashboardApplied';
+import DashboardSavedPosts from './components/DashboardSavedPosts';
 
 export const UserContext = createContext()
 
@@ -83,6 +84,7 @@ function App() {
                   <Route path="home" element={<DashboardHome/>}/>
                   <Route  path="applied" element={<DashboardApplied/>}/>
                   <Route  path="all-posted" element={<DashboardPosted/>}/>
+                  <Route  path="saved-posted" element={<DashboardSavedPosts/>}/>
                   <Route  path="post" element={<DashboardPost/>}/>
                   <Route  path="job-detail/:id" element={<JobDetails authenticated/>}/>
                   <Route  path="job-detail/:id/modify" element={<DashboardPostModify/>}/>
