@@ -44,7 +44,7 @@ export default function HirerCardItem(props) {
   const data = props.data
 
 
-  let url=`/profile/${data.id}`
+  let url=`/profile-company/${data.id}`
 
 
 
@@ -61,7 +61,7 @@ export default function HirerCardItem(props) {
           </Item>
           <Item sx={{ flexGrow: 1 }}>
           <Typography variant="h5" className="title" gutterBottom component="div">
-          Công ty: {data?.first_name} {data?.last_name}
+          Công ty: {data?.company_name}
           </Typography>
             {data.rateAvg?(
             <Typography variant="h5" className="title" gutterBottom component="div">
@@ -74,6 +74,17 @@ export default function HirerCardItem(props) {
            </Typography>
             )
             }
+            {
+            data?.web_url?(
+              <a href={data.web_url} target="_blank" rel="noreferrer" className="link">
+                <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+                  Website: {data?.web_url}
+              </Typography>
+              </a>
+            ):(
+              <></>
+            )
+          }
          
           </Item>
         </Box>

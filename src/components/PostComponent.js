@@ -72,6 +72,21 @@ const PostComponent = ()=>{
             convertSalary(data.get('salary'))
         }
 
+        console.log(         {
+            title: data.get('title'),
+            major: dataMajorId,
+            location : data.get('location'),
+            from_salary: from_salary,
+            to_salary: to_salary,
+            type: data.get('type'),
+            time_work:data.get('timeWork'),
+            gender: data.get('gender'),
+
+            description: dataCkeditor,
+            quantity: data.get('quantity'),
+            due: `${dateValue.getFullYear()}-${dateValue.getMonth()+1}-${dateValue.getDate()}`,
+
+    })
         
         const postPost = async () => {
             let res = await Api.post(endpoints['posts'],
@@ -86,10 +101,8 @@ const PostComponent = ()=>{
                     gender: data.get('gender'),
 
                     description: dataCkeditor,
-                    company: user.username,
-                    user: user.id,
                     quantity: data.get('quantity'),
-                    due: dateValue
+                    due: dateValue,
         
             }
             ,{

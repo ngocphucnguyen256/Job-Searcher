@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
 
 export const endpoints = {
@@ -13,30 +13,42 @@ export const endpoints = {
     "post-detail-applies": (postId) => `/posts/${postId}/applies/`,
     "token":"/o/token/",
     "getUser":"/users/current-user/",
-    "myPost":"/my-posts/",
+    "myPost":"/posts/my-posts/",
     "myPostDelete": (postId) => `/posts/${postId}/`,
     "waits": "/waits/",
     "applies":"/applies/",
     "applies-detail": (id) => `/applies/${id}/`,
     "user-detail": (userId) => `/users/${userId}/`,
-    "user-rating": (userId) => `/users/${userId}/rating/`,
+    "company-detail": (userId) => `/company/${userId}/`,
+    "user-rating": (userId) => `/company/${userId}/rating/`,
     "user-comments": (userId) => `/users/${userId}/comments/`,
-    "my-applies":"/my-applies/",
-    "hirer":"/users/hirer-user/",
+    "my-applies":"/applies/my-applies/",
+    "hirer":"/company/",
     "hirer-posts":(id)=> `/my-posts/hirer-post/?id=${id}`,
     "comments":"/comments/",
     "comment-detail": (id) => `/comments/${id}/`,
     "mySavedPosts": "/my-saved-posts/",
     "savedPostDelete": (id) => `/my-saved-posts/${id}/`,
- 
+    "profile-detail": (id) => `/user-profile/${id}/`,
+    "education": `/education-profile/`,
+    "experience": `/experience-profile/`,
+    "educationDetail": (id) => `/education-profile/${id}/`,
+    "experienceDetail": (id) => `/experience-profile/${id}/`,
+
 }
 
 
 export const client = {
-    "clientId" :"6BWELa46xitqudxnPl6pbtEk7qlXqb2RRemJnNd3",
-    "clientSecret" :"IsX5DexNhy5cxQOQalpiMDEjjLgMbgKxdbHYdPXJQ0YikEkf7IwjRtYEfci7q7cOAK64KOaZTS7JnRRUEEw0UCDyRegqZSAeGOFwUxIIxbILVbZJ70aP1cSkJ02Nd6Ss"
+    // "clientId" :"6BWELa46xitqudxnPl6pbtEk7qlXqb2RRemJnNd3",
+    // "clientSecret" :"IsX5DexNhy5cxQOQalpiMDEjjLgMbgKxdbHYdPXJQ0YikEkf7IwjRtYEfci7q7cOAK64KOaZTS7JnRRUEEw0UCDyRegqZSAeGOFwUxIIxbILVbZJ70aP1cSkJ02Nd6Ss"
+
+    //deploy
     // "clientId" :"KXfGCQFdtYVSSppBfpYfj11GtbRLR5seplh85BYW",
     // "clientSecret" :"UknUQiLOnzpg9m8wOPaBhzIOyYoiyD0B30julpHvEgmbndkjtOJ4b2ra5S36GxyLytXAW6G3FuWj59TqpU9g03mDb8PDWW5DJqOs2vrz3wlSRi6yh9IHcHHKprCs55kO"
+
+    //new version`
+    "clientId" :"GBwgpr34PQbf0NLHS8brq9glKxicyBGXkklDvydX",
+    "clientSecret" :"Ma5vxAbBRLZA8NUIsks2Gph5fCTHldw6ZJFWQH64Wvq2qmn6LZRu1xqRhznnUAf5mh4rTWgsYJEQPC36aAEQNOuJyIHSWODp9h7aCO19mrAPw6RNPh0DzarqJ1V7zUQD"
 
 }
 

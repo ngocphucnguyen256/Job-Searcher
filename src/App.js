@@ -19,6 +19,7 @@ import DashboardModify  from './components/DashboardModify';
 import DashboardPostModify from './components/DashboardPostModify';
 import DashboardApplied from './components/DashboardApplied';
 import DashboardSavedPosts from './components/DashboardSavedPosts';
+import ProfileCompany from './pages/ProfileCompany';
 
 export const UserContext = createContext()
 
@@ -78,6 +79,7 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/home" element={<Home/>}/>
                 <Route  path="/profile/:id" element={<Profile/>}/>
+                <Route  path="/profile-company/:id" element={<ProfileCompany/>}/>
                 <Route  path="/sign-in" element={<SignIn/>}/>
                 <Route  path="/sign-up" element={<SignUp/>}/>
                 <Route  path="/dashboard"  element={<Dashboard/>}>

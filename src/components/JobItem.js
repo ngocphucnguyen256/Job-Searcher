@@ -83,7 +83,8 @@ export default function JobItem(props) {
           sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
         >
           <Item>
-              <img style={{ height: '200px', width: '200px' }} src={data?.avatar_user} alt="1" />
+              {/* <img style={{ height: '200px', width: '200px' }} src={data?.avatar_user} alt="1" /> */}
+              <img style={{ height: '200px', width: '200px' }} src={data?.avatar_company} alt="1" />
           </Item>
           <Item sx={{ flexGrow: 1 }}>
           <div style={{overflow: "hidden", textOverflow: "ellipsis", width: '11rem'}}> 

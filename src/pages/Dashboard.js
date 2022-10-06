@@ -181,11 +181,15 @@ export default function Dashboard(props) {
               <>
                <SideMenuItem name="Việc làm đã ứng tuyển" icon={<DashboardIcon />} link="/dashboard/applied" />
                 <SideMenuItem name="Các bài viết đã lưu" icon={<DashboardIcon />} link="/dashboard/saved-posted" />
+                <SideMenuItem name="Trang cá nhân" icon={<DashboardIcon />} link={`/profile/${user.id}`} />
               </>
              ):(
               <>
+               <SideMenuItem name="Trang cá nhân" icon={<DashboardIcon />} link={`/profile-company/${user.id}`} />
                <SideMenuItem name="Đăng bài tuyển dụng" icon={<DashboardIcon />} link="/dashboard/post" />
                <SideMenuItem name="Các bài viết đã đăng" icon={<DashboardIcon />} link="/dashboard/all-posted" />
+
+
               </>
              )
            }

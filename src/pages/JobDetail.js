@@ -197,8 +197,8 @@ export default function JobDetails(props) {
                                                     <Link to={`/profile/${item.user}`} className="link">
                                                             <CenterDiv>
                                                             {
-                                                            post.avatar_user?(
-                                                                <Avatar alt="Remy Sharp" src={ item?.avatar_user}
+                                                            post.avatar_company?(
+                                                                <Avatar alt="Remy Sharp" src={ item?.avatar_company}
                                                                 style={{ height: '170px', width: '170px' }}
                                                                 />
 
@@ -248,11 +248,11 @@ export default function JobDetails(props) {
             }
                 <section className="header">
                     <h1>{post.title}</h1>
-                    <Link to={`/profile/${post.user}`} className="link">
+                    <Link to={`/profile-company/${post.company}`} className="link">
                     <CenterDiv>
                     {
-                    post.avatar_user?(
-                        <Avatar alt="Remy Sharp" src={ post.avatar_user}
+                    post.avatar_company?(
+                        <Avatar alt="Remy Sharp" src={ post.avatar_company}
                         style={{ height: '170px', width: '170px' }}
                         />
 

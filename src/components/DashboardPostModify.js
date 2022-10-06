@@ -82,24 +82,6 @@ const DashboardPostModify = ()=>{
         if(data.get('salary')){
             convertSalary(data.get('salary'))
         }
-
-    //     console.log(            {
-    //         title: data.get('title'),
-    //         major: dataMajorId,
-    //         location : data.get('location'),
-    //         from_salary: from_salary,
-    //         to_salary: to_salary,
-    //         type: data.get('type'),
-    //         time_work:data.get('timeWork'),
-    //         description: dataCkeditor,
-    //         company: user.username,
-    //         user: user.id,
-    //         quantity: data.get('quantity'),
-    //         due: dateValue
-
-
-    // })
-        
         const postPost = async () => {
             const res = await Api.patch(endpoints['post-detail'](id)
              ,   {
@@ -127,8 +109,6 @@ const DashboardPostModify = ()=>{
                 handleOpen()
             }
             ).catch(err => alert(err))
-    
-            console.log(res.data)
         }
 
             if(data.get('title') &&  data.get('location')

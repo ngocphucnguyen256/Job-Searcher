@@ -9,7 +9,7 @@ export default function DatePicker(props) {
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
         <DesktopDatePicker
-          inputFormat="MM/DD/yyyy"  
+          inputFormat="yyyy-MM-DD"  
           value={props.value}
           onChange={(newValue) => {
                 props.setDateValue(newValue._d);
