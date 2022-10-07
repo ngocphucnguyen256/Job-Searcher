@@ -24,7 +24,7 @@ export const endpoints = {
     "user-comments": (userId) => `/users/${userId}/comments/`,
     "my-applies":"/applies/my-applies/",
     "hirer":"/company/",
-    "hirer-posts":(id)=> `/my-posts/hirer-post/?id=${id}`,
+    "hirer-posts":(id)=> `/posts/my-posts/?id=${id}`,
     "comments":"/comments/",
     "comment-detail": (id) => `/comments/${id}/`,
     "mySavedPosts": "/my-saved-posts/",
@@ -34,7 +34,8 @@ export const endpoints = {
     "experience": `/experience-profile/`,
     "educationDetail": (id) => `/education-profile/${id}/`,
     "experienceDetail": (id) => `/experience-profile/${id}/`,
-
+    "getCompanyProfile": (id) => `users/${id}/company-profile/`,
+    "companyPosts": (companyId) => `/company/${companyId}/company-posts/`,
 }
 
 

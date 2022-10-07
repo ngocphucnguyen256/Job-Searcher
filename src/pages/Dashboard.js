@@ -179,9 +179,9 @@ export default function Dashboard(props) {
            {
              user.role==="User"?(
               <>
+                <SideMenuItem name="Trang cá nhân" icon={<DashboardIcon />} link={`/profile/${user.id}`} />
                <SideMenuItem name="Việc làm đã ứng tuyển" icon={<DashboardIcon />} link="/dashboard/applied" />
                 <SideMenuItem name="Các bài viết đã lưu" icon={<DashboardIcon />} link="/dashboard/saved-posted" />
-                <SideMenuItem name="Trang cá nhân" icon={<DashboardIcon />} link={`/profile/${user.id}`} />
               </>
              ):(
               <>

@@ -248,7 +248,7 @@ export default function JobDetails(props) {
             }
                 <section className="header">
                     <h1>{post.title}</h1>
-                    <Link to={`/profile-company/${post.company}`} className="link">
+                    <Link to={`/profile-company/${post.company_detail.user}`} className="link">
                     <CenterDiv>
                     {
                     post.avatar_company?(

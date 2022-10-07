@@ -20,110 +20,130 @@ function ProfileCompany() {
   const [openDialog, setOpenDialog] = useState(false);
   const { id } = useParams();
   const [profile, setProfile] = useState(null)
+  const [profileDetail, setProfileDetail] = useState(null)
   const [rate, setRate] = useState(null)
   const [comment, setComment] = useState('')
   const [commentData, setCommentData] = useState([])  
   const [posts, setPosts] = useState([])
-
-
+  const [profileDetailId, setProfileDetailId] = useState(null)
 
   const handleOpen = () => setOpenDialog(true);
   const handleClose = () => setOpenDialog(false);
 
 
+  const handleGetCompanyProfile = async () => {
+    const res = await Api.get(endpoints['getCompanyProfile'](id))
+      console.log(res.data)
+      setProfile(res.data)
+      return res.data.id
+
+    }
+
+  
+  const handleGetProfileDetails = async (profileid) => {
+    const res = await Api.get(endpoints['company-detail'](profileid))
+      console.log(res.data)
+      setProfileDetail(res.data)
+      setProfileDetailId(profileid)
+      setRate(res.data.rating)
+      
+    }
+
+  // const getComments = async () => {
+  //   const res = await Api.get(endpoints['user-comments'](id))
+  //       console.log(res.data)
+  //       setCommentData(res.data)
+  //   }
 
 
-  const getComments = async () => {
-    const res = await Api.get(endpoints['user-comments'](id))
-        console.log(res.data)
-        setCommentData(res.data)
+  // const handlePostComment = async () => {
+  //   if (comment.length>0){
+  //     const res = await Api.post(endpoints['comments'],{
+  //       creator: user.id,
+  //       hirer:profile.id,
+  //       content:comment
+  //     },  { headers:{
+  //     "Authorization": `Bearer ${localStorage.getItem("token")}`
+  //     }}
+  //     ).then((res) => {
+  //       getComments()
+
+
+  //     }).catch(err => {
+  //       alert(err.message)
+  //     })
+  //     }
+  //   else{
+  //     alert('Bình luận không thể trống')
+  //   }
+
+
+  // }
+
+
+
+
+  const handleRating = async () => {
+    const res = await Api.post(endpoints['user-rating'](profileDetailId),{
+      rate: rate
+    },{
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+    },
+
+    })
+
+    console.log(res.data)
+    
     }
 
 
-  const handlePostComment = async () => {
-    if (comment.length>0){
-      const res = await Api.post(endpoints['comments'],{
-        creator: user.id,
-        hirer:profile.id,
-        content:comment
-      },  { headers:{
-      "Authorization": `Bearer ${localStorage.getItem("token")}`
-      }}
-      ).then((res) => {
-        getComments()
 
 
-      }).catch(err => {
-        alert(err.message)
-      })
-      }
-    else{
-      alert('Bình luận không thể trống')
-    }
 
 
+
+  const handleGetCompanyPost = async (companyId) => {
+    const res = await Api.get(endpoints['companyPosts'](companyId))
+      setPosts(res.data)
+      console.log(res.data)
+    
   }
 
-
-
-
-    const handleRating = async () => {
-      const res = await Api.post(endpoints['user-rating'](id),{
-        rate: rate
-      },{
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('token')
-      },
-  
-      })
-  
-      console.log(res.data)
-      
-      }
-    
-    const handleGetProfile = async () => {
-      const res = await Api.get(endpoints['company-detail'](id))
-        console.log(res.data)
-        setProfile(res.data)
         
-        // setRate(res.data.rateAvg)
-      }
+useEffect(() => {
 
+  console.log(rate);
+  
+    if(rate){
+      handleRating().then(()=>{
 
-
-    const handleGetHirerPost = async () => {
-      const res = await Api.get(endpoints['hirer-posts'](id))
-        setPosts(res.data)
-        console.log(res.data)
-      
-    }
-
-        
-  useEffect(() => {
-      if(rate){
-        handleRating().then(()=>{
-
-          handleGetProfile()
+        handleGetCompanyProfile().then((profileid) => {
+          handleGetProfileDetails(profileid)
         })
-
-      }
-      else{
-        handleGetProfile()
-
-      }
       
-     
-      getComments()
-      handleGetHirerPost()
-  },[rate])
-  
+      })
+
+    }
+    else{
+      handleGetCompanyProfile().then((profileid) => {
+        handleGetProfileDetails(profileid)
+      })
+    }
+    
+   if(profileDetailId){
+     handleGetCompanyPost(profileDetailId)
+   }
+
+},[rate,profileDetailId])
 
 
 
 
 
 
-  if(!profile){
+
+  if(!profile || !profileDetail) {
     return (
       <div>
         <Header />
@@ -140,8 +160,8 @@ function ProfileCompany() {
       <Box m={4}>
       <CenterDiv>
     {
-      profile.avatar_path?(
-        <Avatar alt="Remy Sharp" src={ profile.avatar_path}
+      profileDetail?.avatar_path?(
+        <Avatar alt="Remy Sharp" src={ profileDetail.avatar_path}
         style={{ height: '270px', width: '270px' }}
          />
 
@@ -156,49 +176,45 @@ function ProfileCompany() {
   
     </CenterDiv>
     <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-     Công ty: {profile?.company_name}
+     Công ty: {profileDetail?.company_name}
     </Typography>
     {
-      profile?.web_url?(
+      profileDetail?.web_url?(
         <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-        Website: {profile?.web_url}
+        Website: {profileDetail?.web_url}
        </Typography>
       ):(
         <></>
       )
     }
     {
-      profile?.description?(
+      profileDetail?.description?(
         <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-        Mô tả: {profile?.description}
+        Mô tả: {profileDetail?.description}
        </Typography>
       ):(
         <></>
       )
     }
-    {
-      profile.user_role!==2 && <>
-          <Typography variant="h6" textAlign="center" gutterBottom component="div" className="name">
-          Your rate for this user
-          </Typography>
-          <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-          <Rating value={rate} setRate={setRate}  /> (AVG Rating: {profile.rateAvg})
-          </Typography>
+<>
+      <Typography variant="h6" textAlign="center" gutterBottom component="div" className="name">
+      Your rate {rate} for this user
+      </Typography>
+      <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+      <Rating value={rate} setRate={setRate}  /> (AVG Rating: {profileDetail.rateAvg})
+      </Typography>
       </>
-    }
     {
-      profile?.email?(
+      profileDetail?.email?(
         <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-        Email: {profile?.email}
+        Email: {profileDetail?.email}
        </Typography>
       ):(
         <></>
       )
     }
 
-    {
-      profile.user_role!==2 && <>
-             <Typography variant="h2" textAlign="left" component="h2" >
+            <Typography variant="h2" textAlign="left" component="h2" >
             Một số bài đăng của công ty
             </Typography>
 
@@ -213,13 +229,8 @@ function ProfileCompany() {
                     </Grid>
             </Box>
             
-
-
-
-            <CommentList data={commentData} handlePostComment={handlePostComment}
-            comment={comment} setComment={setComment} getComments={getComments}/>
-      </>
-    }
+ {/* <CommentList data={commentData} handlePostComment={handlePostComment}
+            comment={comment} setComment={setComment} getComments={getComments}/> */}
 
 
     </Box>

@@ -44,7 +44,7 @@ export default function HirerCardItem(props) {
   const data = props.data
 
 
-  let url=`/profile-company/${data.id}`
+  let url=`/profile-company/${data.user}`
 
 
 

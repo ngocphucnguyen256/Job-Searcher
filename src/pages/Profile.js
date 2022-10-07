@@ -26,10 +26,18 @@ function Profile() {
   const [posts, setPosts] = useState([])
   const [profileDetail, setProfileDetail] = useState(null)
 
+  let authenticated 
+
+  if (user && user.id ==id) {
+    authenticated = true
+  }else{
+    authenticated = false
+  }
+
   const handleOpen = () => setOpenDialog(true);
   const handleClose = () => setOpenDialog(false);
 
-  const authenticated = user.id ==id ? true : false
+
 
   const handleDelete =()=>  {
     getProfileDetail(profileDetailId);
