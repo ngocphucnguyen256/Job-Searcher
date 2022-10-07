@@ -196,14 +196,22 @@ useEffect(() => {
         <></>
       )
     }
-<>
-      <Typography variant="h6" textAlign="center" gutterBottom component="div" className="name">
-      Your rate {rate} for this user
-      </Typography>
-      <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-      <Rating value={rate} setRate={setRate}  /> (AVG Rating: {profileDetail.rateAvg})
-      </Typography>
-      </>
+    {
+      user.user_role =="User"?(
+        <>
+          <Typography variant="h6" textAlign="center" gutterBottom component="div" className="name">
+          Your rate {rate} for this user
+          </Typography>
+          <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+          <Rating value={rate} setRate={setRate}  /> (AVG Rating: {profileDetail.rateAvg})
+          </Typography>
+        </>
+      ):(
+        <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+         (AVG Rating: {profileDetail.rateAvg})
+        </Typography>
+      )
+    }
     {
       profileDetail?.email?(
         <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">

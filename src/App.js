@@ -20,6 +20,8 @@ import DashboardPostModify from './components/DashboardPostModify';
 import DashboardApplied from './components/DashboardApplied';
 import DashboardSavedPosts from './components/DashboardSavedPosts';
 import ProfileCompany from './pages/ProfileCompany';
+import Api, { endpoints, client } from './config/Api'
+import * as qs from 'qs'
 
 export const UserContext = createContext()
 
@@ -43,9 +45,38 @@ function App() {
   }, 2500);
 
 
+
+
   useEffect(() => {
     
   if(localStorage.getItem('user')){
+
+    if(localStorage.getItem('refresh_token' && localStorage.getItem('get_time') + localStorage.getItem('expires_in')  < Date.now())){
+          const authUser = async () => {
+            const res = await Api.post(endpoints['token'],
+            qs.stringify({
+              "grant_type":"refresh_token",
+              "refresh_token":localStorage.getItem('refresh_token'),
+              "client_id":client.clientId,
+              "client_secret":client.clientSecret
+            })).then((res) => {
+              console.log(res.data)
+              localStorage.clear()
+              localStorage.setItem("token", res.data.access_token)
+              localStorage.setItem("refresh_token", res.data.refresh_token)
+              localStorage.setItem("expires_in", res.data.expires_in)
+              localStorage.setItem("get_time", Date.now())
+            }).catch(err => {
+              if(err.response.status === 400){
+                alert("Invalid username or password")
+              }
+            })
+        
+        
+        }
+        authUser()
+    }
+
     let user = JSON.parse( localStorage.getItem('user'))
     console.log(user)
     dispatch({

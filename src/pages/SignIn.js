@@ -52,6 +52,9 @@ export default function SignIn() {
       console.log(res.data)
       localStorage.clear()
       localStorage.setItem("token", res.data.access_token)
+      localStorage.setItem("refresh_token", res.data.refresh_token)
+      localStorage.setItem("expires_in", res.data.expires_in)
+      localStorage.setItem("get_time", Date.now())
       getUserDetails()
 
     }).catch(err => {
