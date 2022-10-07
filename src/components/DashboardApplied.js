@@ -8,8 +8,8 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import CenterDiv from './CenterDiv'
 import Item from './Item';
-
-
+import JobItem from './JobItem'
+import CkeditorHtml from './CkeditorHtml';
 
 
 const DashboardApplied = () => {
@@ -68,14 +68,12 @@ const DashboardApplied = () => {
             {applies!=null && applies.length > 0?(
                     applies.map((item, index) => (
                     <Grid item xs={2} sm={6} md={6} key={index}>
-                          <Link to={`/job-detail/${item.post}`} className="link">
+                          <Link to={`/job-detail/${item.post}`} className="link deco-none">
                         
-                            <Item>
-                                <p className="heading">{item.user}</p>
-                                <p>{item.description}</p>
-                            </Item>
+                            <JobItem data={item.post_detail}/>
                         </Link>
                         <CenterDiv>
+                        <Item className="mr-2"><CkeditorHtml data={item.description} /></Item>
                         {
                             item.CV_path?(
                                     <Button onClick={()=>{

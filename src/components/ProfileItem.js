@@ -60,6 +60,8 @@ export default function ProfileItem(props) {
   const [openDialogAdd, setOpenDialogAdd] = useState(false);
   const [startDateValue, setStartDateValue] = useState(new Date())
   const [endDateValue, setEndDateValue] = useState(new Date())
+  const [startDateValueAdd, setStartDateValueAdd] = useState(new Date())
+  const [endDateValueAdd, setEndDateValueAdd] = useState(new Date())
   const [dataMajorId, setDataMajorId] = useState(null)
   const [categories, setCategories] = useState([])
   const [modified, setModified] = useState(null)
@@ -103,52 +105,55 @@ export default function ProfileItem(props) {
 
 
   const handleAddItemClick = async () => {
-    setModified(null)
-    setStartDateValue(new Date())
-    setEndDateValue(new Date())
-    setDataMajorId(null)
+    setModified({
+      university_name:"",
+      degree_name:"",
+      CPA:"",
+    }) 
+    setDataMajorId("")
     handleOpenAdd()
   }
 
   const handleAddSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
 
-    const postData = async () => {
-        const res = await Api.post(endpoints['education']
-        ,   {
-                degree: formData.get('degree_name'),
-                university: formData.get('university_name'),
-                major_id: dataMajorId,
-                completed_date : endDateValue,
-                CPA: formData.get('CPA'),
-                start_date: startDateValue,
-    
-        }
-        ,{
+      const postDataSubmt = async () => {
+          const res = await Api.post(endpoints['education']
+          
+          ,   {
+                 degree_name: formData.get('degree_name'),
+                 university_name: formData.get('university_name'),
+                 major: dataMajorId,
+                 completionDate : endDateValueAdd,
+                 CPA: formData.get('CPA'),
+                  start_date: startDateValueAdd,
+      
+          }
+          ,{
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                  'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
-        
-        }).then(function (response) {
-            alert("them thanh cong")
-            handleCloseAdd()
-            props.handleDelete()
-        }
-        ).catch(err => alert(err))
+          
+          }).then(function (response) {
+              alert("them thanh cong")
+              handleCloseAdd()
+              props.handleDelete()
+          }
+          ).catch(err => alert(err))
 
-        console.log(res)
-    }
+          console.log(res)
+      }
 
-    if(formData.get('degree_name') &&  formData.get('university_name')
-    && dataMajorId && formData.get('CPA')){
-        postData()
-    }
-    else{
-          alert('Please fill all required fields')
-    }
-}
-  
+      if(formData.get('degree_name') &&  formData.get('university_name')
+      && dataMajorId && formData.get('CPA')){
+          postDataSubmt()
+      }
+      else{
+            alert('Please fill all required fields')
+      }
+  }
+    
   const handleModify = async (item) => {
     setModified(item)
     setStartDateValue(item.start_date)
@@ -198,9 +203,6 @@ export default function ProfileItem(props) {
         }
   }
 
-  console.log(data)
-
-
   return (
     <div className="flex-grow" style={{ width: '100%' }}>
           <Typography variant="h2" textAlign="left" component="h2" >
@@ -248,12 +250,19 @@ export default function ProfileItem(props) {
                 <></>
               )
             }
-                <Grid item xs={12} sm={6} md={6}  >
-                  <Item>
-                        <Button variant="contained" onClick={handleAddItemClick} >Thêm</Button>
-                  </Item>
-         
-                </Grid>
+                     {props.authenticated ? (
+                        <>
+                        <Grid item xs={12} sm={6} md={6}  >
+                          <Item>
+                                <Button variant="contained" onClick={handleAddItemClick} >Thêm</Button>
+                          </Item>
+                
+                       </Grid>
+                        </>
+                      ):(
+                        <></>
+                    )}
+        
             </Grid>
             <ModalComponent handleOpen={handleOpen} open={openDialog} handleClose={handleClose}>
                       <Box sx={{ flexGrow: 1 }} component="form" onSubmit={handleModifySubmit}>
@@ -334,7 +343,7 @@ export default function ProfileItem(props) {
                   <ModalComponent handleOpen={handleOpenAdd} open={openDialogAdd} handleClose={handleCloseAdd}>
                       <Box sx={{ flexGrow: 1 }} component="form" onSubmit={handleAddSubmit}>
                               <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={2} sm={4} md={6} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Tên trường
@@ -348,7 +357,7 @@ export default function ProfileItem(props) {
 
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={2} sm={4} md={6} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Tên bằng cấp
@@ -362,7 +371,7 @@ export default function ProfileItem(props) {
 
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={2} sm={4} md={6} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Chọn ngành nghề
@@ -372,7 +381,7 @@ export default function ProfileItem(props) {
                                   </Grid>
                             
                                 
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={2} sm={4} md={6} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           CPA
@@ -386,20 +395,20 @@ export default function ProfileItem(props) {
                                       />
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={2} sm={4} md={6} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                         Ngày bắt đầu
                                       </Typography>
-                                      <DatePicker value={startDateValue} setDateValue={setStartDateValue}/>
+                                      <DatePicker value={startDateValueAdd} setDateValue={setStartDateValueAdd}/>
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={2} sm={4} md={6} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                         Ngày kết thúc
                                       </Typography>
-                                      <DatePicker value={endDateValue} setDateValue={setEndDateValue}/>
+                                      <DatePicker value={endDateValueAdd} setDateValue={setEndDateValueAdd}/>
                                       </div>
                                   </Grid>
                               </Grid>

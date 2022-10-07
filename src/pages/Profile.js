@@ -21,40 +21,44 @@ function Profile() {
   const [user, dispatch] = useContext(UserContext)
   const [openDialog, setOpenDialog] = useState(false);
   const { id } = useParams();
+  const [profileDetailId, setProfileDetailId] = useState('');
   const [profile, setProfile] = useState(null)
   const [posts, setPosts] = useState([])
   const [profileDetail, setProfileDetail] = useState(null)
 
-
   const handleOpen = () => setOpenDialog(true);
   const handleClose = () => setOpenDialog(false);
 
-
+  const authenticated = user.id ==id ? true : false
 
   const handleDelete =()=>  {
-    getProfileDetail();
+    getProfileDetail(profileDetailId);
   }
 
 
-    const getProfileDetail= async () => {
-      const res = await Api.get(endpoints['profile-detail'](3))
-          console.log(res.data)
-          setProfileDetail(res.data)
-      }
-  
+
     
     const handleGetProfile = async () => {
       const res = await Api.get(endpoints['user-detail'](id))
         console.log(res.data)
         setProfile(res.data)
-        getProfileDetail()
+        return res.data.profile.id
       }
 
+    const getProfileDetail= async (profileid) => {
+      const res = await Api.get(endpoints['profile-detail'](profileid))
+          console.log(res.data)
+          setProfileDetail(res.data)
+          setProfileDetailId(profileid)
+    }
+  
 
         
   useEffect(() => {
-        handleGetProfile()
- 
+        handleGetProfile().then((profileid) => {
+          getProfileDetail(profileid)
+        })
+        
   },[])
   
 
@@ -95,10 +99,13 @@ function Profile() {
         }
       
         </CenterDiv>
-        {/* <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-        User: {profile.username}
-        </Typography>
 
+        <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+        Tên đăng nhập: {profile.username}
+        </Typography>
+       <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+        Tên: {profile.first_name} {profile.last_name}
+        </Typography>
           {
           profile?.email?(
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
@@ -107,12 +114,29 @@ function Profile() {
           ):(
             <></>
           )
-        } */}
-
+        }
+        {
+          profile?.profile.nick_name?(
+            <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+            Biệt danh: {profile?.profile.nick_name}
+          </Typography>
+          ):(
+            <></>
+          )
+        }
+        {
+          profile?.profile.description?(
+            <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+            Mô tả: {profile?.profile.description}
+          </Typography>
+          ):(
+            <></>
+          )
+        }
         {
           profileDetail && profileDetail.educations ?(
             <div>
-              <ProfileItem data={profileDetail?.educations} handleDelete={handleDelete} authenticated/>
+              <ProfileItem data={profileDetail?.educations} handleDelete={handleDelete} authenticated={authenticated}/>
             </div>
           ):(
             <></>
@@ -121,7 +145,7 @@ function Profile() {
         {
           profileDetail && profileDetail.experiences ?(
             <div>
-              <ProfileItemExperience data={profileDetail?.experiences} handleDelete={handleDelete} authenticated/>
+              <ProfileItemExperience data={profileDetail?.experiences} handleDelete={handleDelete} authenticated={authenticated}/>
             </div>
           ):(
             <></>

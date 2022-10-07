@@ -57,8 +57,11 @@ export default function ProfileItemExperience(props) {
 
   const [data, setData] = useState(null)
   const [openDialog, setOpenDialog] = useState(false);
+  const [openDialogAdd, setOpenDialogAdd] = useState(false);
   const [startDateValue, setStartDateValue] = useState(new Date())
   const [endDateValue, setEndDateValue] = useState(new Date())
+  const [startDateValueAdd, setStartDateValueAdd] = useState(new Date())
+  const [endDateValueAdd, setEndDateValueAdd] = useState(new Date())
   const [dataMajorId, setDataMajorId] = useState(null)
   const [categories, setCategories] = useState([])
   const [modified, setModified] = useState(null)
@@ -68,6 +71,10 @@ export default function ProfileItemExperience(props) {
 
   const handleOpen = () => setOpenDialog(true);
   const handleClose = () => setOpenDialog(false);
+
+
+  const handleOpenAdd = () => setOpenDialogAdd(true);
+  const handleCloseAdd = () => setOpenDialogAdd(false);
 
   const handleDeleteExperience= async (id) => {
 
@@ -98,7 +105,56 @@ export default function ProfileItemExperience(props) {
   },[props])
 
 
+  const handleAddItemClick = async () => {
+    setModified({
+      title:"",
+      company_name:"",
+      description:"",
+    }) 
+    // setDataMajorId("")
+    handleOpenAdd()
+  }
+
+  const handleAddSubmit = async (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+
+      const postDataSubmt = async () => {
+          const res = await Api.post(endpoints['experience']
+          
+          ,   {
+
+                  title: formData.get('title'),
+                  company_name: formData.get('company_name'),
+                  description: formData.get('description'),
+                  // major_id: dataMajorId,
+                  end_date : endDateValueAdd,
+                  start_date: startDateValueAdd,
+          }
+          ,{
+            headers: {
+                  'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+          
+          }).then(function (response) {
+              alert("them thanh cong")
+              handleCloseAdd()
+              props.handleDelete()
+          }
+          ).catch(err => alert(err))
+
+          console.log(res)
+      }
+
+      if(formData.get('title') &&  formData.get('company_name')){
+          postDataSubmt()
+      }
+      else{
+            alert('Please fill all required fields')
+      }
+  }
   
+
   const handleModify = async (item) => {
     setModified(item)
     setStartDateValue(item.start_date)
@@ -150,7 +206,6 @@ export default function ProfileItemExperience(props) {
   
   }
 
-  console.log(data)
 
 
   return (
@@ -200,6 +255,18 @@ export default function ProfileItemExperience(props) {
                 <></>
               )
             }
+
+                  {props.authenticated ? (
+                        <Grid item xs={12} sm={6} md={6}  >
+                           <Item>
+                                 <Button variant="contained" onClick={handleAddItemClick} >Thêm</Button>
+                           </Item>
+                  
+                         </Grid>
+                      ):(
+                        <></>
+                    )}
+    
             </Grid>
             <ModalComponent handleOpen={handleOpen} open={openDialog} handleClose={handleClose}>
                       <Box sx={{ flexGrow: 1 }} component="form" onSubmit={handleModifySubmit}>
@@ -270,6 +337,73 @@ export default function ProfileItemExperience(props) {
                                         Ngày kết thúc
                                       </Typography>
                                       <DatePicker value={endDateValue} setDateValue={setEndDateValue}/>
+                                      </div>
+                                  </Grid>
+                              </Grid>
+                              <Button  type="submit" variant="contained">Lưu</Button>
+                          </Box>                           
+                  </ModalComponent>
+
+
+                  <ModalComponent handleOpen={handleOpenAdd} open={openDialogAdd} handleClose={handleCloseAdd}>
+                      <Box sx={{ flexGrow: 1 }} component="form" onSubmit={handleAddSubmit}>
+                              <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                              <Grid item xs={2} sm={4} md={4} >
+                                      <div>
+                                      <Typography variant="h6" gutterBottom component="div" className="name">
+                                          Tên vị trí
+                                      </Typography>
+                                      <TextField required name="title" className="search" fullWidth id="outlined-search" type="search"
+                                          value={modified?.title}
+                                          onChange={(e) => {
+                                              setModified({...modified, title: e.target.value})
+                                          }}
+                                      />
+
+                                      </div>
+                                  </Grid>
+                                  <Grid item xs={2} sm={4} md={4} >
+                                      <div>
+                                      <Typography variant="h6" gutterBottom component="div" className="name">
+                                          Tên công ty
+                                      </Typography>
+                                      <TextField required name="company_name" className="search" fullWidth id="outlined-search" type="search"
+                                          value={modified?.company_name}
+                                          onChange={(e) => {
+                                              setModified({...modified, company_name: e.target.value})
+                                          }}
+                                      />
+
+                                      </div>
+                                  </Grid>
+                                  <Grid item xs={2} sm={4} md={4} >
+                                      <div>
+                                      <Typography variant="h6" gutterBottom component="div" className="name">
+                                          Mô tả
+                                      </Typography>
+                                      <TextField required name="description" className="search" fullWidth id="outlined-search" type="search"
+                                          value={modified?.description}
+                                          onChange={(e) => {
+                                              setModified({...modified, description: e.target.value})
+                                          }}
+                                      />
+
+                                      </div>
+                                  </Grid>
+                                  <Grid item xs={2} sm={4} md={6} >
+                                      <div>
+                                      <Typography variant="h6" gutterBottom component="div" className="name">
+                                        Ngày bắt đầu
+                                      </Typography>
+                                      <DatePicker value={startDateValueAdd} setDateValue={setStartDateValueAdd}/>
+                                      </div>
+                                  </Grid>
+                                  <Grid item xs={2} sm={4} md={6} >
+                                      <div>
+                                      <Typography variant="h6" gutterBottom component="div" className="name">
+                                        Ngày kết thúc
+                                      </Typography>
+                                      <DatePicker value={endDateValueAdd} setDateValue={setEndDateValueAdd}/>
                                       </div>
                                   </Grid>
                               </Grid>

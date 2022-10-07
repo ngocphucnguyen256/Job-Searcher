@@ -19,12 +19,10 @@ html {
 .carousel-component {
   position: relative;
 }
-
 .carousel-component img {
   width: 100%;
   height: 500px;
 }
-
 .carousel-component .form-wrapper {
   position: absolute;
   top: 20px;
@@ -34,26 +32,21 @@ html {
 
 @-webkit-keyframes colorChange {
   from {
-    -webkit-filter: hue-rotate(0deg);
-            filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
   }
   to {
-    -webkit-filter: hue-rotate(360deg);
-            filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
   }
 }
 
 @keyframes colorChange {
   from {
-    -webkit-filter: hue-rotate(0deg);
-            filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
   }
   to {
-    -webkit-filter: hue-rotate(360deg);
-            filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
   }
 }
-
 .header-form {
   padding: 2rem;
   margin-right: auto;
@@ -61,15 +54,12 @@ html {
   width: 40.625rem;
   background-color: #fff;
   border-radius: 3px;
-  -webkit-box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
-          box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
 }
-
 .header-form h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
-
 .header-form button {
   margin: 1rem;
 }
@@ -77,12 +67,10 @@ html {
 .job-tab-wrapper {
   padding: 50px;
 }
-
 .job-tab-wrapper h2 {
   text-transform: uppercase;
   font-size: 1.5rem;
 }
-
 .job-tab-wrapper img {
   height: 50px;
   width: 50px;
@@ -91,50 +79,34 @@ html {
 .flex-grow {
   padding: 1rem;
 }
-
 .flex-grow img {
   width: 100%;
   height: auto;
 }
-
 .flex-grow .title {
   font-size: 1.4rem;
   text-align: start;
   font-weight: bold;
 }
-
 .flex-grow div {
   text-align: start !important;
 }
-
 .flex-grow .flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .flex-grow .price .location {
   margin-top: 1rem;
   margin-bottom: 0;
 }
-
 .flex-grow .link {
   text-decoration: none;
 }
 
 .center-div {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .reg-email {
@@ -142,13 +114,11 @@ html {
   background-image: url(../../public/img/bg-4_3.jpg);
   color: #fff;
 }
-
 .reg-email h2 {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 5rem;
 }
-
 .reg-email p {
   text-align: center;
 }
@@ -156,23 +126,20 @@ html {
 .section-companies {
   padding: 5rem;
 }
-
 .section-companies .left {
   width: 50%;
   padding: 5rem;
   background-image: url(../../public/img/bg-2.png);
   font-size: 2rem;
 }
-
 .section-companies .title {
   font-size: 2.5rem;
   text-align: left;
   color: #ffab00;
   margin-bottom: 2rem;
 }
-
 .section-companies .desc {
-  color: #266377;
+  color: rgb(38, 99, 119);
   text-align: right;
 }
 
@@ -180,11 +147,9 @@ footer {
   background-image: url(../../public/img/bg-4_3.jpg);
   color: #fff;
 }
-
 footer .footer__container {
   padding: 5rem;
 }
-
 footer h2 {
   margin-bottom: 3rem;
 }
@@ -192,41 +157,34 @@ footer h2 {
 .job-detail {
   font-size: 1rem;
 }
-
 .job-detail h2 {
   text-align: left;
   font-size: 1.5rem;
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
-
 .job-detail .header {
   text-align: center;
   padding: 5rem;
 }
-
 .job-detail .header h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
-
 .job-detail .header h2 {
   text-align: center;
   font-size: 1.5rem;
   margin-bottom: 2rem;
 }
-
 .job-detail .body {
   padding: 5rem;
 }
-
 .job-detail .body .heading {
   font-size: 1rem;
   margin-bottom: 1rem;
   font-weight: bold;
   margin-bottom: 1rem;
 }
-
 .job-detail .body .ckeditor-html {
   margin: 3rem 0rem;
 }
@@ -250,17 +208,10 @@ footer h2 {
 .comment-list {
   margin-top: 5rem;
 }
-
 .comment-list .fl {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 
 h1 {
@@ -270,13 +221,11 @@ h1 {
 .search-job {
   padding: 4rem;
 }
-
 .search-job h1 {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 2rem;
 }
-
 .search-job h2 {
   margin: 3rem 0rem;
   font-size: 1.5rem;
@@ -295,8 +244,7 @@ h1 {
   height: 100px;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .loading div {
@@ -309,8 +257,8 @@ h1 {
 }
 
 .loading div:nth-child(2) {
-  -webkit-animation-delay: -.7s;
-          animation-delay: -.7s;
+  -webkit-animation-delay: -0.7s;
+          animation-delay: -0.7s;
 }
 
 @-webkit-keyframes loading {
@@ -346,7 +294,6 @@ h1 {
     opacity: 0;
   }
 }
-
 @-webkit-keyframes bg {
   0% {
     background: #fff;
@@ -358,7 +305,6 @@ h1 {
     background: #fff;
   }
 }
-
 @keyframes bg {
   0% {
     background: #fff;
@@ -370,8 +316,22 @@ h1 {
     background: #fff;
   }
 }
-
 .major-wrapper {
   margin-top: 8px;
 }
-/*# sourceMappingURL=css.css.map */
+
+.mr-2 {
+  margin-right: 16px;
+}
+
+.mr-1 {
+  margin-right: 8px;
+}
+
+.mt-1 {
+  margin-top: 8px;
+}
+
+.mt-2 {
+  margin-top: 16px;
+}/*# sourceMappingURL=css.css.map */

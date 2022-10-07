@@ -266,7 +266,7 @@ export default function JobDetails(props) {
                     }
                 
                     </CenterDiv>
-                    <h2>Công ty: {post.company}</h2>
+                    <h2>Công ty: {post.company_detail.company_name}</h2>
                     </Link>
 
                     {props.authenticated?(<></>):(
@@ -283,6 +283,14 @@ export default function JobDetails(props) {
                         </div>
                     </>
                     )}
+                    <div>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Hoặc nộp đơn ứng tuyển qua email
+                    </Typography>
+                    <Button  onClick={() => window.location = `mailto:${post.company_detail?.email}?subject=Apply ${post.title}`} variant="contained">Nộp đơn ứng tuyển qua email</Button>
+                    </div>
+        
+                    
                 </section>
                 <section className="body">
                     <Box sx={{ flexGrow: 1 }}>
