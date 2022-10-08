@@ -31,7 +31,7 @@ export default function JobDetails(props) {
     const [openDialog, setOpenDialog] = useState(false);
     const [dataCkeditor, setDataCkeditor] = useState('')
     const [saved, setSaved] = useState(false);
-
+    const [authenticated, setAuthenticated] = useState(props.authenticated);
 
     const handleOpen = () => setOpenDialog(true);
     const handleClose = () => setOpenDialog(false);
@@ -44,12 +44,23 @@ export default function JobDetails(props) {
     }
 
 
+
     useEffect(() => {
+
+        if(props.authenticated ){
+            setAuthenticated(props.authenticated)
+        }
 
         const loadPostDetailsById = async () => {
             const res = await Api.get(endpoints['post-detail'](id))
             setPost(res.data)
-            if(props.authenticated){
+
+            if(res.data && res.data.company_detail && res.data.company_detail.user === user.id){
+                setAuthenticated(true)
+            }
+            console.log(authenticated);
+
+            if(authenticated){
                 loadPostAppliessById()
             
            }
@@ -64,16 +75,12 @@ export default function JobDetails(props) {
             })
             setPost(res.data)
             setSaved(res.data.is_saved)
-            if(props.authenticated){
-                loadPostAppliessById()
-            
-           }
-    
     
         }
         
-        if(localStorage.getItem('token')){
+        if(user.user_role === 'User'){
             loadPostDetailsByIdWithHeader()
+            
         }
         else{
             loadPostDetailsById()
@@ -91,7 +98,7 @@ export default function JobDetails(props) {
 
         var formData = new FormData();
 
-        if(props.authenticated){
+        if(authenticated){
             alert('Khong the apply vao viec lam cua chinh ban')
         }
         
@@ -173,7 +180,7 @@ export default function JobDetails(props) {
   return (
     <>
             {
-                props.authenticated?(
+               props.removeHeader?(
                     <></>
                 ):(
                     <Header/>
@@ -183,63 +190,65 @@ export default function JobDetails(props) {
   
             <main className="job-detail">
             {
-                props.authenticated?(
-                        <section>
+                authenticated?(
+                        <section className="mt-2">
                         
                             <Typography variant="h4"  gutterBottom component="h4" align="center">Danh sách ứng viên</Typography>
-                            <Box sx={{ flexGrow: 1 }}>
-                                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                                     {applies!=null && applies.length > 0?(
-                                        applies.map((item, index) => (
-                                        <Grid item xs={2} sm={4} md={4} key={index}>
-                                            
-                                                <Item>
-                                                    <Link to={`/profile/${item.user}`} className="link">
-                                                            <CenterDiv>
-                                                            {
-                                                            post.avatar_company?(
-                                                                <Avatar alt="Remy Sharp" src={ item?.avatar_company}
-                                                                style={{ height: '170px', width: '170px' }}
-                                                                />
-
-                                                            ):(
-                                                                <Avatar alt="alt" src={img}
-                                                                style={{ height: '170px', width: '170px' }}
-                                                                />
-                                                                
-
-                                                            )
-                                                            }
-                                                        
-                                                            </CenterDiv>
-                                                    
-                                                        <p className="heading">{item.user}</p>
-                                                        <p>{item?.description}</p>
-                                                    </Link>
-                                                </Item>
-                                            {
-                                                item.CV_path?(
-                                                      <Button onClick={()=>{
-                                                   
-                                                            let link = document.createElement("a");
-                                                            link.target = "_blank";
-                                                            link.download = `CV-${item.user}.txt`;
-                                                            link.href = `${item.CV_path}`;
-                                                            link.click();
-                                                      }} variant="contained" fullWidth>Tải CV</Button>
-                                                ):(
-                                                <></>
-                                                )
-                                            }
-                                        </Grid>
-                                        ))
-                                    ):(
-                                    <Typography variant="h2"  gutterBottom component="h2">Chưa có ứng viên nào apply</Typography>
-
- 
+                                        <Box sx={{ flexGrow: 1 }}>
+                                                   <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                                                   {
+                                                         applies.map((item, index) => (
+                                                           <Grid item xs={2} sm={4} md={4} key={index}>
+                                                               
+                                                                   <Item>
+                                                                       <Link to={`/profile/${item.user}`} className="link deco-none black" >
+                                                                               <CenterDiv>
+                                                                               {
+                                                                               item.avatar_user?(
+                                                                                   <Avatar alt="Remy Sharp" src={ item?.avatar_user}
+                                                                                   style={{ height: '170px', width: '170px' }}
+                                                                                   />
+                   
+                                                                               ):(
+                                                                                   <Avatar alt="alt" src={img}
+                                                                                   style={{ height: '170px', width: '170px' }}
+                                                                                   />
+                                                                                   
+                   
+                                                                               )
+                                                                               }
+                                                                           
+                                                                               </CenterDiv>
+                                                                       
+                                                                           <p className="heading">Tên: {item.user}</p>
+                                                                           <p className="heading mt-2">Mô tả: <CkeditorHtml data={item.description}/> </p>
+                                                                          
+                                                                       </Link>
+                                                                   </Item>
+                                                               {
+                                                                   item.CV_path?(
+                                                                         <Button onClick={()=>{
+                                                                      
+                                                                               let link = document.createElement("a");
+                                                                               link.target = "_blank";
+                                                                               link.download = `CV-${item.user}.txt`;
+                                                                               link.href = `${item.CV_path}`;
+                                                                               link.click();
+                                                                         }} variant="contained" fullWidth>Tải CV</Button>
+                                                                   ):(
+                                                                   <></>
+                                                                   )
+                                                               }
+                                                           </Grid>
+                                                           ))
+                                                   }
+                                               </Grid>
+                                    </Box>
+                                        ):(
+                                    <Typography variant="h3" align="center" gutterBottom component="h3">Chưa có ứng viên nào apply</Typography>
                                     )}
-                                </Grid>
-                            </Box>
+                     
                         </section>
               
                 ):(
@@ -269,7 +278,7 @@ export default function JobDetails(props) {
                     <h2>Công ty: {post.company_detail.company_name}</h2>
                     </Link>
 
-                    {props.authenticated?(<></>):(
+                    {authenticated || user.role!=="User" ?(<></>):(
                     <>
                         <Button onClick={handleApplyFormOpen} variant="contained">Nộp đơn ứng tuyển ngay</Button>
                         <div style={{marginTop:20}}>
@@ -283,12 +292,19 @@ export default function JobDetails(props) {
                         </div>
                     </>
                     )}
-                    <div>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Hoặc nộp đơn ứng tuyển qua email
-                    </Typography>
-                    <Button  onClick={() => window.location = `mailto:${post.company_detail?.email}?subject=Apply ${post.title}`} variant="contained">Nộp đơn ứng tuyển qua email</Button>
-                    </div>
+
+                   {
+                       user.role!=="Hirer"?(
+                            <div>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    Hoặc nộp đơn ứng tuyển qua email
+                                </Typography>
+                                <Button  onClick={() => window.location = `mailto:${post.company_detail?.email}?subject=Apply ${post.title}`} variant="contained">Nộp đơn ứng tuyển qua email</Button>
+                           </div>
+                        ):(
+                        <></>
+                        )
+                   }
         
                     
                 </section>
@@ -371,7 +387,7 @@ export default function JobDetails(props) {
             </main>
 
             {
-                props.authenticated?(
+                authenticated?(
                     <></>
                 ):(
                     <Footer/>

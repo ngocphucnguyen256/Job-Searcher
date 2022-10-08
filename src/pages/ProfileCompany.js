@@ -49,36 +49,32 @@ function ProfileCompany() {
       
     }
 
-  // const getComments = async () => {
-  //   const res = await Api.get(endpoints['user-comments'](id))
-  //       console.log(res.data)
-  //       setCommentData(res.data)
-  //   }
+  const getComments = async (profileid) => {
+    const res = await Api.get(endpoints['companyCommentsById'](profileid))
+        console.log(res.data)
+        setCommentData(res.data)
+    }
 
 
-  // const handlePostComment = async () => {
-  //   if (comment.length>0){
-  //     const res = await Api.post(endpoints['comments'],{
-  //       creator: user.id,
-  //       hirer:profile.id,
-  //       content:comment
-  //     },  { headers:{
-  //     "Authorization": `Bearer ${localStorage.getItem("token")}`
-  //     }}
-  //     ).then((res) => {
-  //       getComments()
+  const handlePostComment = async () => {
+    if (comment.length>0){
+      const res = await Api.post(endpoints['companyCommentsById'](profileDetailId),{
+        content:comment
+      },  { headers:{
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }}
+      ).then((res) => {
+        getComments(profileDetailId)
+      }).catch(err => {
+        alert(err.message)
+      })
+      }
+    else{
+      alert('Bình luận không thể trống')
+    }
 
 
-  //     }).catch(err => {
-  //       alert(err.message)
-  //     })
-  //     }
-  //   else{
-  //     alert('Bình luận không thể trống')
-  //   }
-
-
-  // }
+  }
 
 
 
@@ -133,6 +129,7 @@ useEffect(() => {
     
    if(profileDetailId){
      handleGetCompanyPost(profileDetailId)
+     getComments(profileDetailId)
    }
 
 },[rate,profileDetailId])
@@ -237,8 +234,8 @@ useEffect(() => {
                     </Grid>
             </Box>
             
- {/* <CommentList data={commentData} handlePostComment={handlePostComment}
-            comment={comment} setComment={setComment} getComments={getComments}/> */}
+            <CommentList data={commentData} handlePostComment={handlePostComment}
+            comment={comment} setComment={setComment} getComments={getComments}/>
 
 
     </Box>

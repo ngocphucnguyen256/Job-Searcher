@@ -103,6 +103,10 @@ export default function Dashboard(props) {
 
   }
 
+  React.useEffect(() => {
+    navigate("/dashboard/home")
+  },[])
+
 
 
   return (

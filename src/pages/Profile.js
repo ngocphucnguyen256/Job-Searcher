@@ -124,18 +124,18 @@ function Profile() {
           )
         }
         {
-          profile?.profile.nick_name?(
+          profile?.profile?.nick_name?(
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-            Biệt danh: {profile?.profile.nick_name}
+            Biệt danh: {profile?.profile?.nick_name}
           </Typography>
           ):(
             <></>
           )
         }
         {
-          profile?.profile.description?(
+          profile?.profile?.description?(
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-            Mô tả: {profile?.profile.description}
+            Mô tả: {profile?.profile?.description}
           </Typography>
           ):(
             <></>

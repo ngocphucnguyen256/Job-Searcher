@@ -35,10 +35,15 @@ const CommentList=(props)=> {
             </Button>
         </div>
         
-            {props.data.map((item, index) =>
-                  <CommentItem key={index} data={item} getComments={props.getComments}/>
-              )}
-
+          {
+            props.data && props.data.lenght>0?(
+              props.data.map((item, index) =>
+                <CommentItem key={index} data={item} getComments={props.getComments}/>
+                )
+            ):(
+              <></>
+            )
+          }
     
     
     </div>

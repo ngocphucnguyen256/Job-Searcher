@@ -21,6 +21,8 @@ import DashboardApplied from './components/DashboardApplied';
 import DashboardSavedPosts from './components/DashboardSavedPosts';
 import ProfileCompany from './pages/ProfileCompany';
 import Api, { endpoints, client } from './config/Api'
+import DashboardUpgrade from './components/DashboardUpgrade';
+import DashboardModifyCompany from './components/DashboardModifyCompany';
 import * as qs from 'qs'
 
 export const UserContext = createContext()
@@ -119,9 +121,11 @@ function App() {
                   <Route  path="all-posted" element={<DashboardPosted/>}/>
                   <Route  path="saved-posted" element={<DashboardSavedPosts/>}/>
                   <Route  path="post" element={<DashboardPost/>}/>
-                  <Route  path="job-detail/:id" element={<JobDetails authenticated/>}/>
+                  <Route  path="job-detail/:id" element={<JobDetails authenticated removeHeader/>}/>
                   <Route  path="job-detail/:id/modify" element={<DashboardPostModify/>}/>
                   <Route  path="modify/:id" element={<DashboardModify/>}/>
+                  <Route  path="upgrade" element={<DashboardUpgrade/>}/>
+                  <Route  path="modify-company/:id" element={<DashboardModifyCompany/>}/>
                   <Route  path="*" element={<PageNotFound/>}/>
                 </Route>
                 <Route  path="job-list" element={<SearchJob/>}/>

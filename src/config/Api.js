@@ -21,7 +21,7 @@ export const endpoints = {
     "user-detail": (userId) => `/users/${userId}/`,
     "company-detail": (userId) => `/company/${userId}/`,
     "user-rating": (userId) => `/company/${userId}/rating/`,
-    "user-comments": (userId) => `/users/${userId}/comments/`,
+    "companyCommentsById": (companyId) => `/company/${companyId}/comments/`,
     "my-applies":"/applies/my-applies/",
     "hirer":"/company/",
     "hirer-posts":(id)=> `/posts/my-posts/?id=${id}`,

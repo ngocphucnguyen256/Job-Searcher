@@ -23,32 +23,20 @@ const DashboardHome = () => {
   const handleOpen = () => setOpenDialog(true);
   const handleClose = () => setOpenDialog(false);
 
-  const handleUpdateRole = async () => {
-    let res = await Api.post(endpoints['waits'],
-        {
-        
-        }
-        ,{
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            },
-        
-        }).then(
-          function (res) {
-            setOpenDialog(true)
-          }
-        ).catch(err => {
-          console.log(err)
-          alert('Bạn đã đăng kí nâng cấp nhà tuyển dung từ trước rồi')
-        })
 
-      
+  
+
+
+    const toUpdateRole =  () => {
+      navigate(`/dashboard/upgrade/`, { replace: true });
     }
 
-
-
-    const handleModifyUser = async () => {
+    const handleModifyUser =  () => {
       navigate(`/dashboard/modify/${user.id}`, { replace: true });
+    }
+
+    const handleModifyCompany =  () => {
+      navigate(`/dashboard/modify-company/${user.id}`, { replace: true });
     }
 
     return (
@@ -87,9 +75,9 @@ const DashboardHome = () => {
            {
              user.role==="User"?(
               <>
-                          <CenterDiv>
+              <CenterDiv>
 
-               <Button variant="contained" color="primary" onClick={handleUpdateRole}>Nâng cấp tài khoản thành nhà tuyển dụng</Button>
+               <Button variant="contained" color="primary" onClick={toUpdateRole}>Nâng cấp tài khoản thành nhà tuyển dụng</Button>
  
               </CenterDiv>
               <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
@@ -105,7 +93,26 @@ const DashboardHome = () => {
             <CenterDiv>
                   <Button variant="contained"  color="primary" onClick={handleModifyUser}>Thay doi thong tin tai khoan</Button>
             </CenterDiv>
-       
+            {
+             user.role==="Hirer"?(
+              <>
+             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+             
+             </Typography>
+              <CenterDiv className="mt-2">
+                  <Button variant="contained"  color="primary" onClick={handleModifyCompany}>Thay đổi thông tin công ty</Button>
+              </CenterDiv>
+
+              <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+             
+              </Typography>
+              </>
+             ):(
+              <>
+             
+              </>
+             )
+           }
          
 
             <ModalComponent handleOpen={handleOpen} open={openDialog} handleClose={handleClose}>
