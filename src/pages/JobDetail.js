@@ -221,8 +221,8 @@ export default function JobDetails(props) {
                                                                            
                                                                                </CenterDiv>
                                                                        
-                                                                           <p className="heading">Tên: {item.user}</p>
-                                                                           <p className="heading mt-2">Mô tả: <CkeditorHtml data={item.description}/> </p>
+                                                                           <p className="heading mt-2">Tên: {item?.user_fname}</p>
+                                                                           <p className="heading mt-2">Mô tả: <CkeditorHtml data={item?.description}/> </p>
                                                                           
                                                                        </Link>
                                                                    </Item>

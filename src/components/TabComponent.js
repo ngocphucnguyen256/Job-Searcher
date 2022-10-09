@@ -62,7 +62,7 @@ export default function TabComponent() {
 
 
 
-  const numItemsPerPage= 20;
+  const numItemsPerPage= 10;
 
 
 

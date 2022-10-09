@@ -48,12 +48,53 @@ function App() {
 
 
 
+  const convertUserRole = (numb) => {
+    if(numb === 1){
+      return "Admin"
+    }else if(numb === 2){
+       return "User"
+     }
+     else if(numb === 3){
+       return "Hirer"
+     }
+  }
+  
+  
+   const getUserDetails = async () => {
+    const res = await Api.get(endpoints['getUser'],
+    { headers:{
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    }}).catch(err => {
+      alert(err)
+    })
+  
+    let userDetail =res.data
+    console.log(userDetail)
+    userDetail["user_role"]=convertUserRole(userDetail.user_role)
+    localStorage.setItem("user",JSON.stringify(userDetail))
+  
+  
+  
+    dispatch({
+      "type": "login",
+      "payload": {
+          "username": userDetail.username,
+          "avatar": userDetail.avatar_path,
+          "email": userDetail.email,
+          "id": userDetail.id,
+          "role": userDetail.user_role,
+          "firstname": userDetail.first_name,
+          "lastname": userDetail.last_name
+       
+      }
+  })
+   }
 
   useEffect(() => {
     
   if(localStorage.getItem('user')){
-
-    if(localStorage.getItem('refresh_token' && localStorage.getItem('get_time') + localStorage.getItem('expires_in')  < Date.now())){
+  
+    if(localStorage.getItem('refresh_token') && parseInt(localStorage.getItem('get_time')) + parseInt(localStorage.getItem('expires_in'))*1000   < Date.now()){
           const authUser = async () => {
             const res = await Api.post(endpoints['token'],
             qs.stringify({
@@ -62,12 +103,13 @@ function App() {
               "client_id":client.clientId,
               "client_secret":client.clientSecret
             })).then((res) => {
-              console.log(res.data)
+              console.log("token refreshed",res.data)
               localStorage.clear()
               localStorage.setItem("token", res.data.access_token)
               localStorage.setItem("refresh_token", res.data.refresh_token)
               localStorage.setItem("expires_in", res.data.expires_in)
               localStorage.setItem("get_time", Date.now())
+              getUserDetails()
             }).catch(err => {
               if(err.response.status === 400){
                 alert("Invalid username or password")
