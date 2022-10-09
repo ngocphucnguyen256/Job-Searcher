@@ -22,6 +22,7 @@ export const endpoints = {
     "company-detail": (userId) => `/company/${userId}/`,
     "user-rating": (userId) => `/company/${userId}/rating/`,
     "companyCommentsById": (companyId) => `/company/${companyId}/comments/`,
+    "companyCreateCommentsById": (companyId) => `/company/${companyId}/create-comment/`,
     "my-applies":"/applies/my-applies/",
     "hirer":"/company/",
     "hirer-posts":(id)=> `/posts/my-posts/?id=${id}`,

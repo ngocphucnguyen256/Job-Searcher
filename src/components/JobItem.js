@@ -93,7 +93,7 @@ export default function JobItem(props) {
             </Typography>
           </div>
           <Typography variant="body1" className="company" gutterBottom component="div">
-          Công ty: {data?.company}
+          Công ty: {data?.company_detail?.company_name}
           </Typography>
           <Typography variant="body1" className="location" gutterBottom component="div">
           Ngành nghề: {data?.major_name}

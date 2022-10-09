@@ -118,7 +118,7 @@ const DashboardPostModify = ()=>{
 
         }
         else{
-                alert('Please fill all required fields')
+                alert('Vui lòng nhập đầy đủ thông tin')
         }
 
       

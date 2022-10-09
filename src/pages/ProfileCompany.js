@@ -54,7 +54,7 @@ function ProfileCompany() {
   const handlePostComment = async () => {
     if (comment.length > 0) {
       const res = await Api.post(
-        endpoints["companyCommentsById"](profileDetailId),
+        endpoints["companyCreateCommentsById"](profileDetailId),
         {
           content: comment,
         },

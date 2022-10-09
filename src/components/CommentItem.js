@@ -15,7 +15,6 @@ const CommentItem = (props) => {
 
 
 
-
    const  handleDeleteComment= async () => {
         const res = await Api.delete(endpoints['comment-detail'](data.id)
         ,{
@@ -24,7 +23,7 @@ const CommentItem = (props) => {
           },
       
           }).catch(err => console.log(err))
-        props.getComments()
+        props.getComments(data.company)
 
 
     }
