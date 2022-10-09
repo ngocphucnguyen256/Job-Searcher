@@ -49,15 +49,45 @@ function Profile() {
     const handleGetProfile = async () => {
       const res = await Api.get(endpoints['user-detail'](id))
         console.log(res.data)
-        setProfile(res.data)
-        return res.data.profile.id
+        if(!res.data.profile){
+          const createProfileDetail= async () => {
+            let resC = await Api.post(endpoints['profile'],
+            {
+                description: "",
+                nick_name: "",
+
+        }
+        ,{
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+        
+        }).then(function (resC) {
+            return resC.data.id;
+        }
+        ).catch(err => alert(err))
+                
+        }
+          createProfileDetail()
+
+        }
+        else{
+          setProfile(res.data)
+          return res.data.profile.id
+        }
+
       }
 
     const getProfileDetail= async (profileid) => {
-      const res = await Api.get(endpoints['profile-detail'](profileid))
+      const res = await Api.get(endpoints['profile-detail'](profileid)).then((res)=> {
           console.log(res.data)
           setProfileDetail(res.data)
           setProfileDetailId(profileid)
+      }).catch((err) => {
+          console.log(err)
+          window.location.reload();
+      })
+
     }
   
 
@@ -65,6 +95,8 @@ function Profile() {
   useEffect(() => {
         handleGetProfile().then((profileid) => {
           getProfileDetail(profileid)
+        }).catch((err) => {
+          window.location.reload();
         })
         
   },[])

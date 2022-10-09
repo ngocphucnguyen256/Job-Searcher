@@ -29,6 +29,7 @@ export const endpoints = {
     "comment-detail": (id) => `/comments/${id}/`,
     "mySavedPosts": "/my-saved-posts/",
     "savedPostDelete": (id) => `/my-saved-posts/${id}/`,
+    "profile": `/user-profile/`,
     "profile-detail": (id) => `/user-profile/${id}/`,
     "education": `/education-profile/`,
     "experience": `/experience-profile/`,
