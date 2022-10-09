@@ -26,7 +26,7 @@ const pages = [
 ];
 const settings = [
 {
-  'name': 'Dashboard',
+  'name': 'Bảng điều khiển',
   'url': '/dashboard'
 
 }
@@ -79,7 +79,8 @@ const ResponsiveAppBar = () => {
                 component="div"
                 sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
               >
-                JOB SEARCHER
+                HỆ THỐNG WEBSITE TRUNG GIAN TUYỂN DỤNG VÀ TÌM KIẾM VIỆC LÀM
+
               </Typography>
              </Link>
               
@@ -190,7 +191,7 @@ const ResponsiveAppBar = () => {
                     ))}
                         {/* <Link to='/sign-in' className="deco-none black"> */}
                       <MenuItem  onClick={handleLogout}>
-                          <Typography textAlign="center">Sign out</Typography>
+                          <Typography textAlign="center">Đăng xuất</Typography>
                       </MenuItem>
                         {/* </Link> */}
                   </Menu>
@@ -198,7 +199,7 @@ const ResponsiveAppBar = () => {
                 ) :(<>
                       <Link to='/sign-in' className="deco-none black">
                      <MenuItem  onClick={handleCloseNavMenu}>
-                          <Typography textAlign="center">Login</Typography>
+                          <Typography textAlign="center">Đăng nhập</Typography>
                     </MenuItem>
                         </Link>
                 </>)

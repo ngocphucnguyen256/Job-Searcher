@@ -17,18 +17,18 @@ import { UserContext } from '../App'
 import Api, { endpoints, client } from '../config/Api';
 import * as qs from 'qs'
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Job Searcher
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright(props) {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//       {'Bản quyền © '}
+//       <Link color="inherit" href="https://mui.com/">
+//       HỆ THỐNG WEBSITE TRUNG GIAN TUYỂN DỤNG VÀ TÌM KIẾM VIỆC LÀM
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 
 
@@ -59,7 +59,7 @@ export default function SignIn() {
 
     }).catch(err => {
       if(err.response.status === 400){
-        alert("Invalid username or password")
+        alert("Tên đăng nhập hơạc mật khẩu không đúng")
       }
     })
 
@@ -147,7 +147,7 @@ export default function SignIn() {
           </Avatar>
           </RouterLink>
           <Typography component="h1" variant="h5">
-            Sign in
+            Đăng nhập
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -155,7 +155,7 @@ export default function SignIn() {
               required
               fullWidth
               id="username"
-              label="User Name"
+              label="Tên đăng nhập"
               name="username"
               autoComplete="user name"
               autoFocus
@@ -167,17 +167,17 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Mật khẩu"
               type="password"
               id="password"
               autoComplete="current-password"
               value={password} 
                onChange={(evt) => setPassword(evt.target.value)}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             {/* <RouterLink to="/" className="deco-none " > */}
               <Button
                 type="submit"
@@ -185,25 +185,25 @@ export default function SignIn() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Đăng nhập
               </Button>
             {/* </RouterLink> */}
     
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Quên mật khẩu?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link href="sign-up" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Bạn chưa đăng ký tài khoản? Đăng ký ngay"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
 
       </Container>
   );

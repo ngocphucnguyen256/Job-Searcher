@@ -85,10 +85,10 @@ export default function ProfileItemExperience(props) {
     )
     console.log(res)
     if(res.status === 204){
-      alert("Edu deleted successfully")
+      alert("Xóa thành công")
     }
     else{
-      alert("Something went wrong")
+      alert("Có lỗi xảy ra")
     }
     props.handleDelete()
   }
@@ -137,7 +137,7 @@ export default function ProfileItemExperience(props) {
             },
           
           }).then(function (response) {
-              alert("them thanh cong")
+              alert("Thêm thành công")
               handleCloseAdd()
               props.handleDelete()
           }
@@ -150,7 +150,7 @@ export default function ProfileItemExperience(props) {
           postDataSubmt()
       }
       else{
-            alert('Please fill all required fields')
+            alert('Hãy nhập đủ các trường')
       }
   }
   
@@ -189,7 +189,7 @@ export default function ProfileItemExperience(props) {
                 handleClose()
                 props.handleDelete()
 
-                alert("updated successfully")
+                alert("Cập nhập thành công")
             }
             ).catch(err => alert(err))
 
@@ -201,7 +201,7 @@ export default function ProfileItemExperience(props) {
             postData()
         }
         else{
-              alert('Please fill all required fields')
+              alert('Hãy nhập đủ các trường')
         }
   
   }
@@ -241,7 +241,7 @@ export default function ProfileItemExperience(props) {
                     </Typography>
                     {props.authenticated ? (
                         <>
-                        <Button variant="contained" onClick={()=>handleModify(item)} endIcon={<EditIcon/>}>Edit</Button>
+                        <Button variant="contained" onClick={()=>handleModify(item)} endIcon={<EditIcon/>}>Sửa</Button>
                         <Button variant="contained" onClick={()=>handleDeleteExperience(item.id)} >Xóa</Button>
                         </>
                       ):(

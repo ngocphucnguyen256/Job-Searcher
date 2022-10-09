@@ -65,12 +65,12 @@ export default function HirerCardItem(props) {
           </Typography>
             {data.rateAvg?(
             <Typography variant="h5" className="title" gutterBottom component="div">
-             Rating: {data.rateAvg} 
+             Điểm đánh giá: {data.rateAvg} 
           </Typography>
 
             ):(
               <Typography variant="h5" className="title" gutterBottom component="div">
-              Rating: chưa xác định
+              Điểm đánh giá: chưa xác định
            </Typography>
             )
             }

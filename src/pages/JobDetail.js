@@ -99,7 +99,7 @@ export default function JobDetails(props) {
         var formData = new FormData();
 
         if(authenticated){
-            alert('Khong the apply vao viec lam cua chinh ban')
+            alert('Không thể ứng tuyển vào việc làm của chính bạn')
         }
         
         else if(cvRef.current.files[0] && id && user.id && dataCkeditor){
@@ -120,7 +120,7 @@ export default function JobDetails(props) {
             }).then((res) => {
                 console.log(res.data)
                 handleClose()
-                alert('Apply thanh cong')
+                alert('Ứng tuyển thành công')
           
               }).catch(err => {
                 alert(err)
@@ -246,7 +246,7 @@ export default function JobDetails(props) {
                                                </Grid>
                                     </Box>
                                         ):(
-                                    <Typography variant="h3" align="center" gutterBottom component="h3">Chưa có ứng viên nào apply</Typography>
+                                    <Typography variant="h3" align="center" gutterBottom component="h3">Chưa có ứng viên nào ứng tuyển</Typography>
                                     )}
                      
                         </section>

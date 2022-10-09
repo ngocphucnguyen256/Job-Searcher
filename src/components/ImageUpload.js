@@ -49,7 +49,7 @@ import Button from '@mui/material/Button';
           {selectedFile && <Avatar alt="Remy Sharp" src={preview} sx={{width: 170, height:170}} />}
           <label htmlFor="raised-button-file">
             <Button fullWidth variant="contained" component="div" sx={{ mt: 3, mb: 2 }}>
-              Upload
+              Tải ảnh lên
             </Button>
           </label>
     

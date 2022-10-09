@@ -17,18 +17,18 @@ import CenterDiv from '../components/CenterDiv'
 import { UserContext } from '../App'
 
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright(props) {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://mui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 
 export default function DashboardModify() {
@@ -81,7 +81,7 @@ export default function DashboardModify() {
   
       }).catch(err => {
         if(err.response.status === 400){
-          alert("Avatar required")
+          alert("Có lỗi xảy ra")
         }
       })
 
@@ -94,7 +94,7 @@ export default function DashboardModify() {
 
     }
     else{
-        alert("Username or password is invalid")
+        alert("Tên đăng nhập và mật khẩu không được để trống")
     }
 
 
@@ -144,7 +144,7 @@ export default function DashboardModify() {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSignIn}
             >
-              Sign In
+              Đăng nhập
             </Button>
           </ModalComponent>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -212,7 +212,7 @@ export default function DashboardModify() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Mật khẩu"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -225,7 +225,7 @@ export default function DashboardModify() {
                 <Grid item xs={12}>
 
                 <Typography align="center" >
-                Avatar
+                Ảnh đại diện
               </Typography>
               </Grid>
 
@@ -251,7 +251,7 @@ export default function DashboardModify() {
           </Box>
         </Box>
         
-        <Copyright sx={{ mt: 5 }} />
+        {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
 
   );

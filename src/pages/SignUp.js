@@ -17,18 +17,18 @@ import ModalComponent from '../components/ModalComponent';
 import ImageUpload from "../components/ImageUpload";
 import CenterDiv from '../components/CenterDiv'
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Job Searcher
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright(props) {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://mui.com/">
+//         Job Searcher
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 
 export default function SignUp() {
@@ -84,7 +84,7 @@ export default function SignUp() {
 
    }
    else{
-      alert("Please fill all fields")
+      alert("Hãy nhập đủ các trường")
    }
 
   };
@@ -116,14 +116,14 @@ export default function SignUp() {
             sx={{ mt: 3, mb: 2 }}
             onClick={handleSignIn}
           >
-            Sign In
+            Đăng nhập ngay
           </Button>
         </ModalComponent>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Đăng ký tài khoản
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -134,7 +134,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label="Họ"
                 autoFocus
               />
             </Grid>
@@ -143,7 +143,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="lastName"
-                label="Last Name"
+                label="Tên"
                 name="lastName"
                 autoComplete="family-name"
               />
@@ -153,7 +153,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Địa chỉ email"
                 name="email"
                 autoComplete="email"
               />
@@ -163,7 +163,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="username"
-                label="Username"
+                label="Tên đăng nhập"
                 name="username"
                 autoComplete="username"
               />
@@ -173,7 +173,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="Mật khẩu"
                 type="password"
                 id="password"
                 autoComplete="new-password"
@@ -182,7 +182,7 @@ export default function SignUp() {
             <Grid item xs={12}>
 
               <Typography align="center" >
-                Avatar
+                Ảnh đại diện
               </Typography>
             </Grid>
 
@@ -208,19 +208,19 @@ export default function SignUp() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign Up
+           Đăng ký
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/sign-in" variant="body2">
-                Already have an account? Sign in
+                Bạn đã có tài khoản? Đăng nhập ngay
               </Link>
             </Grid>
           </Grid>
         </Box>
       </Box>
 
-      <Copyright sx={{ mt: 5 }} />
+      {/* <Copyright sx={{ mt: 5 }} /> */}
     </Container>
 
   );

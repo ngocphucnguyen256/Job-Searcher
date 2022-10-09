@@ -12,6 +12,7 @@ export default function GroupedSelect(props) {
     <div>
         <InputLabel htmlFor="grouped-native-select">{props?.label}</InputLabel>
         <Select 
+        fullWidth
          name={props?.name} native defaultValue="" id="grouped-native-select" 
          label={props?.label}
           onChange={(e) => {

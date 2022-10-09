@@ -96,11 +96,11 @@ export default function HeaderForm() {
         </Grid>
         <Grid item xs={6}>
           <div className="major-wrapper">
-           <SeclectGroup  required name="major" data={categories} setDataMajorId={setDataMajorId} />
+           <SeclectGroup  required name="major" data={categories} setDataMajorId={setDataMajorId} fullWidth/>
          </div>
         </Grid>
         <Grid item xs={6}>
-       <SelectComponent name="salary" label="Chọn mức lương" data={salary} fullWidth/>
+       <SelectComponent width="fullWidth" name="salary" label="Chọn mức lương" data={salary} fullWidth />
         </Grid>
         {/* <Grid item xs={6}>   
             <SelectComponent name="type" label="Cấp bậc" data={level} fullWidth/>

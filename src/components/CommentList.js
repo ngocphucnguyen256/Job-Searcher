@@ -24,14 +24,14 @@ const CommentList=(props)=> {
                     width: '90%',
             }}
             >
-            <TextField fullWidth label="Write a comment"
+            <TextField fullWidth label="Viết bình luận"
             onChange={(e)=>{
               props.setComment(e.target.value)
             }}
             value={props.comment} id="fullWidth" />
             </Box>
             <Button size="large" variant="contained" onClick={props.handlePostComment} endIcon={<SendIcon />}>
-                Send
+                Gửi
             </Button>
         </div>
         

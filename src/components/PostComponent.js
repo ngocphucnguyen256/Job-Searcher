@@ -122,7 +122,7 @@ const PostComponent = ()=>{
 
        }
        else{
-              alert('Please fill all required fields')
+              alert('Hãy nhập đủ các trường')
        }
 
 

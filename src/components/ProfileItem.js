@@ -84,10 +84,10 @@ export default function ProfileItem(props) {
     )
     console.log(res)
     if(res.status === 204){
-      alert("Edu deleted successfully")
+      alert("Xóa thành công")
     }
     else{
-      alert("Something went wrong")
+      alert("Có lỗi xảy ra")
     }
     props.handleDelete()
   }
@@ -136,7 +136,7 @@ export default function ProfileItem(props) {
             },
           
           }).then(function (response) {
-              alert("them thanh cong")
+              alert("Thêm thành công")
               handleCloseAdd()
               props.handleDelete()
           }
@@ -150,7 +150,7 @@ export default function ProfileItem(props) {
           postDataSubmt()
       }
       else{
-            alert('Please fill all required fields')
+            alert('Hãy nhập đủ các trường')
       }
   }
     
@@ -185,7 +185,7 @@ export default function ProfileItem(props) {
                 },
             
             }).then(function (response) {
-                alert("updated successfully")
+                alert("Cập nhập thành công")
                 handleClose()
                 props.handleDelete()
             }
@@ -199,7 +199,7 @@ export default function ProfileItem(props) {
             postData()
         }
         else{
-              alert('Please fill all required fields')
+              alert('Hãy nhập đủ các trường')
         }
   }
 
@@ -236,7 +236,7 @@ export default function ProfileItem(props) {
                     </Typography>
                     {props.authenticated ? (
                         <>
-                        <Button variant="contained" onClick={()=>handleModify(item)} endIcon={<EditIcon/>}>Edit</Button>
+                        <Button variant="contained" onClick={()=>handleModify(item)} endIcon={<EditIcon/>}>Sửa</Button>
                         <Button variant="contained" onClick={()=>handleDeleteEducation(item.id)} >Xóa</Button>
                         </>
                       ):(

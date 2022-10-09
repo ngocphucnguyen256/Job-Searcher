@@ -10,7 +10,7 @@ function Footer() {
       <ScrollToTop smooth color="#1976d2" />
       <div className="footer__container">
       <Typography variant="h1" className="company" gutterBottom component="h1">
-         Job Searcher
+      HỆ THỐNG WEBSITE TRUNG GIAN TUYỂN DỤNG VÀ TÌM KIẾM VIỆC LÀM
       </Typography>
 
       </div>

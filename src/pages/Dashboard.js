@@ -139,7 +139,7 @@ export default function Dashboard(props) {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Quản lí hồ sơ
+              Bảng điều khiển
             </Typography>
             {/* <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">

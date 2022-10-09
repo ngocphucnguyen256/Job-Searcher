@@ -57,13 +57,13 @@ const DashboardHome = () => {
             </CenterDiv>
             
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-             First name: {user.firstname}
+             Họ: {user.firstname}
             </Typography>
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-             Last name: {user.lastname}
+             Tên: {user.lastname}
             </Typography>
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-             Username: {user.username}
+             Tên đăng nhập: {user.username}
             </Typography>
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
              ({user.role})
@@ -91,7 +91,7 @@ const DashboardHome = () => {
              )
            }
             <CenterDiv>
-                  <Button variant="contained"  color="primary" onClick={handleModifyUser}>Thay doi thong tin tai khoan</Button>
+                  <Button variant="contained"  color="primary" onClick={handleModifyUser}>Thay đổi thông tin tài khoản</Button>
             </CenterDiv>
             {
              user.role==="Hirer"?(
