@@ -46,19 +46,20 @@ export const client = {
     // "clientSecret" :"IsX5DexNhy5cxQOQalpiMDEjjLgMbgKxdbHYdPXJQ0YikEkf7IwjRtYEfci7q7cOAK64KOaZTS7JnRRUEEw0UCDyRegqZSAeGOFwUxIIxbILVbZJ70aP1cSkJ02Nd6Ss"
 
     //deploy
-    // "clientId" :"KXfGCQFdtYVSSppBfpYfj11GtbRLR5seplh85BYW",
-    // "clientSecret" :"UknUQiLOnzpg9m8wOPaBhzIOyYoiyD0B30julpHvEgmbndkjtOJ4b2ra5S36GxyLytXAW6G3FuWj59TqpU9g03mDb8PDWW5DJqOs2vrz3wlSRi6yh9IHcHHKprCs55kO"
+     "clientId" :"jO4kgKp2fnAQvECmpIksAxLvYUdArMEdgqQw6vZi",
+     "clientSecret" :"IFFXPHlfSBzM03MT8bEQErWo0Ur7eepVi9cZ4uqUURvLGQW6qev3H4jRUhUqkCRAW3UaTRcx03b7TerplXpiWVRa0DmlwRnloMUKoH9O3jGInxQi1jUGXmgIZnLlorA1"
 
     //new version`
-    "clientId" :"GBwgpr34PQbf0NLHS8brq9glKxicyBGXkklDvydX",
-    "clientSecret" :"Ma5vxAbBRLZA8NUIsks2Gph5fCTHldw6ZJFWQH64Wvq2qmn6LZRu1xqRhznnUAf5mh4rTWgsYJEQPC36aAEQNOuJyIHSWODp9h7aCO19mrAPw6RNPh0DzarqJ1V7zUQD"
+    //"clientId" :"GBwgpr34PQbf0NLHS8brq9glKxicyBGXkklDvydX",
+    //"clientSecret" :"Ma5vxAbBRLZA8NUIsks2Gph5fCTHldw6ZJFWQH64Wvq2qmn6LZRu1xqRhznnUAf5mh4rTWgsYJEQPC36aAEQNOuJyIHSWODp9h7aCO19mrAPw6RNPh0DzarqJ1V7zUQD"
 
 }
 
 
 export default axios.create({
     // baseURL: "https://ttken01.pythonanywhere.com"
-    baseURL: "http://127.0.0.1:8000"
+    // baseURL: "http://127.0.0.1:8000"
+    baseURL: http://nhat238.pythonanywhere.com
 })
 
 
