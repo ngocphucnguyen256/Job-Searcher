@@ -304,7 +304,7 @@ export default function JobDetails(props) {
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
-              <Grid item xs={2} sm={4} md={4}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Link
                   to={`/job-list/posts?keyword=&major_id=${post?.major}`}
                   className="link "
@@ -315,7 +315,7 @@ export default function JobDetails(props) {
                   </Item>
                 </Link>
               </Grid>
-              <Grid item xs={2} sm={4} md={4}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Link
                   to={`/job-list/posts?keyword=&from_salary=${post?.from_salary}`}
                   className="link"
@@ -326,7 +326,7 @@ export default function JobDetails(props) {
                   </Item>
                 </Link>
               </Grid>
-              <Grid item xs={2} sm={4} md={4}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Link
                   to={`/job-list/posts?keyword=&to_salary=${post?.to_salary}`}
                   className="link"
@@ -337,13 +337,13 @@ export default function JobDetails(props) {
                   </Item>
                 </Link>
               </Grid>
-              <Grid item xs={2} sm={4} md={4}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Item>
                   <p className="heading">Giới tính</p>
                   <p>{post?.gender}</p>
                 </Item>
               </Grid>
-              <Grid item xs={2} sm={4} md={4}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Link
                   to={`/job-list/posts?keyword=&location=${post?.location}`}
                   className="link"
@@ -354,25 +354,25 @@ export default function JobDetails(props) {
                   </Item>
                 </Link>
               </Grid>{" "}
-              <Grid item xs={2} sm={4} md={4}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Item>
                   <p className="heading">Số lượng</p>
                   <p>{post?.quantity}</p>
                 </Item>
               </Grid>
-              <Grid item xs={2} sm={4} md={4}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Item>
                   <p className="heading">Thời gian làm việc</p>
                   <p>{post?.time_work}</p>
                 </Item>
               </Grid>
-              <Grid item xs={2} sm={4} md={4}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Item>
                   <p className="heading">Trình độ</p>
                   <p>{post?.type}</p>
                 </Item>
               </Grid>
-              <Grid item xs={2} sm={4} md={4}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Item>
                   <p className="heading">Ngày hết hạn</p>
                   <Moment>{post?.due}</Moment>

@@ -236,7 +236,7 @@ function ProfileCompany() {
         <Box sx={{ width: "100%" }}>
           <Grid container spacing={1}>
             {posts.slice(0, 6).map((item, index) => (
-              <Grid item xs={6} key={index}>
+              <Grid item xs={12} md={6} key={index}>
                 <TabItem data={item} />
               </Grid>
             ))}

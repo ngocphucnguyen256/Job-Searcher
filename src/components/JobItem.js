@@ -79,7 +79,7 @@ export default function JobItem(props) {
   return (
     <div className="flex-grow" style={{ width: '100%' }}>
       <Link to={url} className="link">
-        <Box
+        <Box className="job-item"
           sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
         >
           <Item>

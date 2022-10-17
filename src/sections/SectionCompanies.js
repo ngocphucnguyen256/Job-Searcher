@@ -28,7 +28,7 @@ export default function SectionCompanies() {
                         <div className="right">
                             <Grid container spacing={1} >
                             {images.map((x, i) =>
-                            <Grid item xs={3} key={i}>
+                            <Grid item xs={12} md={3} key={i}>
                                 <img src={x} alt={x}/>
                             </Grid>
                                 )}

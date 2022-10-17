@@ -334,4 +334,62 @@ h1 {
 
 .mt-2 {
   margin-top: 16px;
+}
+
+.ml-2 {
+  margin-left: 16px;
+}
+
+.ml-1 {
+  margin-left: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  .carousel-component .form-wrapper {
+    left: 0;
+  }
+  .job-tab-wrapper {
+    padding: 0px;
+  }
+  .job-tab-wrapper h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .job-item {
+    display: block !important;
+  }
+  .job-item img {
+    width: 100% !important;
+  }
+  .hirer-card-item {
+    display: block !important;
+  }
+  .hirer-card-item img {
+    width: 100% !important;
+  }
+  .section-companies .center-div {
+    display: block;
+  }
+  .header-form {
+    width: 80%;
+  }
+  .header-form .grid-wrapper > div {
+    padding-left: 0px;
+  }
+  .header-form .major-wrapper {
+    margin-left: 8px;
+  }
+  .tab-component .css-19kzrtu {
+    padding: 0px;
+  }
+  .tab-component .flex-grow {
+    padding: 0px;
+  }
+  .tab-component .center-div {
+    margin-top: 8px;
+  }
+  .tab-component .center-div button {
+    margin-left: 8px;
+  }
 }/*# sourceMappingURL=css.css.map */

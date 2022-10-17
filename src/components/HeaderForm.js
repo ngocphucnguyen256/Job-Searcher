@@ -90,16 +90,16 @@ export default function HeaderForm() {
       <TextField name="title" className="search" fullWidth id="outlined-search" label="Chức danh" type="search" />
     
       <Box sx={{ width:'100%' }}>
-      <Grid container spacing={1} >
-        <Grid item xs={6}>
+      <Grid container spacing={1} className="grid-wrapper">
+        <Grid item xs={12} md={6}>
            <SelectComponent name="location" label="Địa điểm" data={location} fullWidth/>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <div className="major-wrapper">
            <SeclectGroup  required name="major" data={categories} setDataMajorId={setDataMajorId} fullWidth/>
          </div>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
        <SelectComponent width="fullWidth" name="salary" label="Chọn mức lương" data={salary} fullWidth />
         </Grid>
         {/* <Grid item xs={6}>   

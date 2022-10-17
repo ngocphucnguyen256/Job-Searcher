@@ -89,7 +89,7 @@ export default function Dashboard(props) {
   const [user, dispatch] = useContext(UserContext)
 
 
-  console.log(user)
+  
 
   const handleLogout = () => {
 
@@ -164,21 +164,29 @@ export default function Dashboard(props) {
           </Toolbar>
           <Divider />
           <List component="nav" className="nav">
-            <CenterDiv>
             {
-              user.avatar?(
-                <Avatar alt="Remy Sharp" src={ user.avatar} sx={{width: 170, height:170}} />
-
+              !open?(
+                <></>
               ):(
-                <Avatar alt="Remy Sharp" src={img} sx={{width: 170, height:170}} />
-
+                <>
+                  <CenterDiv>
+                  {
+                    user.avatar?(
+                      <Avatar alt="Remy Sharp" src={ user.avatar} sx={{width: 170, height:170}} />
+      
+                    ):(
+                      <Avatar alt="Remy Sharp" src={img} sx={{width: 170, height:170}} />
+      
+                    )
+                  }
+                
+                  </CenterDiv>
+                  <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
+                  {user.username}
+                  </Typography>
+                </>
               )
             }
-          
-            </CenterDiv>
-            <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-             {user.username}
-            </Typography>
 
            {
              user.role==="User"?(

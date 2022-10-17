@@ -50,9 +50,9 @@ export default function HirerCardItem(props) {
 
 
   return (
-    <div className="flex-grow" style={{ width: '100%' }}>
+    <div className="flex-grow " style={{ width: '100%' }}>
       <Link to={url} className="link">
-        <Box
+        <Box className="hirer-card-item"
           sx={{ display: 'flex', p: 1, bgcolor: 'background.paper', borderRadius: 1 }}
         >
           <Item>
