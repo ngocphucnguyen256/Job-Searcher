@@ -134,9 +134,8 @@ const PostComponent = ()=>{
         <div className="post-component">
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
              <Box sx={{ flexGrow: 1 }}>
-               <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-
-                <Grid item xs={2} sm={4} md={4} >
+               <Grid container spacing={{ xs: 1, md: 3 }} >
+                <Grid item xs={12} sm={4} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Vị trí cần tuyển
@@ -145,24 +144,24 @@ const PostComponent = ()=>{
 
                     </div>
                 </Grid>
-                <Grid item xs={2} sm={4} md={4} >
+                <Grid item xs={12} sm={4} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn ngành nghề cần tuyển
                     </Typography>
-                   <SeclectGroup required name="major" data={categories} setDataMajorId={setDataMajorId} />
+                   <SeclectGroup required name="major" data={categories} setDataMajorId={setDataMajorId} fullWidth />
 
                     </div>
                 </Grid>
-                <Grid item xs={2} sm={4} md={4} >
+                <Grid item xs={12} sm={4} md={4} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn nơi làm việc
                     </Typography>
-                   <SelectComponent required name="location" data={location}/>
+                   <SelectComponent required name="location" data={location} fullWidth/>
                     </div>
                 </Grid>
-                <Grid item xs={2} sm={4} md={4} >
+                <Grid item xs={12} sm={4} md={4} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                     Chọn mức lương
@@ -170,7 +169,7 @@ const PostComponent = ()=>{
                     <SelectComponent label="Chọn mức lương" name="salary" data={salary} fullWidth/>
                     </div>
                 </Grid>
-                <Grid item xs={2} sm={4} md={4} >
+                <Grid item xs={12} sm={4} md={4} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                     Chọn cấp bậc
@@ -178,7 +177,7 @@ const PostComponent = ()=>{
                     <SelectComponent required label="Cấp bậc" name="type" data={level} fullWidth/>
                     </div>
                 </Grid>
-                <Grid item xs={2} sm={4} md={4} >
+                <Grid item xs={12} sm={4} md={4} m={1} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Thời gian làm việc
@@ -187,7 +186,7 @@ const PostComponent = ()=>{
                     </div>
                 </Grid>
 
-                <Grid item xs={2} sm={4} md={4} >
+                <Grid item xs={12} sm={4} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Giới tính
@@ -196,7 +195,7 @@ const PostComponent = ()=>{
                     </div>
                 </Grid>
                        
-                <Grid item xs={2} sm={4} md={4} >
+                <Grid item xs={12} sm={4} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Số lượng
@@ -204,7 +203,7 @@ const PostComponent = ()=>{
                     <TextField type="number" name="quantity" className="search" fullWidth id="outlined-search" label="Số lượng" />
                     </div>
                 </Grid>
-                <Grid item xs={2} sm={4} md={4} >
+                <Grid item xs={12} sm={4} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                        Ngày hết hạn

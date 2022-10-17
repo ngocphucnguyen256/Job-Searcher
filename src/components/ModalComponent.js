@@ -27,7 +27,7 @@ export default function ModalComponent(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} className="modal-content">
             {children}
         </Box>
       </Modal>

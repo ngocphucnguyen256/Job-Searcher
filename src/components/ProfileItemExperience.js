@@ -271,7 +271,7 @@ export default function ProfileItemExperience(props) {
             <ModalComponent handleOpen={handleOpen} open={openDialog} handleClose={handleClose}>
                       <Box sx={{ flexGrow: 1 }} component="form" onSubmit={handleModifySubmit}>
                               <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={12} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Tên vị trí
@@ -285,7 +285,7 @@ export default function ProfileItemExperience(props) {
 
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={12} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Tên công ty
@@ -299,7 +299,7 @@ export default function ProfileItemExperience(props) {
 
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={12} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Mô tả
@@ -348,7 +348,7 @@ export default function ProfileItemExperience(props) {
                   <ModalComponent handleOpen={handleOpenAdd} open={openDialogAdd} handleClose={handleCloseAdd}>
                       <Box sx={{ flexGrow: 1 }} component="form" onSubmit={handleAddSubmit}>
                               <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                              <Grid item xs={2} sm={4} md={4} >
+                              <Grid item xs={12} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Tên vị trí
@@ -362,7 +362,7 @@ export default function ProfileItemExperience(props) {
 
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={12} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Tên công ty
@@ -376,7 +376,7 @@ export default function ProfileItemExperience(props) {
 
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={12} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Mô tả
@@ -398,7 +398,7 @@ export default function ProfileItemExperience(props) {
                                       <DatePicker value={startDateValueAdd} setDateValue={setStartDateValueAdd}/>
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={6} >
+                                  <Grid item xs={2} sm={4} md={6} mb={2}>
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                         Ngày kết thúc

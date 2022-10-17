@@ -114,6 +114,10 @@ export default function ProfileItem(props) {
     handleOpenAdd()
   }
 
+  const formatDate =(date) => {
+    return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+  }
+
   const handleAddSubmit = async (event) => {
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
@@ -125,9 +129,10 @@ export default function ProfileItem(props) {
                  degree_name: formData.get('degree_name'),
                  university_name: formData.get('university_name'),
                  major: dataMajorId,
-                 completionDate : endDateValueAdd,
+                 completionDate : endDateValueAdd.getDate || endDateValueAdd.includes("GTM")? formatDate(endDateValueAdd) : endDateValueAdd,
                  CPA: formData.get('CPA'),
-                  start_date: startDateValueAdd,
+                 start_date: startDateValueAdd.getDate || startDateValueAdd.includes("GTM")? formatDate(startDateValueAdd) : startDateValueAdd,
+
       
           }
           ,{
@@ -236,7 +241,7 @@ export default function ProfileItem(props) {
                     </Typography>
                     {props.authenticated ? (
                         <>
-                        <Button variant="contained" onClick={()=>handleModify(item)} endIcon={<EditIcon/>}>Sửa</Button>
+                        <Button variant="contained" onClick={()=>handleModify(item)} className="mr-2" endIcon={<EditIcon/>}>Sửa</Button>
                         <Button variant="contained" onClick={()=>handleDeleteEducation(item.id)} >Xóa</Button>
                         </>
                       ):(
@@ -267,7 +272,7 @@ export default function ProfileItem(props) {
             <ModalComponent handleOpen={handleOpen} open={openDialog} handleClose={handleClose}>
                       <Box sx={{ flexGrow: 1 }} component="form" onSubmit={handleModifySubmit}>
                               <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={12} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Tên trường
@@ -281,7 +286,7 @@ export default function ProfileItem(props) {
 
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={12} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Tên bằng cấp
@@ -295,7 +300,7 @@ export default function ProfileItem(props) {
 
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={12} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Chọn ngành nghề
@@ -305,7 +310,7 @@ export default function ProfileItem(props) {
                                   </Grid>
                             
                                 
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={12} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           CPA
@@ -319,7 +324,7 @@ export default function ProfileItem(props) {
                                       />
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={6} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                         Ngày bắt đầu
@@ -327,7 +332,7 @@ export default function ProfileItem(props) {
                                       <DatePicker value={startDateValue} setDateValue={setStartDateValue}/>
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={4} >
+                                  <Grid item xs={6} sm={4} md={4} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                         Ngày kết thúc
@@ -343,7 +348,7 @@ export default function ProfileItem(props) {
                   <ModalComponent handleOpen={handleOpenAdd} open={openDialogAdd} handleClose={handleCloseAdd}>
                       <Box sx={{ flexGrow: 1 }} component="form" onSubmit={handleAddSubmit}>
                               <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                                  <Grid item xs={2} sm={4} md={6} >
+                                  <Grid item xs={12} sm={4} md={6} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Tên trường
@@ -357,7 +362,7 @@ export default function ProfileItem(props) {
 
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={6} >
+                                  <Grid item xs={12} sm={4} md={6} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Tên bằng cấp
@@ -371,7 +376,7 @@ export default function ProfileItem(props) {
 
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={6} >
+                                  <Grid item xs={12} sm={4} md={6} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           Chọn ngành nghề
@@ -381,7 +386,7 @@ export default function ProfileItem(props) {
                                   </Grid>
                             
                                 
-                                  <Grid item xs={2} sm={4} md={6} >
+                                  <Grid item xs={12} sm={4} md={6} >
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                           CPA
@@ -403,7 +408,7 @@ export default function ProfileItem(props) {
                                       <DatePicker value={startDateValueAdd} setDateValue={setStartDateValueAdd}/>
                                       </div>
                                   </Grid>
-                                  <Grid item xs={2} sm={4} md={6} >
+                                  <Grid item xs={2} sm={4} md={6} mb={2}>
                                       <div>
                                       <Typography variant="h6" gutterBottom component="div" className="name">
                                         Ngày kết thúc

@@ -6,7 +6,7 @@ const CkeditorComponent=({setDataCkeditor, value}) =>{
     
         if(value){
             return(
-                <CKEditor
+                <CKEditor className="ckeditor"
                     editor={ ClassicEditor }
                     data={value}
                     onChange={ ( event, editor ) => {

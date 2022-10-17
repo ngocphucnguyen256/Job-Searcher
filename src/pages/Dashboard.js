@@ -79,7 +79,7 @@ const mdTheme = createTheme();
 
 export default function Dashboard(props) {
   const children = props.children;
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   let navigate = useNavigate();
 
 

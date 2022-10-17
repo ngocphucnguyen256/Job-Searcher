@@ -383,9 +383,16 @@ h1{
         margin-left: 8px;
 }
 
+.post-component{
+ padding-bottom: 10rem;       
+}
 
 
 @media only screen and (max-width: 600px) {
+
+    .modal-content{
+        width: 300px !important;
+    }
 
     .carousel-component .form-wrapper{
         left: 0;
@@ -442,5 +449,33 @@ h1{
         }
         
     }
+    .dashboard{
+        .css-1qapnz0 {
+            margin: 0px;
+        } 
+        &-posted{
+            h3{
+                font-size: 2rem;
+            }
+        }
+    }
+    .ckeditor-html{
+        margin: 0rem;
+    }
+    .ck.ck-editor__editable_inline{
+        padding: 0;
+    }
+    .ck.ck-reset{
+        margin:1rem;
+    }
 
+    .profile{
+        .css-ggq0th{
+            margin: 0;
+        }
+        .flex-grow{
+            padding: 0;
+        }
+    }
+  
 }
