@@ -182,7 +182,7 @@ function ProfileCompany() {
         ) : (
           <></>
         )}
-        {user.user_role == "User" ? (
+        {user && user.user_role === "User" ? (
           <>
             <Typography
               variant="h6"

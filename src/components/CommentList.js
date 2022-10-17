@@ -18,7 +18,7 @@ const CommentList=(props)=> {
       Bình luận
     </Typography>
       {
-        user.role === 'User'?(
+       user && user.role === 'User'?(
           <div className="fl">
           <Box
           sx={{
