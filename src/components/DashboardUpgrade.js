@@ -131,20 +131,8 @@ export default function DashboardUpgrade() {
         >
            <ModalComponent handleOpen={handleOpen} open={open} handleClose={handleClose}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-             Tài khoản của bạn đã cập nhật thành công
+             Tài khoản của bạn đã đăng ký nâng cấp nhà tuyển dụng thành công. Vui lòng chờ quản trị viên xét duyệt.
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Vui lòng đăng nhập lại
-            </Typography>
-            <Button
-              type=""
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={handleSignIn}
-            >
-              Sign In
-            </Button>
           </ModalComponent>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
