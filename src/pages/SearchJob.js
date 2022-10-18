@@ -5,7 +5,7 @@ import Header from '../partials/Header'
 import Tags from '../components/Tags'
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
+import HeaderForm  from '../components/HeaderForm'
 
 export default function SearchJobs(props) {
 
@@ -33,8 +33,9 @@ export default function SearchJobs(props) {
         <Header/>
             <main className="search-job">
             <Container fixed>
+            <HeaderForm page/>
                 <section className="header">
-                <Typography variant="h1" component="h1" className="heading">Tất cả danh mục việc làm</Typography>
+                <Typography variant="h1" component="h1" mt={2} className="heading">Tất cả danh mục việc làm</Typography>
                 </section>
                 <section className="body">
                 {

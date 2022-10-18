@@ -135,7 +135,7 @@ const DashboardPostModify = ()=>{
 
                 <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
-                    <Typography variant="h6" gutterBottom component="div" className="name">
+                    <Typography variant="h6" gutterBottom component="h6" className="name">
                         Vị trí cần tuyển
                     </Typography>
                     <TextField required name="title" className="search" fullWidth id="outlined-search" type="search"
@@ -149,7 +149,7 @@ const DashboardPostModify = ()=>{
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
-                    <Typography variant="h6" gutterBottom component="div" className="name">
+                    <Typography variant="h6" gutterBottom component="h6" className="name">
                         Chọn ngành nghề cần tuyển
                     </Typography>
                    <SeclectGroup required name="major" data={categories} setDataMajorId={setDataMajorId} />
@@ -158,7 +158,7 @@ const DashboardPostModify = ()=>{
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} >
                     <div>
-                    <Typography variant="h6" gutterBottom component="div" className="name">
+                    <Typography variant="h6" gutterBottom component="h6" className="name">
                         Chọn nơi làm việc
                     </Typography>
                    <SelectComponent required name="location" data={location} value={post?.location} />
@@ -166,7 +166,7 @@ const DashboardPostModify = ()=>{
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} >
                     <div>
-                    <Typography variant="h6" gutterBottom component="div" className="name">
+                    <Typography variant="h6" gutterBottom component="h6" className="name">
                     Chọn mức lương
                     </Typography>
                     <SelectComponent label="Chọn mức lương" name="salary" data={salary} fullWidth/>
@@ -174,7 +174,7 @@ const DashboardPostModify = ()=>{
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} >
                     <div>
-                    <Typography variant="h6" gutterBottom component="div" className="name">
+                    <Typography variant="h6" gutterBottom component="h6" className="name">
                     Chọn cấp bậc
                     </Typography>
                     <SelectComponent required label="Cấp bậc" name="type" data={level} fullWidth/>
@@ -182,7 +182,7 @@ const DashboardPostModify = ()=>{
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
-                    <Typography variant="h6" gutterBottom component="div" className="name">
+                    <Typography variant="h6" gutterBottom component="h6" className="name">
                         Thời gian làm việc
                     </Typography>
                     <TextField required name="timeWork" className="search"
@@ -196,7 +196,7 @@ const DashboardPostModify = ()=>{
 
                 <Grid item xs={12} sm={6} md={4} m={1} >
                     <div>
-                    <Typography variant="h6" gutterBottom component="div" className="name">
+                    <Typography variant="h6" gutterBottom component="h6" className="name">
                         Giới tính
                     </Typography>
                     <TextField name="gender" className="search" fullWidth
@@ -210,7 +210,7 @@ const DashboardPostModify = ()=>{
                        
                 <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
-                    <Typography variant="h6" gutterBottom component="div" className="name">
+                    <Typography variant="h6" gutterBottom component="h6" className="name">
                         Số lượng
                     </Typography>
                     <TextField type="number"
@@ -224,7 +224,7 @@ const DashboardPostModify = ()=>{
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
-                    <Typography variant="h6" gutterBottom component="div" className="name">
+                    <Typography variant="h6" gutterBottom component="h6" className="name">
                        Ngày hết hạn
                     </Typography>
                     <DatePicker value={dateValue} setDateValue={setDateValue}/>
@@ -233,7 +233,7 @@ const DashboardPostModify = ()=>{
             </Grid>
         </Box>
      
-        <Typography variant="h5" gutterBottom component="div" className="name">
+        <Typography variant="h6" gutterBottom component="h6" className="name ml-2-i">
             Mô tả chi tiết
         </Typography>
         

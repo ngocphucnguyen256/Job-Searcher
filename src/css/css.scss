@@ -88,10 +88,6 @@ html{
         font-size: 1.5rem;
     }
     padding: 50px;
-    img{
-        height: 50px;
-        width: 50px;
-    }
 }
 
 
@@ -101,7 +97,7 @@ html{
  
     img{
         width: 100%;
-        height:auto;
+        height:100%;
     }
     .title{
         font-size: 1.4rem;
@@ -382,6 +378,13 @@ h1{
 .ml-1{
         margin-left: 8px;
 }
+.ml-1-i{
+        margin-left: 8px !important;
+}
+.ml-2-i{
+        margin-left: 16px !important;
+}
+
 
 .mr-2-i{
     margin-right: 16px !important;
@@ -402,13 +405,10 @@ h1{
     text-overflow: ellipsis;
     width: 25rem;
 }
-.job-item-img{
-    height: 200px !important;
-    width: 200px !important;
-}
 
 
 @media only screen and (max-width: 600px) {
+
 
     .modal-content{
         width: 300px !important;
@@ -427,15 +427,9 @@ h1{
     }
     .job-item{
         display: block!important;
-        img{
-            width: 100% !important;
-        }
     }
     .hirer-card-item{
         display: block!important;
-        img{
-            width: 100% !important;
-        }
     }
 
     .section-companies{
@@ -477,6 +471,9 @@ h1{
             h3{
                 font-size: 2rem;
             }
+        }
+        h6{
+            font-size:1rem;
         }
     }
     .dashboard-home{
@@ -550,7 +547,7 @@ h1{
 
 
 
-@media only screen and (max-width: 900px) {
+@media only screen and (min-width:600px) and (max-width: 900px) {
 
     .modal-content{
         width: 300px !important;
@@ -569,17 +566,11 @@ h1{
     }
     .job-item{
         display: block!important;
-        img{
-            width: 100% !important;
-            height: 300px !important;
-        }
+ 
     }
     .hirer-card-item{
         display: block!important;
-        img{
-            width: 100% !important;
-       
-        }
+ 
     }
 
     .section-companies{
@@ -685,18 +676,15 @@ h1{
 
     }
     .job-item-name{
-        width: 100% !important;
+        width: 100%;
     }
   
   
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and  (min-width: 1200px) {
     .job-item-name{
         width: 18rem;
     }
-    .job-item-img{
-        height: 150px !important;
-        width: 150px !important;
-    }
+
 }

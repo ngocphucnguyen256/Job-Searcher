@@ -57,7 +57,7 @@ export default function HirerCardItem(props) {
         >
           <Item>
 
-              <img  style={{ height: '250px', width: '250px' }}  src={data.avatar_path} alt="1" />
+              <img    src={data.avatar_path} alt="1" />
           </Item>
           <Item sx={{ flexGrow: 1 }}>
           <Typography variant="h5" className="title" gutterBottom component="div">
