@@ -84,11 +84,11 @@ export default function JobItem(props) {
         >
           <Item>
               {/* <img style={{ height: '200px', width: '200px' }} src={data?.avatar_user} alt="1" /> */}
-              <img style={{ height: '200px', width: '200px' }} src={data?.avatar_company} alt="1" />
+              <img className="job-item-img" src={data?.avatar_company} alt="1" />
           </Item>
           <Item sx={{ flexGrow: 1 }}>
-          <div style={{overflow: "hidden", textOverflow: "ellipsis", width: '11rem'}}> 
-            <Typography noWrap variant="h5" className="title" gutterBottom component="div">
+          <div className="job-item-name"> 
+            <Typography noWrap variant="h5" className="title" gutterBottom component="h5">
             {data?.title}
             </Typography>
           </div>

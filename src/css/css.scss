@@ -396,6 +396,18 @@ h1{
     margin-top: 20px;
 }
 
+
+.job-item-name{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 25rem;
+}
+.job-item-img{
+    height: 200px !important;
+    width: 200px !important;
+}
+
+
 @media only screen and (max-width: 600px) {
 
     .modal-content{
@@ -528,6 +540,163 @@ h1{
     }
 
     }
+    .job-item-name{
+        width: 17rem;
+    }
+    
   
   
+}
+
+
+
+@media only screen and (max-width: 900px) {
+
+    .modal-content{
+        width: 300px !important;
+    }
+
+    .carousel-component .form-wrapper{
+        left: 0;
+    }
+    .job-tab-wrapper{
+        padding: 0px;
+        h2{
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    }
+    .job-item{
+        display: block!important;
+        img{
+            width: 100% !important;
+            height: 300px !important;
+        }
+    }
+    .hirer-card-item{
+        display: block!important;
+        img{
+            width: 100% !important;
+       
+        }
+    }
+
+    .section-companies{
+        .center-div{
+            display: block;
+        }
+    }
+    .header-form{
+        width: 80%;
+        .grid-wrapper{
+            >div{
+                padding-left: 0px;
+            }
+        }
+        .major-wrapper{
+        margin-left: 8px;
+        }
+    }
+    .tab-component{
+        .css-19kzrtu{
+            padding: 0px;
+        }
+        .flex-grow{
+            padding: 0px;
+        }
+        .center-div{
+            margin-top: 8px;
+            button{
+                margin-left: 8px;
+            }
+        }
+        
+    }
+    .dashboard{
+        .css-1qapnz0 {
+            margin: 0px;
+        } 
+        &-posted{
+            h3{
+                font-size: 2rem;
+            }
+        }
+    }
+    .dashboard-home{
+        padding:6px;
+    }
+    .search-job{
+        padding: 12px;
+        .flex-grow{
+            padding: 0;
+        }
+    }
+    .job-detail{
+        h3{
+            font-size:1.5rem;
+        }
+        .header{
+            padding: 8px;
+        }
+        .body{
+            padding: 8px;
+        }
+    }
+
+    .ckeditor-html{
+        margin: 0rem;
+    }
+    .ck.ck-editor__editable_inline{
+        padding: 0;
+    }
+    .ck.ck-reset{
+        margin:1rem;
+    }
+
+    .profile{
+        .css-ggq0th{
+            margin: 0;
+        }
+        .flex-grow{
+            padding: 0;
+        }
+    }
+    .comment-list{
+        .fl{
+           flex-wrap: wrap;
+           justify-content:center;
+        }
+        button{
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        
+    }
+    .comment-item{
+        padding: 10px 5px;
+        margin-top: 10px;
+    button{
+        max-width: 50px;
+        max-height: 50px;
+        margin-right: 8px;
+
+    }
+
+    }
+    .job-item-name{
+        width: 100% !important;
+    }
+  
+  
+}
+
+@media only screen and (max-width: 1200px) {
+    .job-item-name{
+        width: 18rem;
+    }
+    .job-item-img{
+        height: 150px !important;
+        width: 150px !important;
+    }
 }

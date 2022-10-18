@@ -153,7 +153,7 @@ const PostComponent = ()=>{
 
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} >
+                <Grid item xs={12} sm={6} md={4} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn nơi làm việc
@@ -161,7 +161,7 @@ const PostComponent = ()=>{
                    <SelectComponent required name="location" data={location} fullWidth/>
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} >
+                <Grid item xs={12} sm={6} md={4} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                     Chọn mức lương
@@ -169,7 +169,7 @@ const PostComponent = ()=>{
                     <SelectComponent label="Chọn mức lương" name="salary" data={salary} fullWidth/>
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} >
+                <Grid item xs={12} sm={6} md={4} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                     Chọn cấp bậc
@@ -177,7 +177,7 @@ const PostComponent = ()=>{
                     <SelectComponent required label="Cấp bậc" name="type" data={level} fullWidth/>
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} m={1} >
+                <Grid item xs={12} sm={6} md={4} m={1} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Thời gian làm việc
@@ -186,7 +186,7 @@ const PostComponent = ()=>{
                     </div>
                 </Grid>
 
-                <Grid item xs={12} sm={4} md={4} m={1}>
+                <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Giới tính
@@ -195,7 +195,7 @@ const PostComponent = ()=>{
                     </div>
                 </Grid>
                        
-                <Grid item xs={12} sm={4} md={4} m={1}>
+                <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Số lượng
@@ -203,7 +203,7 @@ const PostComponent = ()=>{
                     <TextField type="number" name="quantity" className="search" fullWidth id="outlined-search" label="Số lượng" />
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} m={1}>
+                <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                        Ngày hết hạn

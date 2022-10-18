@@ -133,7 +133,7 @@ const DashboardPostModify = ()=>{
              <Box sx={{ flexGrow: 1 }}>
                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
 
-                <Grid item xs={12} sm={4} md={4} m={1}>
+                <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Vị trí cần tuyển
@@ -147,7 +147,7 @@ const DashboardPostModify = ()=>{
 
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} m={1}>
+                <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn ngành nghề cần tuyển
@@ -156,7 +156,7 @@ const DashboardPostModify = ()=>{
 
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} >
+                <Grid item xs={12} sm={6} md={4} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Chọn nơi làm việc
@@ -164,7 +164,7 @@ const DashboardPostModify = ()=>{
                    <SelectComponent required name="location" data={location} value={post?.location} />
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} >
+                <Grid item xs={12} sm={6} md={4} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                     Chọn mức lương
@@ -172,7 +172,7 @@ const DashboardPostModify = ()=>{
                     <SelectComponent label="Chọn mức lương" name="salary" data={salary} fullWidth/>
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} >
+                <Grid item xs={12} sm={6} md={4} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                     Chọn cấp bậc
@@ -180,7 +180,7 @@ const DashboardPostModify = ()=>{
                     <SelectComponent required label="Cấp bậc" name="type" data={level} fullWidth/>
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} m={1}>
+                <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Thời gian làm việc
@@ -194,7 +194,7 @@ const DashboardPostModify = ()=>{
                     </div>
                 </Grid>
 
-                <Grid item xs={12} sm={4} md={4} m={1} >
+                <Grid item xs={12} sm={6} md={4} m={1} >
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Giới tính
@@ -208,7 +208,7 @@ const DashboardPostModify = ()=>{
                     </div>
                 </Grid>
                        
-                <Grid item xs={12} sm={4} md={4} m={1}>
+                <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                         Số lượng
@@ -222,7 +222,7 @@ const DashboardPostModify = ()=>{
                      />
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} m={1}>
+                <Grid item xs={12} sm={6} md={4} m={1}>
                     <div>
                     <Typography variant="h6" gutterBottom component="div" className="name">
                        Ngày hết hạn
