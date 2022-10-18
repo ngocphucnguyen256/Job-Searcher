@@ -344,8 +344,17 @@ h1 {
   margin-left: 8px;
 }
 
+.mr-2-i {
+  margin-right: 16px !important;
+}
+
 .post-component {
   padding-bottom: 10rem;
+}
+
+.comment-item {
+  padding: 40px 20px;
+  margin-top: 20px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -405,6 +414,24 @@ h1 {
   .dashboard-posted h3 {
     font-size: 2rem;
   }
+  .dashboard-home {
+    padding: 6px;
+  }
+  .search-job {
+    padding: 12px;
+  }
+  .search-job .flex-grow {
+    padding: 0;
+  }
+  .job-detail h3 {
+    font-size: 1.5rem;
+  }
+  .job-detail .header {
+    padding: 8px;
+  }
+  .job-detail .body {
+    padding: 8px;
+  }
   .ckeditor-html {
     margin: 0rem;
   }
@@ -419,5 +446,22 @@ h1 {
   }
   .profile .flex-grow {
     padding: 0;
+  }
+  .comment-list .fl {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .comment-list button {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  .comment-item {
+    padding: 10px 5px;
+    margin-top: 10px;
+  }
+  .comment-item button {
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 8px;
   }
 }/*# sourceMappingURL=css.css.map */

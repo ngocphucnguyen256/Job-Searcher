@@ -74,7 +74,7 @@ export default function JobDetails(props) {
       setSaved(res.data.is_saved);
     };
 
-    if (user && user.user_role && user.user_role === "User") {
+    if (user && user.role && user.role === "User") {
       loadPostDetailsByIdWithHeader();
     } else {
       loadPostDetailsById();
@@ -131,7 +131,7 @@ export default function JobDetails(props) {
         setSaved(true);
       })
       .catch((err) => {
-        alert(err);
+        alert("Dã lưu việc làm này");
       });
   };
 
@@ -156,10 +156,9 @@ export default function JobDetails(props) {
                 <Grid
                   container
                   spacing={{ xs: 2, md: 3 }}
-                  columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                   {applies.map((item, index) => (
-                    <Grid item xs={2} sm={4} md={4} key={index}>
+                    <Grid item xs={12} sm={4} md={4} key={index}>
                       <Item>
                         <Link
                           to={`/profile/${item.user}`}
@@ -279,7 +278,7 @@ export default function JobDetails(props) {
           )}
 
           {user === undefined ||
-          (user && user.user_role && user.role !== "Hirer") ? (
+          (user && user.role && user.role !== "Hirer") ? (
             <div>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Hoặc nộp đơn ứng tuyển qua email
@@ -304,7 +303,7 @@ export default function JobDetails(props) {
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
-              <Grid item xs={12} sm={4} md={4}>
+              <Grid item xs={6} sm={4} md={4}>
                 <Link
                   to={`/job-list/posts?keyword=&major_id=${post?.major}`}
                   className="link "
@@ -315,7 +314,7 @@ export default function JobDetails(props) {
                   </Item>
                 </Link>
               </Grid>
-              <Grid item xs={12} sm={4} md={4}>
+              <Grid item xs={6} sm={4} md={4}>
                 <Link
                   to={`/job-list/posts?keyword=&from_salary=${post?.from_salary}`}
                   className="link"

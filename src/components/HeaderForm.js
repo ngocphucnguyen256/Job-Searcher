@@ -13,7 +13,7 @@ import SeclectGroup  from './SelectGroup';
 
 
 
-export default function HeaderForm() {
+export default function HeaderForm(props) {
 
 
     const [categories, setCategories] = useState([])
@@ -84,8 +84,15 @@ export default function HeaderForm() {
 
     return(
      <Box component="form" noValidate onSubmit={handleSubmit} className='react-form header-form'>
-      <h2>Đón lấy thành công với
+      {
+        props.page?(
+            <h2>Tìm kiếm công việc</h2>
+         
+        ):(
+            <h2>Đón lấy thành công với
             các cơ hội nghề nghiệp</h2>
+        )
+      }
   
       <TextField name="title" className="search" fullWidth id="outlined-search" label="Chức danh" type="search" />
     

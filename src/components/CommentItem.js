@@ -4,13 +4,15 @@ import Button from '@mui/material/Button';
 import { UserContext } from '../App'
 import  {  useContext } from 'react'
 import Api, { endpoints } from '../config/Api';
-
-
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const CommentItem = (props) => {
     const [user] = useContext(UserContext)
-
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('xs'));
     const data = props.data
 
 
@@ -28,9 +30,8 @@ const CommentItem = (props) => {
 
     }
 
-
     return (
-        <Paper style={{ padding: "40px 20px", marginTop: 20 }}>
+        <Paper className="comment-item">
             <Grid container wrap="nowrap" spacing={2}>
                 <Grid item>
                      {/* <Link to={`/profile/${data.creator}`} className="link"> */}
@@ -54,8 +55,8 @@ const CommentItem = (props) => {
                 </Grid>
                 {
                     user && data.creator===user.id&&
-                    <Button size="large" variant="contained" onClick={handleDeleteComment} >
-                    Delete Comment
+                    <Button size={`${matches ? "small" : "large"}`} variant="contained" onClick={handleDeleteComment}  endIcon={<DeleteIcon />} >
+                        Xóa
                      </Button>
                 }
              

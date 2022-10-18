@@ -60,14 +60,14 @@ const DashboardApplied = () => {
 
     return (
         <div className="dashboard-Applied">
-        <Typography variant="h3" textAlign="center" gutterBottom component="h1" className="name">
+        <Typography variant="h3" textAlign="center" gutterBottom component="h3" className="name">
             Các việc làm đã ứng tuyển
             </Typography>
             <Box sx={{ width:'100%' }}>
             <Grid container spacing={1} >
             {applies!=null && applies.length > 0?(
                     applies.map((item, index) => (
-                    <Grid item xs={2} sm={6} md={6} key={index}>
+                    <Grid item xs={12} sm={6} md={6} key={index}>
                           <Link to={`/job-detail/${item.post}`} className="link deco-none">
                         
                             <JobItem data={item.post_detail}/>
@@ -83,7 +83,7 @@ const DashboardApplied = () => {
                                         link.download = `CV-${item.user}.txt`;
                                         link.href = `${item.CV_path}`;
                                         link.click();
-                                    }} variant="contained" >Tải CV</Button>
+                                    }} variant="contained" className="mr-2-i" >Tải CV</Button>
                             ):(
                             <></>
                             )
@@ -97,7 +97,7 @@ const DashboardApplied = () => {
                     </Grid>
                     ))
                 ):(
-                <Typography variant="h2"  gutterBottom component="h2">Chưa có apply</Typography>
+                <Typography variant="h4"  gutterBottom component="h4">Chưa có apply</Typography>
 
 
                 )}

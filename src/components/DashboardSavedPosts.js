@@ -56,7 +56,7 @@ const handleDelete =(id )=>{
             <Grid container spacing={1} >
                 {posts.length>0?(
                     posts.map((item, index) =>
-                        <Grid item xs={6} key={index} >
+                        <Grid item xs={12} md={6} key={index} >
                             <JobItem data={item.post_detail} />
                             <CenterDiv>
                                 <Button  variant="contained" onClick={()=>handleDelete(item.id)} >Bỏ lưu</Button>
@@ -65,7 +65,8 @@ const handleDelete =(id )=>{
                         </Grid>
                     )
                 ):(
-                    <p>Khong co ket qua</p>
+                    <Typography variant="h4"  gutterBottom component="h4">Không có kết quả</Typography>
+  
                 )}
             </Grid>
           </Box>

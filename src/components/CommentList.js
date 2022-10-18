@@ -29,7 +29,7 @@ const CommentList=(props)=> {
           onChange={(e)=>{
             props.setComment(e.target.value)
           }}
-          value={props.comment} id="fullWidth" />
+          value={props.comment} id="fullWidth"/>
           </Box>
           <Button size="large" variant="contained" onClick={props.handlePostComment} endIcon={<SendIcon />}>
               Gửi

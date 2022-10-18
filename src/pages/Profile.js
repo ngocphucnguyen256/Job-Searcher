@@ -149,7 +149,7 @@ function Profile() {
           {
           profile?.email?(
             <Typography variant="h5" textAlign="center" gutterBottom component="div" className="name">
-            Email: {profile?.email}
+            Email: <a href={`mailto:${profile?.email}`}>{profile?.email}</a>
           </Typography>
           ):(
             <></>

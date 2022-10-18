@@ -116,7 +116,7 @@ function ProfileCompany() {
       handleGetCompanyPost(profileDetailId);
       getComments(profileDetailId);
     }
-  }, [rate, profileDetailId]);
+  }, [rate, profileDetailId, user]);
 
   if (!profile || !profileDetail) {
     return (
@@ -126,6 +126,15 @@ function ProfileCompany() {
         <Footer />
       </div>
     );
+  }
+  console.log(user);
+  const fomatUrl = (url) =>{
+    if(url.includes("http")){
+      return url
+    }else{
+      return "http://"+url
+    }
+   
   }
 
   return (
@@ -164,7 +173,7 @@ function ProfileCompany() {
             component="div"
             className="name"
           >
-            Website: {profileDetail?.web_url}
+             Website: <a target="_blank" href={`${fomatUrl(profileDetail?.web_url)}`}  rel="noreferrer">{profileDetail?.web_url}</a>
           </Typography>
         ) : (
           <></>
@@ -182,7 +191,7 @@ function ProfileCompany() {
         ) : (
           <></>
         )}
-        {user && user.user_role === "User" ? (
+        {user && user.role === "User" ? (
           <>
             <Typography
               variant="h6"
@@ -223,7 +232,7 @@ function ProfileCompany() {
             component="div"
             className="name"
           >
-            Email: {profileDetail?.email}
+            Email: <a href={`mailto:${profileDetail?.email}`}>{profileDetail?.email}</a>
           </Typography>
         ) : (
           <></>

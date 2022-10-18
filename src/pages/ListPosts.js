@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import JobItem from '../components/JobItem'
 import { useSearchParams, useParams } from 'react-router-dom';
+import HeaderForm  from '../components/HeaderForm'
 
 
 
@@ -37,7 +38,7 @@ export default function ListPosts() {
         loadPosts()
        }
     
-    }, []);
+    }, [q]);
  
 
   return (
@@ -45,19 +46,20 @@ export default function ListPosts() {
         <Header/>
             <main className="search-job">
             <Container fixed>
-                <Typography variant="h3" textAlign="center" gutterBottom component="h1" className="name">
-                {/* {props.heading} */}
+                <HeaderForm page/>
+                <Typography variant="h1" textAlign="center" gutterBottom mt={2} component="h1" className="name">
+                Các bài đăng với tìm kiếm
                 </Typography>
                 <Box sx={{ width:'100%' }}>
                 <Grid container spacing={1} >
                     {posts.length>0?(
                         posts.map((item, index) =>
-                            <Grid item xs={6} key={index} >
+                            <Grid item sx={12} md={6} key={index} >
                                 <JobItem data={item}/>
                             </Grid>
                         )
                     ):(
-                        <Typography variant="h3" textAlign="center" gutterBottom component="h1" className="name">
+                        <Typography variant="h3" textAlign="center" gutterBottom component="h3" className="name">
                        Không có kết quả
                         </Typography>
                     )}

@@ -241,7 +241,7 @@ export default function ProfileItem(props) {
                     </Typography>
                     {props.authenticated ? (
                         <>
-                        <Button variant="contained" onClick={()=>handleModify(item)} className="mr-2" endIcon={<EditIcon/>}>Sửa</Button>
+                        <Button variant="contained" className="mr-2-i" onClick={()=>handleModify(item)}  endIcon={<EditIcon/>}>Sửa</Button>
                         <Button variant="contained" onClick={()=>handleDeleteEducation(item.id)} >Xóa</Button>
                         </>
                       ):(
