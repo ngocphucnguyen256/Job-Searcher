@@ -1,15 +1,7 @@
-import PostComponent from './PostComponent';
+import PostComponent from "./PostComponent";
 
 const DashboardPost = (props) => {
+  return <PostComponent />;
+};
 
-    return(
-    
-            <PostComponent/>
-
-    )
-
-
-}
-
-
-export default DashboardPost
+export default DashboardPost;

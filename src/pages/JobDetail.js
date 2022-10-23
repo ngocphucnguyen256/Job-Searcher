@@ -70,6 +70,7 @@ export default function JobDetails(props) {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
+      console.log(res.data);
       setPost(res.data);
       setSaved(res.data.is_saved);
     };
@@ -153,10 +154,7 @@ export default function JobDetails(props) {
             </Typography>
             {applies != null && applies.length > 0 ? (
               <Box sx={{ flexGrow: 1 }}>
-                <Grid
-                  container
-                  spacing={{ xs: 2, md: 3 }}
-                >
+                <Grid container spacing={{ xs: 2, md: 3 }}>
                   {applies.map((item, index) => (
                     <Grid item xs={12} sm={4} md={4} key={index}>
                       <Item>
@@ -246,8 +244,7 @@ export default function JobDetails(props) {
             </CenterDiv>
             <h2>Công ty: {post.company_detail.company_name}</h2>
           </Link>
-          {
-          authenticated ||user===undefined || user.role !== "User" ? (
+          {authenticated || user === undefined || user.role !== "User" ? (
             <></>
           ) : (
             <>
@@ -396,19 +393,7 @@ export default function JobDetails(props) {
               value={dataCkeditor}
               setDataCkeditor={setDataCkeditor}
             />
-            <input
-              // accept="image/*"
-              // style={{ display: 'none' }}
-              id="raised-button-file"
-              multiple
-              type="file"
-              ref={cvRef}
-            />
-            {/* <label htmlFor="raised-button-file">
-                            <Button fullWidth variant="contained" component="div" sx={{ mt: 3, mb: 2 }}>
-                            Upload CV
-                            </Button>
-                        </label> */}
+            <input id="raised-button-file" multiple type="file" ref={cvRef} />
 
             <Button onClick={handleApplySubmit} variant="contained">
               Nộp đơn ứng tuyển ngay

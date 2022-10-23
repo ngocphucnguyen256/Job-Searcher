@@ -5,7 +5,6 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import JobItem from "./JobItem";
 import Pagination from "@mui/material/Pagination";
 import Container from "@mui/material/Container";
 import CenterDiv from "./CenterDiv";
@@ -99,15 +98,6 @@ export default function TabComponent() {
     loadHirerByKeyword();
   };
 
-  // const formatDateList =  posts.map(post=>{
-  //   let localdate = new Date(post.created_date);
-  //   const copy ={date: localdate, ...post}
-  //   return copy
-  // })
-
-  //oldest first
-  // let sortedDateList= formatDateList.sort((a,b) =>b.date.getTime() -  a.date.getTime())
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -175,7 +165,6 @@ export default function TabComponent() {
               <Button
                 variant="contained"
                 size="small"
-                
                 onClick={handleFindHirer}
               >
                 Tìm ngay

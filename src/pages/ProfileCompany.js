@@ -17,7 +17,7 @@ import TabItem from "../components/TabItem";
 
 function ProfileCompany() {
   const [user, dispatch] = useContext(UserContext);
-  const [openDialog, setOpenDialog] = useState(false);
+
   const { id } = useParams();
   const [profile, setProfile] = useState(null);
   const [profileDetail, setProfileDetail] = useState(null);
@@ -26,9 +26,6 @@ function ProfileCompany() {
   const [commentData, setCommentData] = useState([]);
   const [posts, setPosts] = useState([]);
   const [profileDetailId, setProfileDetailId] = useState(null);
-
-  const handleOpen = () => setOpenDialog(true);
-  const handleClose = () => setOpenDialog(false);
 
   const handleGetCompanyProfile = async () => {
     const res = await Api.get(endpoints["getCompanyProfile"](id));
@@ -128,14 +125,13 @@ function ProfileCompany() {
     );
   }
   console.log(user);
-  const fomatUrl = (url) =>{
-    if(url.includes("http")){
-      return url
-    }else{
-      return "http://"+url
+  const fomatUrl = (url) => {
+    if (url.includes("http")) {
+      return url;
+    } else {
+      return "http://" + url;
     }
-   
-  }
+  };
 
   return (
     <div className="profile">
@@ -173,7 +169,14 @@ function ProfileCompany() {
             component="div"
             className="name"
           >
-             Website: <a target="_blank" href={`${fomatUrl(profileDetail?.web_url)}`}  rel="noreferrer">{profileDetail?.web_url}</a>
+            Website:{" "}
+            <a
+              target="_blank"
+              href={`${fomatUrl(profileDetail?.web_url)}`}
+              rel="noreferrer"
+            >
+              {profileDetail?.web_url}
+            </a>
           </Typography>
         ) : (
           <></>
@@ -209,8 +212,8 @@ function ProfileCompany() {
               component="div"
               className="name"
             >
-              <Rating value={rate} setRate={setRate} /> (Điểm đánh giá trung bình:{" "}
-              {profileDetail.rateAvg})
+              <Rating value={rate} setRate={setRate} /> (Điểm đánh giá trung
+              bình: {profileDetail.rateAvg})
             </Typography>
           </>
         ) : (
@@ -232,7 +235,10 @@ function ProfileCompany() {
             component="div"
             className="name"
           >
-            Email: <a href={`mailto:${profileDetail?.email}`}>{profileDetail?.email}</a>
+            Email:{" "}
+            <a href={`mailto:${profileDetail?.email}`}>
+              {profileDetail?.email}
+            </a>
           </Typography>
         ) : (
           <></>

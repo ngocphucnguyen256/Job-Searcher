@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -17,13 +17,10 @@ const MenuProps = {
   },
 };
 
-
-
-
-function getStyles(name, personName, theme) {
+function getStyles(name, value, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      value.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
@@ -31,21 +28,18 @@ function getStyles(name, personName, theme) {
 
 export default function SelectComponent(props) {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [value, setValue] = React.useState([]);
 
-  let list=[];
+  let list = [];
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    setValue(typeof value === "string" ? value.split(",") : value);
   };
-  if(props.data){
-    list=props.data
+  if (props.data) {
+    list = props.data;
   }
 
   return (
@@ -56,7 +50,7 @@ export default function SelectComponent(props) {
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           multiple
-          value={personName}
+          value={value}
           onChange={handleChange}
           input={<OutlinedInput label={props?.label} />}
           MenuProps={MenuProps}
@@ -66,7 +60,7 @@ export default function SelectComponent(props) {
             <MenuItem
               key={item.name}
               value={item.name}
-              style={getStyles(item.name, personName, theme)}
+              style={getStyles(item.name, value, theme)}
             >
               {item.name}
             </MenuItem>
