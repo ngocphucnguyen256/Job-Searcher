@@ -126,7 +126,13 @@ export default function JobItem(props) {
                   gutterBottom
                   component="div"
                 >
-                  Lương: {data?.from_salary} - {data?.to_salary}
+                  Lương:{" "}
+                  {String(data?.from_salary).replace(
+                    /(.)(?=(\d{3})+$)/g,
+                    "$1."
+                  )}{" "}
+                  -{" "}
+                  {String(data?.to_salary).replace(/(.)(?=(\d{3})+$)/g, "$1.")}
                 </Typography>
               ) : (
                 <Typography
