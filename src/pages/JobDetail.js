@@ -13,12 +13,13 @@ import Typography from "@mui/material/Typography";
 import CenterDiv from "../components/CenterDiv";
 import { UserContext } from "../App";
 import ModalComponent from "../components/ModalComponent";
-import CkeditorComponent from "../components/CkeditorComponent";
+import TextField from "@mui/material/TextField";
 import img from "../images/404.jpg";
 import Avatar from "@mui/material/Avatar";
 import Moment from "react-moment";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import BeenhereIcon from "@mui/icons-material/Beenhere";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function JobDetails(props) {
   const { id } = useParams();
@@ -28,9 +29,9 @@ export default function JobDetails(props) {
   const [applies, setApplies] = useState(null);
   const [user, dispatch] = useContext(UserContext);
   const [openDialog, setOpenDialog] = useState(false);
-  const [dataCkeditor, setDataCkeditor] = useState("");
   const [saved, setSaved] = useState(false);
   const [authenticated, setAuthenticated] = useState(props.authenticated);
+  const [loading, setLoading] = useState(false);
 
   const handleOpen = () => setOpenDialog(true);
   const handleClose = () => setOpenDialog(false);
@@ -86,16 +87,24 @@ export default function JobDetails(props) {
     handleOpen();
   };
 
-  const handleApplySubmit = async () => {
+  const handleApplySubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
     var formData = new FormData();
 
     if (authenticated) {
       alert("Không thể ứng tuyển vào việc làm của chính bạn");
-    } else if (cvRef.current.files[0] && id && user.id && dataCkeditor) {
+    } else if (
+      cvRef.current.files[0] &&
+      id &&
+      user.id &&
+      data.get("description")
+    ) {
+      setLoading(true);
       formData.append("CV", cvRef.current.files[0]);
       formData.append("post", id);
       formData.append("user", user.id);
-      formData.append("description", dataCkeditor);
+      formData.append("description", data.get("description"));
 
       let res = await Api.post(endpoints["applies"], formData, {
         headers: {
@@ -109,7 +118,14 @@ export default function JobDetails(props) {
           alert("Ứng tuyển thành công");
         })
         .catch((err) => {
-          alert(err);
+          if (err.response.status === 400) {
+            alert("Bạn đã ứng tuyển vào việc làm này rồi");
+          } else {
+            alert(err);
+          }
+        })
+        .finally(() => {
+          setLoading(false);
         });
     } else {
       alert("Vui lòng nhập các trường ");
@@ -385,19 +401,40 @@ export default function JobDetails(props) {
             open={openDialog}
             handleClose={handleClose}
           >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Mô tả chi tiết
-            </Typography>
-            <CkeditorComponent
-              name="desc"
-              value={dataCkeditor}
-              setDataCkeditor={setDataCkeditor}
-            />
-            <input id="raised-button-file" multiple type="file" ref={cvRef} />
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleApplySubmit}
+              sx={{ mt: 3 }}
+            >
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Mô tả chi tiết
+              </Typography>
 
-            <Button onClick={handleApplySubmit} variant="contained">
-              Nộp đơn ứng tuyển ngay
-            </Button>
+              <TextField
+                required
+                name="description"
+                className="search"
+                fullWidth
+                id="outlined-search"
+              />
+              <input
+                className="mt-2 mb-2"
+                id="raised-button-file"
+                multiple
+                type="file"
+                ref={cvRef}
+              />
+              <CenterDiv>
+                {loading ? (
+                  <CircularProgress />
+                ) : (
+                  <Button type="submit" variant="contained">
+                    Nộp đơn ứng tuyển ngay
+                  </Button>
+                )}
+              </CenterDiv>
+            </Box>
           </ModalComponent>
         </section>
       </main>

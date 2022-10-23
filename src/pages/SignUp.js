@@ -3,7 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -15,11 +14,13 @@ import { useNavigate } from "react-router-dom";
 import ModalComponent from "../components/ModalComponent";
 import ImageUpload from "../components/ImageUpload";
 import CenterDiv from "../components/CenterDiv";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function SignUp() {
   let navigate = useNavigate();
 
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const avatar = React.useRef();
 
@@ -32,7 +33,6 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
     let createUser = async () => {
       var formData = new FormData();
       formData.append("avatar", avatar.current.files[0]);
@@ -54,6 +54,9 @@ export default function SignUp() {
           if (err.response.status === 400) {
             alert("Tên đăng nhập hơạc email đã tồn tại");
           }
+        })
+        .finally(() => {
+          setLoading(false);
         });
     };
 
@@ -64,6 +67,7 @@ export default function SignUp() {
       data.get("email") &&
       data.get("password")
     ) {
+      setLoading(true);
       createUser();
     } else {
       alert("Hãy nhập đủ các trường");
@@ -172,15 +176,20 @@ export default function SignUp() {
               </CenterDiv>
             </Grid>
           </Grid>
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Đăng ký
-          </Button>
+          <CenterDiv>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Đăng ký
+              </Button>
+            )}
+          </CenterDiv>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/sign-in" variant="body2">

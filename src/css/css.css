@@ -236,10 +236,11 @@ h1 {
 .loading {
   display: inline-block;
   position: fixed;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   left: 50%;
   top: 50%;
+  margin-right: -50%;
   transform: translate(-50%, -50%);
 }
 
@@ -330,6 +331,10 @@ h1 {
 
 .mt-2 {
   margin-top: 16px;
+}
+
+.mb-2 {
+  margin-bottom: 16px;
 }
 
 .ml-2 {
