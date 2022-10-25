@@ -43,7 +43,7 @@ export default function SignIn() {
       })
       .catch((err) => {
         if (err.response.status === 400) {
-          alert("Tên đăng nhập hơạc mật khẩu không đúng");
+          alert("Tên đăng nhập hoặc mật khẩu không đúng");
         }
       });
   };

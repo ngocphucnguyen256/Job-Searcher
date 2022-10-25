@@ -52,7 +52,7 @@ export default function SignUp() {
         })
         .catch((err) => {
           if (err.response.status === 400) {
-            alert("Tên đăng nhập hơạc email đã tồn tại");
+            alert("Tên đăng nhập hoặc email đã tồn tại");
           }
         })
         .finally(() => {
