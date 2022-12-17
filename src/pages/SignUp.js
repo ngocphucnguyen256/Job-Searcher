@@ -94,7 +94,7 @@ export default function SignUp() {
             Tài khoản của bạn đã đăng kí thành công
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Bạn có thể đăng nhập ngay bây giờ
+            Hãy xác nhận kích hoạt tài khoản ở thư được chúng tôi gửi trong email trước khi đăng nhập
           </Typography>
           <Button
             type=""
